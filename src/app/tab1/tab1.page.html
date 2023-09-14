@@ -1,6 +1,13 @@
-<ion-content [fullscreen]="true">
-  <form [formGroup]="loginForm">
-    <app-checkbox formControlName="check" ></app-checkbox>
-    <app-button [expand]="'block'" (click)="onClick($event)" ></app-button>
-  </form>
-</ion-content>
+
+<app-menu contentId="main-content"></app-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+</div>

@@ -10,18 +10,25 @@ import { AvatarComponent } from './shared/avatar/avatar.component';
 import { CheckboxComponent } from './shared/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatetimeComponent } from './shared/datetime/datetime.component';
+import { FabButtonComponent } from './shared/fab-button/fab-button.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
-
-const components = [ButtonComponent, InputComponent, ErrorMsgComponent, CardComponent, HeaderComponent, AvatarComponent, CheckboxComponent, DatetimeComponent]
+const components = [
+  ButtonComponent,
+  InputComponent,
+  ErrorMsgComponent,
+  CardComponent,
+  HeaderComponent,
+  AvatarComponent,
+  CheckboxComponent,
+  DatetimeComponent,
+  FabButtonComponent,
+  MenuComponent
+];
 
 @NgModule({
   declarations: [...components],
-  imports: [
-    CommonModule,
-    IonicModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports:[...components]
+  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
+  exports: [...components],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
