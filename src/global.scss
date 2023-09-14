@@ -36,3 +36,23 @@
         --border-radius: 0px;
     }
 }
+
+//Ejemplo para personalizar la alerta de ionic
+.mi-clase-personalizada {
+    .alert-wrapper {
+      background-color: #ffffff; /* Cambia el fondo de la alerta */
+    }
+    .alert-title {
+      color: #333; /* Cambia el color del título */
+    }
+  
+    .alert-message {
+      font-size: 16px; /* Cambia el tamaño de fuente del mensaje */
+    }
+  
+    .alert-button {
+      background-color: #007bff; /* Cambia el color de fondo de los botones */
+      color: #fff; /* Cambia el color del texto de los botones */
+      border-radius: 8px;
+    }
+  }
