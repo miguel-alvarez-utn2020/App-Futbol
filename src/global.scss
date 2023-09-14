@@ -24,3 +24,15 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.custom-modal {
+    --border-radius: 8px;
+    --width: auto ;
+    --height: auto ;
+    @media screen and (max-width: 768px) {
+        --height: 100%;
+        --width: 100%;
+        --border-radius: 0px;
+    }
+}
