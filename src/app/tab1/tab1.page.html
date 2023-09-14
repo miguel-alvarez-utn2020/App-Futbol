@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <form [formGroup]="loginForm">
     <app-checkbox formControlName="check" ></app-checkbox>
-    <app-button [disabled]="loginForm.invalid" [expand]="'block'" [cFn]="login" ></app-button>
+    <app-button [expand]="'block'" (click)="onClick($event)" ></app-button>
   </form>
 </ion-content>

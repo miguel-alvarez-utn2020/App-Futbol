@@ -9,9 +9,10 @@ import { HeaderComponent } from './shared/card/header/header.component';
 import { AvatarComponent } from './shared/avatar/avatar.component';
 import { CheckboxComponent } from './shared/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatetimeComponent } from './shared/datetime/datetime.component';
 
 
-const components = [ButtonComponent, InputComponent, ErrorMsgComponent, CardComponent, HeaderComponent, AvatarComponent, CheckboxComponent]
+const components = [ButtonComponent, InputComponent, ErrorMsgComponent, CardComponent, HeaderComponent, AvatarComponent, CheckboxComponent, DatetimeComponent]
 
 @NgModule({
   declarations: [...components],

@@ -7,6 +7,7 @@ import { ButtonComponent } from '../components/shared/button/button.component';
 import { ModalService } from '../services/shared/modal.service';
 import { AlertService } from '../services/shared/alert.service';
 import { ToastService } from '../services/shared/toast.service';
+import { DatetimeComponent } from '../components/shared/datetime/datetime.component';
 
 @Component({
   selector: 'app-tab1',
@@ -41,12 +42,13 @@ export class Tab1Page implements OnInit {
     console.log('login', this.loginForm);
   }
 
-  onClick() {
+ async onClick(event:any) {
     const props = {
       label: 'login',
     };
 
-    console.log(this.loginForm);
+    const data = await this.popoverService.showPopover(DatetimeComponent, event, props)
+    console.log('data popover', data);
     
   }
 
