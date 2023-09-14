@@ -1,13 +1,9 @@
-
-
 <ion-content [fullscreen]="true">
-  
-  <form [formGroup]="loginForm" >
-    <app-input formControlName="name" [label]="'Email'" >
-      <error-msg [errorLabel]=" 'Nombre invalidp' " ></error-msg>
+  <form [formGroup]="loginForm">
+    <app-input formControlName="name" [label]="'Email'">
+      <error-msg [errorLabel]=" 'Nombre invalidp' "></error-msg>
     </app-input>
-    <ion-button (click)="onClick($event)" expand="block" fill="clear" shape="round">
-      Click me
-    </ion-button>
+    <app-checkbox formControlName="check" ></app-checkbox>
+    <app-button [cDisabled]="loginForm.invalid" [cFn]="login" ></app-button>
   </form>
 </ion-content>

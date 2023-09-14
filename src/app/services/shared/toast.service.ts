@@ -20,6 +20,7 @@ export class ToastService {
       duration,
       position,
       color,
+      cssClass: 'mi-toast-message'
     });
 
     await toast.present();

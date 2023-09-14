@@ -48,8 +48,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     // Manejar cambios en el input
     onInputChange(event: any) {
       this.innerValue = event.target.value;
-      console.log(event);
-      
       this.emitChanges();
     }
   }

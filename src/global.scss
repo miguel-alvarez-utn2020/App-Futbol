@@ -56,3 +56,12 @@
       border-radius: 8px;
     }
   }
+
+  //ejemplo personalizar toast message
+  .mi-toast-message {
+    text-align: center;
+    font-size: 16px; /* Cambia el tamaño de fuente del mensaje */
+    color: #fff; /* Cambia el color del texto del mensaje */
+    padding: 10px; /* Ajusta el espacio interior del mensaje */
+    border-radius: 8px; /* Agrega bordes redondeados al mensaje */
+  }

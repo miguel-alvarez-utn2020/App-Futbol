@@ -1,0 +1,9 @@
+<ion-item>
+    <ion-label> {{label}} </ion-label>
+    <ion-avatar [slot]="slot">
+      <img [src]="srcImg" />
+    </ion-avatar>
+    <ion-button *ngIf="iconName" fill="clear">
+        <ion-icon [color]="color" slot="icon-only" [name]="iconName"></ion-icon>
+    </ion-button>
+</ion-item>

@@ -3,16 +3,23 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './shared/button/button.component';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { InputComponent } from './shared/input/input.component';
-import { ErrorMsgComponent } from './shared/error-msg/error-msg.component';
+import { ErrorMsgComponent } from './shared/input/error-msg/error-msg.component';
+import { CardComponent } from './shared/card/card.component';
+import { HeaderComponent } from './shared/card/header/header.component';
+import { AvatarComponent } from './shared/avatar/avatar.component';
+import { CheckboxComponent } from './shared/checkbox/checkbox.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-const components = [ButtonComponent, InputComponent, ErrorMsgComponent]
+const components = [ButtonComponent, InputComponent, ErrorMsgComponent, CardComponent, HeaderComponent, AvatarComponent, CheckboxComponent]
 
 @NgModule({
   declarations: [...components],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[...components]
 })
