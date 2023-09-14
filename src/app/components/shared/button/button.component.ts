@@ -7,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit{
    
-    @Input() cLabel = 'click';
-    @Input() cColor = 'primary';
-    @Input() cExpand: string | undefined = undefined;
-    @Input() cFill = 'solid';
-    @Input() cShape = 'none';
-    @Input() cDisabled = false;
+    @Input() label = 'click';
+    @Input() color = 'primary';
+    @Input() expand: string | undefined = undefined;
+    @Input() fill = 'solid';
+    @Input() shape = 'none';
+    @Input() disabled = false;
     @Input() cFn = () => {};
     @Input() props: any;
 

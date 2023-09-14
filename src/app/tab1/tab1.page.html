@@ -1,9 +1,6 @@
 <ion-content [fullscreen]="true">
   <form [formGroup]="loginForm">
-    <app-input formControlName="name" [label]="'Email'">
-      <error-msg [errorLabel]=" 'Nombre invalidp' "></error-msg>
-    </app-input>
     <app-checkbox formControlName="check" ></app-checkbox>
-    <app-button [cDisabled]="loginForm.invalid" [cFn]="login" ></app-button>
+    <app-button [disabled]="loginForm.invalid" [expand]="'block'" [cFn]="login" ></app-button>
   </form>
 </ion-content>

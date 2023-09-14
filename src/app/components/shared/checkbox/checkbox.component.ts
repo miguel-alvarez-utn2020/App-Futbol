@@ -1,6 +1,5 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-checkbox',
@@ -16,14 +15,17 @@ import { InputComponent } from '../input/input.component';
 })
 export class CheckboxComponent {
 
-  public innerValue: any = true;
-
+  public innerValue: boolean = false; // Inicialmente, el checkbox estará desmarcado
+  @Input() label: string = 'label'
+  @Input() slot: string = 'start'
   onChange: any = () => {};
   onTouched: any = () => {};
 
   // Implementa las funciones de ControlValueAccessor
   writeValue(value: any) {
-    this.innerValue = value;
+    if (typeof value === 'boolean') {
+      this.innerValue = value;
+    }
   }
 
   registerOnChange(fn: any) {
@@ -41,9 +43,7 @@ export class CheckboxComponent {
 
   // Manejar cambios en el input
   onInputChange(event: any) {
-    this.innerValue = event.target.value;
+    this.innerValue = event.target.checked;
     this.emitChanges();
-    console.log(this.innerValue);
-    
   }
 }

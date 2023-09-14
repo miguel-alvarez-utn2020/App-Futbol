@@ -32,14 +32,13 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
     this.url = 'assets/img/foto.svg';
     this.loginForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      check: ['', [Validators.required]]
+      check: [false, [Validators.requiredTrue]]
     });
     console.log(this.loginForm.get('name'));
   }
   //este tipo de funcion es para pasar funciones por input a componentes
   login = () => {
-    console.log('login', this.loginForm.valid);
+    console.log('login', this.loginForm);
   }
 
   onClick() {
