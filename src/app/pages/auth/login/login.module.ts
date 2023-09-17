@@ -7,7 +7,13 @@ import { LoginPage } from './login.page';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   imports: [
     IonicModule,
@@ -15,7 +21,15 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     LoginPageRoutingModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   declarations: [LoginPage]
 })
