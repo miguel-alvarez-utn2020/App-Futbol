@@ -2,9 +2,9 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab3Page } from './tab3.page';
+import { MatchPage } from './match.page';
 
-import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { MatchPageRoutingModule } from './match-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -12,9 +12,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab3PageRoutingModule,
+    MatchPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [Tab3Page]
+  declarations: [MatchPage]
 })
-export class Tab3PageModule {}
+export class MatchPageModule {}

@@ -9,19 +9,19 @@ const routes: Routes = [
     children: [
       {
         path: 'start',
-        loadChildren: () => import('../tab-player/start/start.module').then(m => m.StartPageModule)
+        loadChildren: () => import('./start/start.module').then(m => m.StartPageModule)
       },
       {
         path: 'chat',
-        loadChildren: () => import('../../../pages/tabs/tab-player/tab2/tab2.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
       },
       {
         path: 'players',
-        loadChildren: () => import('../../../pages/tabs/tab-player/tab3/tab3.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('./players/players.module').then(m => m.PlayersPageModule)
       },
       {
         path: 'match',
-        loadChildren: () => import('../../../pages/tabs/tab-player/tab4/tab4.module').then(m => m.Tab4PageModule)
+        loadChildren: () => import('./match/match.module').then(m => m.MatchPageModule)
       },
       {
         path: '',

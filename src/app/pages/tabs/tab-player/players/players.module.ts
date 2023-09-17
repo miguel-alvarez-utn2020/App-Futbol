@@ -2,9 +2,9 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab2Page } from './tab2.page';
+import { PlayersPage } from './players.page';
 
-import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { PlayersPageRoutingModule } from './players-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -12,9 +12,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab2PageRoutingModule,
+    PlayersPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [Tab2Page]
+  declarations: [PlayersPage]
 })
-export class Tab2PageModule {}
+export class PlayersPageModule {}
