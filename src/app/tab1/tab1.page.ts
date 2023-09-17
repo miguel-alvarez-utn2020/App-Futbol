@@ -33,7 +33,7 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
     this.url = 'assets/img/foto.svg';
     this.loginForm = this.fb.group({
-      check: [false, [Validators.requiredTrue]]
+      name: ['', [Validators.required]]
     });
     console.log(this.loginForm.get('name'));
   }
