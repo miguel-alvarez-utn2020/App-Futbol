@@ -1,5 +1,8 @@
 {
     "welcome": "Welcome",
     "hello": "Hello",
-    "goodbye": "Goodbye"
+    "goodbye": "Goodbye",
+    "selectLanguage": "Select Language",
+    "email": "Enter email",
+    "password": "password"
 }

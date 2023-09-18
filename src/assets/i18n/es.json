@@ -1,5 +1,9 @@
 {
     "welcome": "Bienvenido",
     "hello": "Hola",
-    "goodbye": "Adiós"
+    "goodbye": "Adiós",
+    "selectLanguage": "Seleccionar Lenguage",
+    "email": "Ingrese mail",
+    "password": "contraseña"
+
 }

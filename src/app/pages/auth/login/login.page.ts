@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { PopoverService } from 'src/app/services/shared/popover.service';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -10,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   nombre!: string;
+  languages: string[] = ['EN', 'ES'];
   lista = ['miguel', 'josue', 'julio', 'Patricia', 'Ale'];
   url!: string;
 
@@ -17,7 +19,8 @@ export class LoginPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private fb: FormBuilder,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private popverCtrl: PopoverService
   ) {
     
   }
@@ -38,11 +41,10 @@ export class LoginPage implements OnInit {
     console.log('login', this.loginForm);
   }
 
- async onClick(event:any) {
-    const props = {
-      label: 'login',
-    };
-
+  languageSelected(event: string){
+    console.log(event);
+    
+    this.switchLanguage(event.toLowerCase());
   }
 
 }

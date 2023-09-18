@@ -17,5 +17,4 @@ export class AppComponent {
 enum Rol {
   ADMIN = 'admin',
   USER = 'user'
-
 }
