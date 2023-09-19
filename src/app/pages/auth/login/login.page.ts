@@ -1,50 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { PopoverService } from 'src/app/services/shared/popover.service';
+import { INPUT_LOGIN, BUTTONS_LOGIN, ERROR_LOGIN_BACKEND, BUTTONS_REGISTER } from './constant/constant';
+import { Language } from 'src/app/enums/language';
+import { ToastService } from 'src/app/services/shared/toast.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  _inputLogin: any[] = INPUT_LOGIN;
+  _buttonLogin: any = BUTTONS_LOGIN;
+  _buttonRegister: any = BUTTONS_REGISTER;
+  _errorLogiBackend = ERROR_LOGIN_BACKEND;
   loginForm!: FormGroup;
-  nombre!: string;
-  languages: string[] = ['EN', 'ES'];
-  lista = ['miguel', 'josue', 'julio', 'Patricia', 'Ale'];
-  url!: string;
+  languages: string[] = [Language.EN.toUpperCase(), Language.ES.toUpperCase()]
+  defaultLanguages: Language = Language.EN;
+  onlyNumberRegex = /^[0-9]+$/
 
-  tituloPadre = 'Tab 1';
-  constructor(
-    private modalController: ModalController,
-    private fb: FormBuilder,
-    private translate: TranslateService,
-    private popverCtrl: PopoverService
-  ) {
-    
-  }
+  constructor(private fb: FormBuilder, private translate: TranslateService, private toastService: ToastService, private router: Router) {}
 
   ngOnInit(): void {
-    this.switchLanguage('en');
-    this.url = 'assets/img/foto.svg';
-    this.loginForm = this.fb.group({
-      name: ['', [Validators.required]]
-    });
-    console.log(this.loginForm.get('name'));
-  }
-  switchLanguage(lang: string) {
-    this.translate.use(lang); // Cambiar el idioma
-  }
-  //este tipo de funcion es para pasar funciones por input a componentes
-  login = () => {
-    console.log('login', this.loginForm);
+    this.switchLanguage(this.defaultLanguages);
+    this.initLoginForm();
   }
 
-  languageSelected(event: string){
-    console.log(event);
-    
+  switchLanguage(lang: string) {
+    this.translate.use(lang);
+  }
+
+  login = () => {
+    console.log('login', this.loginForm);
+    this.router.navigate(['/player-dashboard']);
+
+
+    this.translate.get(this._errorLogiBackend).subscribe( translateText => {
+      this.toastService.showToast(translateText, 'danger')
+    })
+  };
+
+  goToRegister = () => {
+    this.router.navigate(['/register']);
+  }
+
+  languageSelected(event: string) {
     this.switchLanguage(event.toLowerCase());
+  }
+
+  initLoginForm() {
+    this.loginForm = this.fb.group({
+      phone: ['', [Validators.required, Validators.minLength(1), Validators.pattern(this.onlyNumberRegex)]],
+      password: ['', [Validators.required, Validators.minLength(1)]],
+    });
   }
 
 }

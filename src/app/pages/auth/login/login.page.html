@@ -2,18 +2,49 @@
   <app-select
     (languagesSelected)="languageSelected($event)"
     [languages]="languages"
-    [placeholder]=" 'selectLanguage' | translate "
+    [placeholder]=" 'login.selectLanguage' | translate "
   >
-  <ion-icon class="icon mr-5" color="primary" name="language-outline"></ion-icon>
-</app-select>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <app-input [label]=" 'email' | translate | titlecase"></app-input>
-      </ion-col>
-      <ion-col size="12">
-        <app-input [label]=" 'password' | translate | titlecase"></app-input>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-icon
+      class="icon mr-5"
+      color="primary"
+      name="language-outline"
+    ></ion-icon>
+  </app-select>
+  <form [formGroup]="loginForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let input of _inputLogin">
+          <app-input
+            [formControlName]="input.fcName"
+            [type]="input.type"
+            [label]=" input.label | translate "
+          >
+            <error-msg
+              *ngIf="loginForm.get( input.fcName )?.hasError('pattern')"
+              [errorLabel]="input.errorLabel | translate"
+            ></error-msg>
+          </app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="8">
+          <app-button
+            [fn]="login"
+            [color]="_buttonLogin.color"
+            [disabled]="loginForm.invalid"
+            [expand]="_buttonLogin.expand"
+            [label]="_buttonLogin.label | translate"
+          ></app-button>
+        </ion-col>
+        <ion-col size="8">
+          <app-button
+            [fn]="goToRegister"
+            [color]="_buttonRegister.color"
+            [expand]="_buttonRegister.expand"
+            [label]="_buttonRegister.label | translate"
+          ></app-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

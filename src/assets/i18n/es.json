@@ -1,9 +1,22 @@
 {
-    "welcome": "Bienvenido",
-    "hello": "Hola",
-    "goodbye": "Adiós",
-    "selectLanguage": "Seleccionar Lenguage",
-    "email": "Ingrese mail",
-    "password": "contraseña"
-
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "age": "Edad",
+    "login":{
+        "selectLanguage": "Seleccionar Lenguage",
+        "phoneLabel": "Ingrese teléfono",
+        "passwordLabel": "Contraseña",
+        "buttonLabelLogin":"Ingresar",
+        "buttonLabelRegister":"Registrarse",
+        "errorLoginBackend" : "Usuario o contraseña inválida",
+        "localError" : "Ingrese números"
+    },
+    "register":{
+        "phoneLabel": "Ingrese teléfono",
+        "passwordLabel": "Contraseña",
+        "repeatPasswordLabel": "Repetir contraseña",
+        "buttonLabelRegister":"Registrarse",
+        "errorLoginBackend" : "El número telefónico ya ha sido registrado",
+        "localError" : "Ingrese números"
+    }
 }

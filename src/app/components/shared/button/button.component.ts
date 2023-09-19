@@ -13,7 +13,7 @@ export class ButtonComponent implements OnInit{
     @Input() fill = 'solid';
     @Input() shape = 'none';
     @Input() disabled = false;
-    @Input() cFn = () => {};
+    @Input() fn = () => {};
     @Input() props: any;
 
     ngOnInit(): void {

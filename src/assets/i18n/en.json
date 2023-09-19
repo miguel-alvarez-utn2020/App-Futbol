@@ -1,8 +1,22 @@
 {
-    "welcome": "Welcome",
-    "hello": "Hello",
-    "goodbye": "Goodbye",
-    "selectLanguage": "Select Language",
-    "email": "Enter email",
-    "password": "password"
+    "name": "Name",
+    "lastName": "Last name",
+    "age": "Age",
+    "login":{
+        "selectLanguage": "Select Language",
+        "phoneLabel": "Enter phone",
+        "passwordLabel": "Password",
+        "buttonLabelLogin":"Login",
+        "buttonLabelRegister":"Register",
+        "errorLoginBackend" : "User or password invid",
+        "localError" : "Enter numbers"
+    },
+    "register":{
+        "phoneLabel": "Enter phone",
+        "passwordLabel": "Password",
+        "repeatPasswordLabel": "Repeat password",
+        "buttonLabelRegister":"Register",
+        "errorLoginBackend" : "The phone number has already been registered",
+        "localError" : "Ingrese números"
+    }
 }

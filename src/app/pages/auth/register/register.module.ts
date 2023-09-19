@@ -7,6 +7,13 @@ import { RegisterPage } from './register.page';
 import { RegisterPageRoutingModule } from './register-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   imports: [
@@ -15,7 +22,15 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     RegisterPageRoutingModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   declarations: [RegisterPage]
 })
