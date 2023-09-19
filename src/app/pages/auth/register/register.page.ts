@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { min } from 'rxjs';
-import { BUTTONS_LOGIN, BUTTONS_REGISTER, INPUT_REGISTER } from './constants/constants';
+import { BUTTONS_LOGIN, BUTTONS_REGISTER, ERROR_REGISTER_BACKEND, INPUT_REGISTER } from './constants/constants';
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/enums/language';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/shared/toast.service';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -15,6 +16,7 @@ export class RegisterPage implements OnInit {
   _inputRegister: any[] = INPUT_REGISTER;
   _buttonRegister: any = BUTTONS_REGISTER;
   _buttonLogin: any = BUTTONS_LOGIN;
+  _errorRegisterBackend = ERROR_REGISTER_BACKEND;
   languages: string[] = [Language.EN.toUpperCase(), Language.ES.toUpperCase()]
   defaultLanguages: Language = Language.ES;
   registerForm!: FormGroup;
@@ -25,7 +27,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +39,10 @@ export class RegisterPage implements OnInit {
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
     this.router.navigate(['/player-dashboard']);
+
+    this.translate.get(this._errorRegisterBackend).subscribe( translateText => {
+      this.toastService.showToast(translateText, 'danger')
+    })
   }
 
   goToLogin = () => {

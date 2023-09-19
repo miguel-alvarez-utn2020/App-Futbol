@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   languages: string[] = [Language.EN.toUpperCase(), Language.ES.toUpperCase()]
   defaultLanguages: Language = Language.EN;
+  languageSelect!: string;
   onlyNumberRegex = /^[0-9]+$/
 
   constructor(private fb: FormBuilder, private translate: TranslateService, private toastService: ToastService, private router: Router) {}
@@ -34,8 +35,6 @@ export class LoginPage implements OnInit {
   login = () => {
     console.log('login', this.loginForm);
     this.router.navigate(['/player-dashboard']);
-
-
     this.translate.get(this._errorLogiBackend).subscribe( translateText => {
       this.toastService.showToast(translateText, 'danger')
     })
@@ -46,6 +45,7 @@ export class LoginPage implements OnInit {
   }
 
   languageSelected(event: string) {
+    this.languageSelect = event;
     this.switchLanguage(event.toLowerCase());
   }
 

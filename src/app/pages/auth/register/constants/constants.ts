@@ -40,4 +40,4 @@ export const INPUT_REGISTER = [
   };
   
   
-  export const ERROR_LOGIN_BACKEND = 'login.errorLoginBackend';
+  export const ERROR_REGISTER_BACKEND = 'register.errorRegisterBackend';

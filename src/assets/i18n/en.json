@@ -16,7 +16,7 @@
         "passwordLabel": "Password",
         "repeatPasswordLabel": "Repeat password",
         "buttonLabelRegister":"Register",
-        "errorLoginBackend" : "The phone number has already been registered",
+        "errorRegisterBackend" : "The phone number has already been registered",
         "localError" : "Ingrese números"
     }
 }
