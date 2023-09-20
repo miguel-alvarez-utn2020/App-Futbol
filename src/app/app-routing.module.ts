@@ -11,8 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterPageModule)
   },
   {
-    path: 'player-dashboard',
+    path: 'home',
     loadChildren: () => import('./pages/home/player-home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'player',
+    loadChildren: () => import('./pages//tabs/tab-player/tab-player.module').then(m => m.TabPlayerPageModule)
   },
 ];
 @NgModule({

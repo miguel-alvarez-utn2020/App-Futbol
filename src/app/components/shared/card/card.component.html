@@ -1,7 +1,11 @@
-<ion-card>
-    <ng-content select="[img]"></ng-content>
-    <ng-content select="[header]"></ng-content>
-      <ion-card-content>
-        <ng-content select="[content]"></ng-content>
-      </ion-card-content>
+<ion-card >
+  <img class="img" *ngIf="imgUrl" [src]="imgUrl">
+  <ion-card-header class="header" *ngIf="subTitle || title">
+    <ion-card-subtitle class="subtitle"  *ngIf="subTitle"> {{ subTitle }} </ion-card-subtitle>
+    <ion-card-title class="title fs-20" *ngIf="title" >{{ title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="content">
+    <ion-label class="content-text"> {{ content }} </ion-label>
+    <ng-content></ng-content>
+  </ion-card-content>
 </ion-card>

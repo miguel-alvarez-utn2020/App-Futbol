@@ -1,5 +1,5 @@
 
-<app-menu contentId="main-content"></app-menu>
+
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -12,15 +12,7 @@
   <ion-content class="title"> Tap the button in the toolbar to open the menu. </ion-content>
 </div>
 <ion-content>
-  <app-fab-button>
-      <ion-fab-list side="start">
-        <ion-fab-button><ion-icon name="logo-ionic"></ion-icon></ion-fab-button>
-        <ion-fab-button><ion-icon name="logo-angular"></ion-icon></ion-fab-button>
-      </ion-fab-list>
+  <app-fab-button (click)="onClick()">
+    
   </app-fab-button>
-  <form [formGroup]="loginForm" >
-    <app-input [label]=" 'name' " formControlName="name" >
-      
-    </app-input>
-  </form>
 </ion-content>

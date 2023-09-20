@@ -12,3 +12,16 @@ app-input-label{
     font-family: 'Inter', sans-serif;
 }
 
+.card-news{
+    border-bottom: 1px solid #DADFE9;
+}
+
+.no-boxshadow{
+    box-shadow: none;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+}
+

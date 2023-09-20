@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./start/start.module').then(m => m.StartPageModule)
       },
       {
+        path: 'record',
+        loadChildren: () => import('./records/record.module').then(m => m.RecordPageModule)
+      },
+      {
         path: 'chat',
         loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
       },

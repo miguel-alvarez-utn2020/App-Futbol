@@ -5,7 +5,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { InputComponent } from './shared/input/input.component';
 import { ErrorMsgComponent } from './shared/input/error-msg/error-msg.component';
 import { CardComponent } from './shared/card/card.component';
-import { HeaderComponent } from './shared/card/header/header.component';
 import { AvatarComponent } from './shared/avatar/avatar.component';
 import { CheckboxComponent } from './shared/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +15,7 @@ import { SelectComponent } from './shared/select/select.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,24 +26,30 @@ const components = [
   InputComponent,
   ErrorMsgComponent,
   CardComponent,
-  HeaderComponent,
   AvatarComponent,
   CheckboxComponent,
   DatetimeComponent,
   FabButtonComponent,
   MenuComponent,
-  SelectComponent
+  SelectComponent,
+  HeaderToolbarComponent,
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule, TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient],
-    },
-  }),],
+  imports: [
+    CommonModule,
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
   exports: [...components],
 })
 export class ComponentsModule {}

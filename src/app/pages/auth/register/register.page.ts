@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
   }
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
-    this.router.navigate(['/player-dashboard']);
+    this.router.navigate(['/home']);
 
     this.translate.get(this._errorRegisterBackend).subscribe( translateText => {
       this.toastService.showToast(translateText, 'danger')

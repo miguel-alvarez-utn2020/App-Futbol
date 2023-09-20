@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
   login = () => {
     console.log('login', this.loginForm);
-    this.router.navigate(['/player-dashboard']);
+    this.router.navigate(['/home']);
     this.translate.get(this._errorLogiBackend).subscribe( translateText => {
       this.toastService.showToast(translateText, 'danger')
     })

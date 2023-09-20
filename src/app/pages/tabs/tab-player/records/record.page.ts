@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { min } from 'rxjs';
+
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-record',
+  templateUrl: 'record.page.html',
+  styleUrls: ['record.page.scss'],
 })
-export class HomePage implements OnInit {
+export class RecordPage implements OnInit {
   loginForm!: FormGroup;
   nombre!: string;
   lista = ['miguel', 'josue', 'julio', 'Patricia', 'Ale'];
@@ -18,7 +18,6 @@ export class HomePage implements OnInit {
   constructor(
     private modalController: ModalController,
     private fb: FormBuilder,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +32,11 @@ export class HomePage implements OnInit {
     console.log('login', this.loginForm);
   }
 
- async onClick() {
-    this.router.navigate(['/player/dashboard/start']);
+ async onClick(event:any) {
+    const props = {
+      label: 'login',
+    };
+    
   }
 
 }

@@ -158,3 +158,17 @@
     }
 }
 
+.no-boxshadow{
+  box-shadow: none;
+}
+
+.flex{
+  display: flex;
+  &-d-col{
+    flex-direction: column;
+  }
+  &-d-row{
+    flex-direction: row;
+  }
+}
+

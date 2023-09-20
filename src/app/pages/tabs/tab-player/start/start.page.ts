@@ -1,42 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { min } from 'rxjs';
 
 @Component({
   selector: 'app-start',
   templateUrl: 'start.page.html',
   styleUrls: ['start.page.scss'],
 })
-export class StartPage implements OnInit {
-  loginForm!: FormGroup;
-  nombre!: string;
-  lista = ['miguel', 'josue', 'julio', 'Patricia', 'Ale'];
-  url!: string;
-
-  tituloPadre = 'Tab 1';
-  constructor(
-    private modalController: ModalController,
-    private fb: FormBuilder,
-  ) {}
-
-  ngOnInit(): void {
-    this.url = 'assets/img/foto.svg';
-    this.loginForm = this.fb.group({
-      name: ['', [Validators.required]]
-    });
-    console.log(this.loginForm.get('name'));
-  }
-  //este tipo de funcion es para pasar funciones por input a componentes
-  login = () => {
-    console.log('login', this.loginForm);
-  }
-
- async onClick(event:any) {
-    const props = {
-      label: 'login',
-    };
-    
-  }
-
+export class StartPage {
+  cards = [
+    {
+      url: 'assets/goku.jpg',
+      title: 'Goku',
+      content:
+        `Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel iure repudiandae quos, 
+        ut vero qui cum ullam sunt! Commodi tempora perferendis necessitatibus perspiciatis 
+        nam deserunt ex adipisci, porro et earum?`,
+    },
+    {
+      url: 'assets/goku-2.jpg',
+      title: 'Goku 2',
+      content:
+        `Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel iure repudiandae quos, 
+        ut vero qui cum ullam sunt! Commodi tempora perferendis necessitatibus perspiciatis 
+        nam deserunt ex adipisci, porro et earum?`,
+    },
+    {
+      url: 'assets/iron-trunks.jpg',
+      title: 'Trunks',
+      content:
+        `Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel iure repudiandae quos, 
+        ut vero qui cum ullam sunt! Commodi tempora perferendis necessitatibus perspiciatis 
+        nam deserunt ex adipisci, porro et earum?`,
+    },
+  ];
+  constructor() {}
 }
