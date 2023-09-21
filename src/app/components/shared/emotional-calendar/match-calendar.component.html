@@ -1,0 +1,21 @@
+<div class="calendar">
+    <ion-item  class="calendar__header ion-no-padding ion-no-margin" lines="none">
+        <ion-icon color="light" (click)="slidePrevMonth()" class="calendar__header-icon ion-no-padding ion-no-margin"  slot="start" src="assets/chevron_left-clean.svg" *ngIf="checkPrevMonth"></ion-icon>
+        <ion-label class="calendar__header-label ion-no-padding ion-no-margin" > {{ months[indexCurrentMonth] | uppercase}} </ion-label>
+        <ion-icon color="light" (click)="slideNextMonth()" class="calendar__header-icon ion-no-padding ion-no-margin"  slot="end" src="assets/chevron_right-clean.svg" *ngIf="checkNextMonth" ></ion-icon>
+    </ion-item>
+    <div class="calendar__content">
+        <div class="calendar__headers" >
+            <span class="ion-text-center" *ngFor="let days of daysLabels" >{{ days }}</span>
+        </div>
+        <div class="calendar__days" [ngClass]="{'calendar__days--loading': loading}">
+            <ion-spinner *ngIf="loading" name="bubbles"></ion-spinner>
+            <ng-container *ngIf="!loading" >
+                <div *ngFor="let days of calendar" class="calendar__day-container">
+                    <span  [@fadeInOut]  class="calendar__day ion-text-center" [ngClass]="{'calendar__day--day-match': days.isMatch }" > {{days.day}} </span>
+                    <img *ngIf="days.isMatch" src="assets/football-outline.svg" class="calendar__bg-color" >
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

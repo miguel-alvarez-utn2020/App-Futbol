@@ -1,0 +1,134 @@
+.calendar{
+    &__header{
+        --inner-padding-end: 0;
+        margin-bottom: 20px;
+        height: 35px;
+    }
+    &__motional-header{
+        color: #383E52;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.1%;
+        padding-left: 12px;
+    }
+    &__motional-header-icon{
+        width: 26px;
+        height: 26px;
+    }
+    &__emotional-label{
+        font-size: 12px;
+        letter-spacing: 0.4%;
+        color: #505A78;
+        padding-left: 5px;
+    }
+    &__emotional-type{
+        margin-top: 10px;
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+    }
+    &__headers{
+        color: #FFF;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1.5px solid #ffffff;
+        padding-bottom: 5px;
+        z-index: 1;
+    }
+    &__header-label{
+        text-align: center;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px;
+        letter-spacing: 1.5px
+    }
+    &__header-icon{
+        width: 18px;
+        height: 18px;
+    }
+    &__icon-emotional{
+        width: 8px;
+        height: 8px;
+    }
+    &__days{
+        min-height: 302px;
+        padding-bottom: 5px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        &--loading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &__day {
+
+        position: relative;
+        padding: 14px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 900;
+        color: #ffffff;
+        z-index: 100;
+        &--day-match{
+            font-size: 14px;
+            -webkit-text-stroke: 1px #000000;
+            color: #00f1ff;
+        }
+       
+    }
+    &__bg-color{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        animation: rotateBackground 2s linear infinite; 
+    }
+    &__day-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    &__day{
+        transform: none; /* Anula cualquier transformación aplicada por la animación */
+    }
+    
+}
+
+@keyframes rotateBackground {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg); /* Gira 360 grados para una rotación completa */
+    }
+  }
+
+@keyframes rotateText {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg); /* Gira 360 grados para una rotación completa */
+    }
+  }
+
+  :host{
+    font-family: 'inter';
+  }
+
+  ion-item::part(native){
+    background: none;
+  }

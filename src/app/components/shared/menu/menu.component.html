@@ -1,8 +1,16 @@
-<ion-menu contentId="noti" menuId="noti" side="end">
+<ion-menu contentId="main2" menuId="noti" side="end">
     <ion-header>
       <ion-toolbar>
         <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">This is the menu content.</ion-content>
+    <ion-content class="ion-padding">
+
+      <ion-menu-toggle *ngFor="let c of [1, 2, 3]" autoHide="false">
+        <ion-item>
+          {{ c }}
+        </ion-item>
+      </ion-menu-toggle>
+
+    </ion-content>
 </ion-menu>

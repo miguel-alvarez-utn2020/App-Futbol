@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './shared/button/button.component';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { InputComponent } from './shared/input/input.component';
 import { ErrorMsgComponent } from './shared/input/error-msg/error-msg.component';
 import { CardComponent } from './shared/card/card.component';
@@ -14,8 +14,9 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { SelectComponent } from './shared/select/select.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
+import { MatchCalendarComponent } from './shared/emotional-calendar/match-calendar.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,6 +34,7 @@ const components = [
   MenuComponent,
   SelectComponent,
   HeaderToolbarComponent,
+  MatchCalendarComponent
 ];
 
 @NgModule({

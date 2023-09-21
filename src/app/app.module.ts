@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// o
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   IonicModule,
   IonicRouteStrategy,
@@ -22,6 +24,8 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     ComponentsModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

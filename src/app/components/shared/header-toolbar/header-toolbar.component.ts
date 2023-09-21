@@ -11,6 +11,11 @@ export class HeaderToolbarComponent {
   constructor(private menuCrtl: MenuController){}
 
   async showMenu(){
-    this.menuCrtl.open('noti')
+    this.menuCrtl.enable(true, 'menu');
+    this.menuCrtl.open('menu');
+  }
+  async showMenu2(){
+    this.menuCrtl.enable(true, 'menu2');
+    this.menuCrtl.open('menu2');
   }
 }
