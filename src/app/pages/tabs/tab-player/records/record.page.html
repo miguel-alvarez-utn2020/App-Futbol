@@ -1,7 +1,29 @@
 
 <ion-content>
-
-  <ion-card class="calendar-card ion-padding">
-    <app-match-calendar></app-match-calendar>
-  </ion-card>
+  <ion-item   lines="none" class="ion-no-padding ion-no-margin">
+    <ion-label class="ion-text-center"> {{titleSlides[indesSwiper]}} </ion-label>
+    <ion-icon class="icon-right" *ngIf="indesSwiper === 0" name="arrow-forward-circle-outline"></ion-icon>
+    <ion-icon class="icon-left" *ngIf="indesSwiper === 1" name="arrow-back-circle-outline"></ion-icon>
+  </ion-item>
+  <ion-slides (ionSlideDidChange)="slideChanged($event)" class="slides" [pager]="true" >
+    <ion-slide class="slide">
+    <ion-card class="card-list">
+        <ion-list>
+            <ion-item *ngFor="let item of [1,2,3,4,5,6,7,8,9,8,8,8,8]">
+              <ion-label>Pasco centra 20hs</ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+  </ion-slide>
+  <ion-slide class="slide">
+    <ion-card class="calendar-card ion-padding">
+      <app-match-calendar></app-match-calendar>
+    </ion-card>
+  </ion-slide>
+</ion-slides>
+<ion-fab slot="fixed" horizontal="center" vertical="bottom">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>

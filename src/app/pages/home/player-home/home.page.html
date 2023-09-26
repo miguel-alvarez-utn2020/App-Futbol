@@ -1,18 +1,21 @@
 
-
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title > Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="title"> Tap the button in the toolbar to open the menu. </ion-content>
-</div>
+<app-header-toolbar></app-header-toolbar>
 <ion-content>
-  <app-fab-button (click)="onClick()">
-    
-  </app-fab-button>
+  <ion-list class="ion-padding">
+    <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
+      No tienes grupos creados
+    </ion-button>
+    <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
+      No te has unido a ningún grupo
+    </ion-button>
+  </ion-list>
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button (click)="showRegisterGroupModal()" color="secondary"><ion-icon name="add-circle-outline"></ion-icon></ion-fab-button>
+      <ion-fab-button color="secondary"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

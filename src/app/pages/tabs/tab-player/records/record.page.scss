@@ -1,17 +1,14 @@
 
 
-.color{
-    color: red;
-}
-
-app-input-label{
-    margin-bottom: 8px;
-    padding-left: 5px;
-}
-.header{
-    font-family: 'Inter', sans-serif;
+.card-list{
+    width: 100%;
+    min-height: 428px;
+    max-height: 428px;
+    overflow-y: auto;
 }
 .calendar-card {
+    min-height: 428px;
+    max-height: 428px;
     position: relative; /* Asegura que el elemento padre tenga una posición relativa */
     background-image: url('../../../../../assets/fondo-calendario2.jpg');
     background-repeat: no-repeat;
@@ -30,3 +27,35 @@ app-input-label{
     z-index: 1; /* Coloca la capa oscura delante del fondo */
 }
 
+:host ::ng-deep .swiper-pagination {
+    bottom: 0%;
+    .swiper-pagination-bullet {
+      --bullet-background: #b6bac1;
+      width: 9px;
+      height: 9px;
+    }
+    .swiper-pagination-bullet-active {
+      width: 12px;
+      height: 12px;
+    }
+}
+
+.slides{
+    height: 480px;
+}
+.slide{
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.label{
+    margin: 0;
+   padding-top: 10px;
+}
+.icon-right{
+    position: absolute;
+    right: 3px;
+}
+.icon-left{
+    position: absolute;
+    left: 3px;
+}

@@ -17,7 +17,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 import { MatchCalendarComponent } from './shared/emotional-calendar/match-calendar.component';
-
+import { ItemComponent } from './shared/item/item.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -34,7 +34,9 @@ const components = [
   MenuComponent,
   SelectComponent,
   HeaderToolbarComponent,
-  MatchCalendarComponent
+  MatchCalendarComponent,
+  ItemComponent
+  
 ];
 
 @NgModule({

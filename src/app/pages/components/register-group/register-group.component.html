@@ -1,0 +1,67 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Crear Grupo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="CloseModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="formRegisterGroup">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4" >
+          <div class="avatar">
+            <div class="avatar__img-container">
+              <img [src]="imgAvartar" alt="" />
+            </div>
+  
+            <ion-button fill="clear" class="avatar__button" (click)="takePhoto()">
+              <ion-icon color="secondary"  slot="icon-only" name="camera"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <app-input
+            [label]="'Nombre de grupo'"
+            formControlName="groupName"
+          ></app-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-list>
+            <ion-item>
+              <ion-label>Tipo de grupo</ion-label>
+              <ion-select interface="popover" formControlName="groupType">
+                <ion-select-option
+                  *ngFor="let groupType of groupTypeSelect"
+                  [value]="groupType.value"
+                >
+                  {{ groupType.label | titlecase }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button
+        [disabled]="formRegisterGroup.invalid"
+        color="primary"
+        shape="round"
+        fill="solid"
+        (click)="saveGroup()"
+      >
+        Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
