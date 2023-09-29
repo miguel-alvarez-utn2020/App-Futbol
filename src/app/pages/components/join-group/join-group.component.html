@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>Unirse a grupo</ion-title>
+        <ion-buttons slot="end" >
+            <ion-button (click)="close()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<form class="form-join-group" >
+    <app-input [label]=" 'Codigo de grupo' " [type]="'tel'" ></app-input>
+    <ion-buttons class="ion-justify-content-end" >
+        <ion-button color="primary" fill="solid">
+            <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon>
+            Unirse
+        </ion-button>
+    </ion-buttons>
+</form>

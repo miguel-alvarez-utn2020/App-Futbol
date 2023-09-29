@@ -11,4 +11,5 @@ export class AvatarComponent {
   @Input() slot: string = 'start';
   @Input() iconName: string | undefined = undefined ;
   @Input() color: string = 'danger';
+  @Input() fn = (event) => {};
 }

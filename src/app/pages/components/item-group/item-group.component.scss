@@ -1,0 +1,13 @@
+.item{
+    position: relative;
+    &__type-group{
+        position: absolute;
+        top: 0;
+        right: 60px;
+        font-weight: 700;
+        font-size: 9px;
+    }
+    &__label{
+        padding-left: 10px;
+    }
+}

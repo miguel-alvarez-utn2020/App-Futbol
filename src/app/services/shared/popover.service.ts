@@ -10,7 +10,7 @@ export class PopoverService {
 
   async showPopover(
     component: any,
-    event: any,
+    event?: any,
     props: any = {},
     options: PopoverOptions = {
       cssClass: '',

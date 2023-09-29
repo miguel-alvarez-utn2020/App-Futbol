@@ -1,0 +1,10 @@
+<ion-item class="item">
+    <ion-label color="success" class="item__type-group">Admin</ion-label>
+    <ion-avatar>
+      <img src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    </ion-avatar>
+    <ion-label class="item__label"> {{ group | titlecase}} </ion-label>
+    <ion-button color="danger"  fill="clear" (click)="fn(group)">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+</ion-item>

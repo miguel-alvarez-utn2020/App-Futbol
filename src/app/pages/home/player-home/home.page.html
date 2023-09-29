@@ -1,21 +1,37 @@
-
 <app-header-toolbar></app-header-toolbar>
 <ion-content>
-  <ion-list class="ion-padding">
+  <!-- <ion-list class="ion-padding" *ngIf="groupList.length === 0" >
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
       No tienes grupos creados
     </ion-button>
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
       No te has unido a ningún grupo
     </ion-button>
+  </ion-list> -->
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Lista de grupos</ion-card-subtitle>
+      </ion-card-header>
+      <app-item-group
+      (click)="goToGroup(group)"
+        *ngFor="let group of ['pasco centra','pasco centra','pasco centra']"
+        [group]="group"
+        [fn]="deleteGroup"
+      ></app-item-group>
+    </ion-card>
   </ion-list>
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="start">
-      <ion-fab-button (click)="showRegisterGroupModal()" color="secondary"><ion-icon name="add-circle-outline"></ion-icon></ion-fab-button>
-      <ion-fab-button color="secondary"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)="showRegisterGroupModal()" color="secondary"
+        ><ion-icon name="add-circle-outline"></ion-icon
+      ></ion-fab-button>
+      <ion-fab-button (click)="showPopoverJoinGroup()" color="secondary"
+        ><ion-icon name="arrow-forward-circle-outline"></ion-icon
+      ></ion-fab-button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
