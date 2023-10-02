@@ -1,4 +1,5 @@
-import { Component, Input} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit} from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 
@@ -7,11 +8,16 @@ import { PopoverController } from '@ionic/angular';
   templateUrl: './datetime.component.html',
   styleUrls: ['./datetime.component.scss']
 })
-export class DatetimeComponent{
+export class DatetimeComponent implements OnInit{
   datetime: any;
-  constructor(private popoverCtrl: PopoverController){
+  minDate: string;
+  constructor(private popoverCtrl: PopoverController, private datePipe: DatePipe){
     
   }
+  ngOnInit(): void {
+    this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+  }
+
   loadDate(event:any){
     this.datetime = event.detail.value;
     this.popoverCtrl.dismiss( this.datetime );

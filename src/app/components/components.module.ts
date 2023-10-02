@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ButtonComponent } from './shared/button/button.component';
 import { IonicModule } from '@ionic/angular';
 import { InputComponent } from './shared/input/input.component';
@@ -18,6 +18,8 @@ import { HttpClient } from '@angular/common/http';
 import { HeaderToolbarComponent } from './shared/header-toolbar/header-toolbar.component';
 import { MatchCalendarComponent } from './shared/emotional-calendar/match-calendar.component';
 import { ItemComponent } from './shared/item/item.component';
+import { ModalHeaderComponent } from './shared/modal-header/modal-header.component';
+import { ModalFooterComponent } from './shared/modal-footer/modal-footer.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -35,8 +37,9 @@ const components = [
   SelectComponent,
   HeaderToolbarComponent,
   MatchCalendarComponent,
-  ItemComponent
-  
+  ItemComponent,
+  ModalHeaderComponent,
+  ModalFooterComponent
 ];
 
 @NgModule({
@@ -55,5 +58,8 @@ const components = [
     }),
   ],
   exports: [...components],
+  providers:[
+    DatePipe
+  ]
 })
 export class ComponentsModule {}

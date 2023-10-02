@@ -1,8 +1,77 @@
 
 
-<ion-content [fullscreen]="true">
- 
-
-  <app-button  [title]=" 'Tab 2' " ></app-button>
+<ion-content #IonContent fullscreen="true" class="custom-background">
+  <ion-list>
+    <div *ngIf="loading; else messageView" class="container-spinner">
+      <ion-spinner></ion-spinner>
+    </div>
+    <ng-template #messageView>
+      <div  *ngFor="let chat of messages; let i = index; ">
+        <ion-row *ngIf="chat.userId == user.id" class="mr-chat">
+          <ion-col class="right" class="ion-no-padding chat-received" [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].userId != chat.userId)|| !messages[i+1])}">
+            <div class="imageAvatarRight">
+              <div class="imageAvatarBottom">
+                <ion-avatar class="avatar" [ngClass]="(messages[i+1] && messages[i+1].userId == chat.userId)?'hidden':''">
+                  <div class="imageAvatarBottomIcon">
+                    <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
+                  </div>
+                  <ion-img class="user-img" [src]="chat.photo"></ion-img>
+                </ion-avatar>
+              </div>
+              <ion-label color="light">
+                <div class="chatDiv"  [ngClass]="{'sharper':((messages[i+1] && messages[i+1].userId == chat.userId) && 
+                (messages[i-1] && messages[i-1].userId == chat.userId)),
+                'sharper-top':(messages[i-1] && messages[i-1].userId == chat.userId),
+                'sharper-bottom':(messages[i+1] && messages[i+1].userId == chat.userId)}">
+                  <!-- <p class="chat-time-received">~ {{chat.from}} </p> -->
+                  <p class="ion-text-wrap" class="pd-chat pd-chat--user">{{chat.subject}}
+                  </p>
+                </div>
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
   
+        <ion-row *ngIf="chat.userId != user.id" class="mr-chat">
+          <ion-col class="left" class="ion-no-padding chat-emit" [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].userId != chat.userId)|| !messages[i+1])}">
+            <div class="imageAvatarLeft">
+              <ion-label color="light">
+                <div class="chatDiv" [ngClass]="{'sharper':((messages[i+1] && messages[i+1].userId == chat.userId) && 
+                (messages[i-1] && messages[i-1].userId == chat.userId)),
+                'sharper-top':(messages[i-1] && messages[i-1].userId == chat.userId),
+                'sharper-bottom':(messages[i+1] && messages[i+1].userId == chat.userId)}">
+                  <p class="chat-time-emit">~ {{chat.from}} </p>
+                  <p class="ion-text-wrap" class="pd-chat" >{{chat.subject}}</p>
+                  <div class="corner-parent-left">
+                    <div class="corner-child-left">
+                    </div>
+                  </div>
+                </div>
+              </ion-label>
+              <div class="imageAvatarBottom">
+                <ion-avatar class="avatar" [ngClass]="(messages[i+1] && messages[i+1].userId == chat.userId)?'hidden':''">
+                  <div class="imageAvatarBottomIcon">
+                    <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
+                  </div>
+                  <ion-img class="user-img" [src]="chat.photo"></ion-img>
+                </ion-avatar>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ng-template>
+  </ion-list>
 </ion-content>
+
+<ion-footer translucent class="footer-container">
+  <ion-item class="bg-color-chat-box">
+    <!-- <ion-button slot="start" class="button-send" expand="block" fill="clear" shape="round">
+      <ion-icon size="large" name="camera" expand="icon-only" class="footerIcon"></ion-icon>
+    </ion-button> -->
+    <ion-input type="text" [(ngModel)]="textBox" placeholder="Mensaje"></ion-input>
+  </ion-item>
+  <ion-button class="button-send" (click)="sendMsg()">
+      <ion-icon name="send" expand="icon-only"></ion-icon>
+  </ion-button>
+</ion-footer>

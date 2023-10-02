@@ -1,0 +1,33 @@
+<app-modal-header [headerLabel]=" 'Crear partido' " [fn]="closeModal" ></app-modal-header>
+<ion-content>
+    <form [formGroup]="registerMatchForm" class="ion-padding">
+        <div *ngFor="let input of inputRegisterForm"> 
+            <!-- <app-input *ngIf="input.type === 'date'" [type]="'text'" [label]="input.label" [formControlName]="input.fcName" (click)="showPopoverDatetime($event)" ></app-input> -->
+            <app-item class="item-date" *ngIf="input.type === 'date'" (click)="showPopoverDatetime($event)" [label]="input.label">
+                <ion-label class="pl-12"> {{ matchDate }} </ion-label>
+                <ion-badge class="item-date__badge"  slot="end">{{ matchTime }}</ion-badge>
+            </app-item>
+            <app-input *ngIf="input.type !== 'date'" [label]="input.label" [formControlName]="input.fcName"  ></app-input>
+        </div>
+        
+        <ion-list>
+            <ion-radio-group *ngFor="let check of checkRegisterForm" [name]="check.name" [value]="check.dafaultValue" [formControlName]="check.fcName">
+                <ion-list-header class="ion-no-margin ion-no-padding">
+                    <ion-label> {{check.labelGroup}} </ion-label>
+                </ion-list-header>
+                <ion-item [lines]="radio.lines" *ngFor="let radio of check.checks" lines="none" class="ion-no-margin ion-no-padding">
+                    <ion-label class="pl-8"> {{radio.label}} </ion-label>
+                    <ion-radio class="ion-no-margin ion-no.padding" slot="start" [value]="radio.value"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
+
+        <ion-item class="ion-no-margin ion-no-padding">
+            <ion-label> {{selectRegisterForm.optionLabel}} </ion-label>
+            <ion-select [value]="selectRegisterForm.defealtValue" formControlName="quantityPlayers">
+                <ion-select-option *ngFor="let option of selectRegisterForm.options" [value]="option.value"> {{option.label}} </ion-select-option>
+            </ion-select>
+        </ion-item>
+    </form>
+</ion-content>
+<app-modal-footer [disabled]="registerMatchForm.invalid" [buttonLabel]="'Guardar'" [fn]="saveMatch" ></app-modal-footer>

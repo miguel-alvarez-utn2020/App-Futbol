@@ -16,7 +16,6 @@ export class RegisterGroupComponent implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private fb: FormBuilder,
-    private cameraService: CameraService,
     private actionSheetService: ActionsheetService
   ) {}
   groupTypeSelect = [
@@ -40,11 +39,11 @@ export class RegisterGroupComponent implements OnInit {
   ngOnInit(): void {
     this.initFormRegisterGroup();
   }
-  CloseModal() {
+  CloseModal = () =>  {
     this.modalCtrl.dismiss();
   }
 
-  saveGroup() {
+  saveGroup = () => {
     console.log(this.formRegisterGroup.value);
     this.modalCtrl.dismiss();
   }

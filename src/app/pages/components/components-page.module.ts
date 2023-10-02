@@ -6,11 +6,12 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { ItemGroupComponent } from './item-group/item-group.component';
+import { RegisterMathComponent } from './register-math/register-math.component';
 
 const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent];
 
 @NgModule({
-  declarations: [...component, ],
+  declarations: [...component, RegisterMathComponent, ],
   imports: [
     CommonModule,
     IonicModule,

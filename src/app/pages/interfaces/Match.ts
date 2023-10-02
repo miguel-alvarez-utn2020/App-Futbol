@@ -9,11 +9,11 @@ export enum TeamWin {
 export interface CreateMatch {
   date: Date;
   location: string;
+  quantityPlayers: number;
   automaticAssemble: boolean;
   withSustitutes: boolean;
   rematch: boolean;
   isContinuous: boolean;
-  quantityPlayers: number;
 }
 
 export interface Match extends CreateMatch {

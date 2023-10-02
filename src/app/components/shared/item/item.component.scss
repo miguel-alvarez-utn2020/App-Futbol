@@ -3,3 +3,14 @@ ion-item{
     border-radius: 6px;
     height: 47px;
 }
+.label{
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 4px;
+    padding-left: 5px;
+    color: #8A95AB;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}

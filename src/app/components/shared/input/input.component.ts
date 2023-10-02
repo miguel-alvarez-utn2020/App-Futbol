@@ -21,7 +21,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     @Input() helper: string | undefined = undefined;
 
     // Valor interno del control
-    private innerValue: any = '';
+     innerValue: any = '';
 
     // Función para actualizar el valor interno cuando cambia el valor del input
     onChange: any = () => {};
@@ -49,5 +49,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     onInputChange(event: any) {
       this.innerValue = event.target.value;
       this.emitChanges();
+      this.registerOnChange(this.innerValue);
     }
   }

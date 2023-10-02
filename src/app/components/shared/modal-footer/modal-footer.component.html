@@ -1,0 +1,15 @@
+<ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button
+          [disabled]="disabled"
+          color="primary"
+          shape="round"
+          fill="solid"
+          (click)="fn()"
+        >
+          {{ buttonLabel }}
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
