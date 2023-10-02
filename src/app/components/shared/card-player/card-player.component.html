@@ -1,0 +1,23 @@
+<ion-card class="card-player">
+    <ion-button color="primary" class="card-player__rate" fill="solid">
+        <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" class="card-player__deleted" fill="solid">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+    <div class="card-player__container">
+        <div class="card-player__img-container"> 
+            <img class="card-player__img" [src]="player.imgFace" alt="">
+        </div>
+        <div class="card-player__player-name">
+            <ion-label> {{player.playerName | titlecase}} </ion-label>
+        </div>
+        <div class="card-player__states">
+            <div *ngFor="let stat of player.states" [class]="stat.classCss">
+                <p> {{stat.stateLabel}} </p>
+                <p> {{stat.stateValue}} </p>
+            </div>
+        </div>
+    </div>
+    
+</ion-card>

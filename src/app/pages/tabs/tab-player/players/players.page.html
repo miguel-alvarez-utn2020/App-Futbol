@@ -1,5 +1,6 @@
-<ion-content [fullscreen]="true">
-  
- <p class="fs-16">hola a todos</p>
+<ion-content>
+    <div class="player-container">
+        <app-card-player *ngFor="let player of players"  [player]="player"></app-card-player>
+    </div>
   
 </ion-content>
