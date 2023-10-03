@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-match',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['match.page.scss']
 })
 export class MatchPage {
-
+  @Input() matchType: number = 5
   constructor() {}
 
 }

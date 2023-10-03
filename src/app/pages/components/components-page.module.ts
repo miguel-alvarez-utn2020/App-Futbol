@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { ItemGroupComponent } from './item-group/item-group.component';
 import { RegisterMathComponent } from './register-math/register-math.component';
+import { FieldComponent } from './field/field.component';
+import { PlayerFabComponent } from './player-fab/player-fab.component';
 
-const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent];
+const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent, RegisterMathComponent, FieldComponent, PlayerFabComponent, ];
 
 @NgModule({
-  declarations: [...component, RegisterMathComponent, ],
+  declarations: [...component],
   imports: [
     CommonModule,
     IonicModule,

@@ -37,7 +37,7 @@ export const PLAYERS = [
       },
     {
         imgFace: 'assets/messi.png',
-        playerName: 'Garet Bale',
+        playerName: 'MESSI',
         states:   [
           {
             stateLabel:'PAC',
@@ -73,7 +73,7 @@ export const PLAYERS = [
       },
     {
         imgFace: 'assets/bruyne2.png',
-        playerName: 'Garet Bale',
+        playerName: 'De Bruyne',
         states:   [
           {
             stateLabel:'PAC',

@@ -6,6 +6,7 @@ import { MatchPage } from './match.page';
 
 import { MatchPageRoutingModule } from './match-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { ComponentsPageModule } from 'src/app/pages/components/components-page.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     MatchPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ComponentsPageModule
   ],
   declarations: [MatchPage]
 })

@@ -1,7 +1,17 @@
-
-
-<ion-content [fullscreen]="true">
-  
- <p class="fs-16">hola a todos</p>
-  
+<ion-content>
+  <div style="display: flex; justify-content: center">
+    <ion-card class="card-field">
+      <ion-card-header class="card-field__header ion-no-margin ion-no-padding">
+        <ion-card-subtitle class="card-field__header-label">
+          <span> Pasco Central </span>
+          <span> 20:00hs </span>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <app-field></app-field>
+      <!-- TEAM 1 -->
+      <app-player-fab></app-player-fab>
+      <!-- TEAM 2 -->
+      <app-player-fab [side]="'top'"></app-player-fab>       
+    </ion-card>
+  </div>
 </ion-content>

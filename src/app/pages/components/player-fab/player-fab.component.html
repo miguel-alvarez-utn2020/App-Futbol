@@ -1,0 +1,11 @@
+<ion-fab [ngClass]="{'player-fab__fab--t1': side === 'bottom', 'player-fab__fab--t2': side === 'top'}" class="player-fab__fab ">
+    <ion-fab-button class="player-fab__btn-p">
+      <img [src]=" 'assets/messi.png' " />
+    </ion-fab-button>
+    <ion-fab-list class="player-fab__list" [side]="side">
+      <div class="player-fab__img-container" *ngFor="let i of [1,2,3,4]">
+        <img [src]=" 'assets/messi.png' " />
+      </div>
+    </ion-fab-list>
+</ion-fab>
+
