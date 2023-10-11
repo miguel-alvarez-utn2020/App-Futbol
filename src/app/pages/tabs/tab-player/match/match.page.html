@@ -1,17 +1,20 @@
 <ion-content>
-  <div style="display: flex; justify-content: center">
-    <ion-card class="card-field">
-      <ion-card-header class="card-field__header ion-no-margin ion-no-padding">
-        <ion-card-subtitle class="card-field__header-label">
-          <span> Pasco Central </span>
-          <span> 20:00hs </span>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <app-field></app-field>
-      <!-- TEAM 1 -->
-      <app-player-fab></app-player-fab>
-      <!-- TEAM 2 -->
-      <app-player-fab [side]="'top'"></app-player-fab>       
-    </ion-card>
-  </div>
+  <ion-slides [pager]="true">
+    <ion-slide *ngFor="let item of [1,2,3,4]">
+      <div class="match">
+        <ion-item >
+          <ion-label class="match__title">Pasco centra</ion-label>
+          <ion-badge color="primary" mode="ios">20:hs</ion-badge>
+        </ion-item>
+        <ion-card class="card-field ion-no-margin">
+          <img class="card-field__img" src="assets/field-vert.png" alt="">
+          <app-field  [formationTeamOne]="2" [formationTeamTwo]="2"></app-field>
+          <!-- TEAM 1 -->
+          <app-player-fab></app-player-fab>
+          <!-- TEAM 2 -->
+          <app-player-fab [side]="'top'"></app-player-fab>       
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

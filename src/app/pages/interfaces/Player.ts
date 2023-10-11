@@ -1,10 +1,10 @@
 import { UserShared } from './User';
 
 export enum Position {
-  DEFENSOR = 'defensor',
-  DELANTERO = 'delantero',
-  MEDIO = 'medio campo',
-  ARQUERO = 'arquero',
+  DEFENSOR = 'DEF',
+  DELANTERO = 'DEL',
+  MEDIO = 'MED',
+  ARQUERO = 'GK',
   NO_POSICION = '',
 }
 

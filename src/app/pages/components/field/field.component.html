@@ -1,7 +1,20 @@
 <ng-container *ngIf="matchType === 5">
-    <div [ngClass]="{'field-v5': matchType === 5}">
-        <div *ngFor="let player of [0,1,2,3,4,5,6,7,8,9]; let i = index" [class]="'field-v5__t1-pl-' + (i+1)">
-          <img [src]=" 'assets/messi.png' " />
-        </div>
+  <div class="five-vs-five">
+    <div [class]="'team team--team1-form-' + formationTeamOne">
+      <div
+        *ngFor="let player of teamOne"
+        [class]="'team__player team__player--t1-' + player.mainPosition"
+      >
+        <img [src]="'assets/messi.png'" />
+      </div>
     </div>
+    <div [class]="'team team--team2-form-' + formationTeamTwo">
+      <div
+        *ngFor="let player of teamTwo"
+        [class]="'team__player team__player--t2-' + player.mainPosition"
+      >
+        <img [src]="'assets/messi.png'" />
+      </div>
+    </div>
+  </div>
 </ng-container>
