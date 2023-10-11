@@ -1,4 +1,4 @@
-import { CreateMatch } from "src/app/pages/interfaces/Match";
+import { CreateMatch } from "src/app/pages/domain/models/Match";
 
 export const INPUT_REGISTER_MATCH = [
     {

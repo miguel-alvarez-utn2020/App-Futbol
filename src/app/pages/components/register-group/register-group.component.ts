@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { GroupTypes } from '../../interfaces/Group';
+import { GroupTypes } from '../../domain/models/Group';
 import { CameraService } from 'src/app/services/shared/camera.service';
 import { ActionsheetService } from 'src/app/services/shared/actionSheet.service';
 

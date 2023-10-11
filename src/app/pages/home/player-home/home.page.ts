@@ -3,7 +3,7 @@ import { ModalService } from 'src/app/services/shared/modal.service';
 import { RegisterGroupComponent } from '../../components/register-group/register-group.component';
 import { PopoverService } from 'src/app/services/shared/popover.service';
 import { JoinGroupComponent } from '../../components/join-group/join-group.component';
-import { Group } from '../../interfaces/Group';
+import { Group } from '../../domain/models/Group';
 import { Router } from '@angular/router';
 
 @Component({

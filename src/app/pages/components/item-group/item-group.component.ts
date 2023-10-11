@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Group } from '../../interfaces/Group';
+import { Group } from '../../domain/models/Group';
 
 @Component({
   selector: 'app-item-group',

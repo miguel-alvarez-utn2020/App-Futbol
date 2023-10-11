@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IonContent} from '@ionic/angular';
-import { Message } from 'src/app/pages/interfaces/Channel';
-import { Group } from 'src/app/pages/interfaces/Group';
-import { User } from 'src/app/pages/interfaces/User';
+import { Message } from 'src/app/pages/domain/models/Channel';
+import { Group } from 'src/app/pages/domain/models/Group';
+import { User } from 'src/app/pages/domain/models/User';
 
 // import { ChatService } from 'src/app/services/chat.service';
 // import { CoreService } from 'src/app/services/core.service';
