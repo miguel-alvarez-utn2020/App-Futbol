@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit{
+export class ButtonComponent {
    
     @Input() label = 'click';
     @Input() color = 'primary';
@@ -15,8 +15,4 @@ export class ButtonComponent implements OnInit{
     @Input() disabled = false;
     @Input() fn = () => {};
     @Input() props: any;
-
-    ngOnInit(): void {
-      console.log(this.props);
-    }
 }

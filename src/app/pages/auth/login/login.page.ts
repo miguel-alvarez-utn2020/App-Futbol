@@ -21,11 +21,18 @@ export class LoginPage implements OnInit {
   languageSelect!: string;
   onlyNumberRegex = /^[0-9]+$/
 
-  constructor(private fb: FormBuilder, private translate: TranslateService, private toastService: ToastService, private router: Router) {}
+  constructor(private fb: FormBuilder, private translate: TranslateService, private toastService: ToastService, private router: Router) {
+    this.initLoginForm();
+
+    
+  }
 
   ngOnInit(): void {
     this.switchLanguage(this.defaultLanguages);
-    this.initLoginForm();
+    this.loginForm.valueChanges.subscribe(data => {
+      console.log(data);
+      
+    })
   }
 
   switchLanguage(lang: string) {
@@ -38,6 +45,8 @@ export class LoginPage implements OnInit {
     this.translate.get(this._errorLogiBackend).subscribe( translateText => {
       this.toastService.showToast(translateText, 'danger')
     })
+    console.log(this.loginForm);
+    
   };
 
   goToRegister = () => {
