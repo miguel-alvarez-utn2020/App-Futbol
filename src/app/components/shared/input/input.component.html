@@ -1,5 +1,5 @@
 <ion-item lines="none" class="ion-no-margin ion-no-padding">
-    <ion-label  position="stacked" > {{ label }} </ion-label>
-    <ion-input  class="input" [type]="type" [placeholder]="placeholder" [value]="innerValue" (onInputChange)="onInputChange($event)"></ion-input>
+    <ion-label position="stacked">{{ label }}</ion-label>
+    <ion-input class="input" [type]="type" [placeholder]="placeholder" [value]="value" (ionChange)="valueChanged($event)"></ion-input>
     <ng-content></ng-content>
-</ion-item>
+  </ion-item>

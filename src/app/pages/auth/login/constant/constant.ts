@@ -1,8 +1,8 @@
 export const INPUT_LOGIN = [
   {
-    label: 'login.phoneLabel',
+    label: 'login.emailLabel',
     type: 'tel',
-    fcName: 'phone',
+    fcName: 'email',
     errorLabel: 'login.localError',
   },
   {

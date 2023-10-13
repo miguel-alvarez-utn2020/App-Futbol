@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { RegisterGroupComponent } from './pages/components/register-group/register-group.component';
+import { AuthRepositoryImplementation } from './pages/data/implementation/auth.repository';
 
 
 
@@ -28,7 +29,7 @@ import { RegisterGroupComponent } from './pages/components/register-group/regist
     BrowserAnimationsModule,
     NoopAnimationsModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthRepositoryImplementation],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

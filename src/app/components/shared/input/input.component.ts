@@ -9,9 +9,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
       {
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => InputComponent),
-        multi: true,
-      },
-    ],
+        multi: true
+      }
+    ]
   })
   export class InputComponent {
     @Input() label: string = '';
@@ -19,38 +19,31 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     @Input() placeholder: string | undefined = undefined;
     @Input() error: string | undefined = undefined;
     @Input() helper: string | undefined = undefined;
+    value: any;
 
-    // Valor interno del control
-     innerValue: any = '';
-
-    // Función para actualizar el valor interno cuando cambia el valor del input
+    // Métodos para el ControlValueAccessor
     onChange: any = () => {};
     onTouched: any = () => {};
-
-    // Implementa las funciones de ControlValueAccessor
-    writeValue(value: any) {
-      this.innerValue = value;
+  
+    writeValue(value: any): void {
+      this.value = value;
     }
   
-    registerOnChange(fn: any) {
+    registerOnChange(fn: any): void {
       this.onChange = fn;
     }
   
-    registerOnTouched(fn: any) {
+    registerOnTouched(fn: any): void {
       this.onTouched = fn;
     }
   
-    // Método para emitir cambios al valor del control
-    emitChanges() {
-      this.onChange(this.innerValue);
+    setDisabledState(isDisabled: boolean): void {
+      // Implementa si necesitas manejar el estado de deshabilitado
     }
   
-    // Manejar cambios en el input
-    onInputChange(event: any) {
-      this.innerValue = event.target.value;
-      console.log(this.innerValue);
-      
-      this.emitChanges();
-      this.registerOnChange(this.innerValue);
+    valueChanged(event: any) {
+      this.value = event.detail.value;
+      this.onChange(event.detail.value);
+      this.onTouched();
     }
   }
