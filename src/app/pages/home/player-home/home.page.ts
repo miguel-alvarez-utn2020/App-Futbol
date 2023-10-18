@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ModalService } from 'src/app/services/shared/modal.service';
 import { RegisterGroupComponent } from '../../components/register-group/register-group.component';
 import { PopoverService } from 'src/app/services/shared/popover.service';
 import { JoinGroupComponent } from '../../components/join-group/join-group.component';
 import { Group } from '../../domain/models/Group';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
+import { USER } from '../../services/auth.service';
+import { User } from '../../domain/models/User';
 
 @Component({
   selector: 'app-tab1',
@@ -12,11 +15,16 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  private modalService = inject(ModalService)
+  private popoverService = inject(PopoverService)
+  private router = inject(Router)
+  private storageService = inject(StorageService)
   groupList: Group[] = []
-  constructor(private modalService: ModalService, private popoverService: PopoverService, private router: Router) {}
+  user: User;
+  constructor() {}
 
   ngOnInit(): void {
-
+    this.loadUserData();  
   }
 
   showRegisterGroupModal(){
@@ -27,12 +35,21 @@ export class HomePage implements OnInit {
     this.popoverService.showPopover(JoinGroupComponent)
   }
 
-  deleteGroup = (group: Group | any) => {
-    console.log('deleted group', group);
+  deleteGroup = (id: string) => {
+    console.log('deleted group', id);
   }
 
-  goToGroup(group){
-    console.log('go to group', group);
+  shareGroup = (codeGroup: string) => {
+    console.log('share group', codeGroup);
+  }
+
+  goToGroup = (id: string) =>{
+    console.log('go to group', id);
     this.router.navigate(['/group/dashboard/start'])
+  }
+
+  loadUserData(){
+    this.user = this.storageService.getItem(USER);
+    this.groupList = this.user.groups;
   }
 }

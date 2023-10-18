@@ -7,6 +7,8 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ComponentsPageModule } from '../../components/components-page.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 
 @NgModule({
@@ -17,8 +19,12 @@ import { ComponentsPageModule } from '../../components/components-page.module';
     HomePageRoutingModule,
     ComponentsModule,
     ReactiveFormsModule,
-    ComponentsPageModule
+    ComponentsPageModule,
+    HttpClientModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers:[
+ 
+  ]
 })
 export class HomePageModule {}

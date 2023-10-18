@@ -1,23 +1,24 @@
-<app-header-toolbar></app-header-toolbar>
+<app-header-toolbar [imgUrl]="user.photo" ></app-header-toolbar>
 <ion-content>
-  <!-- <ion-list class="ion-padding" *ngIf="groupList.length === 0" >
+  <ion-list class="ion-padding" *ngIf="!groupList.length" >
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
       No tienes grupos creados
     </ion-button>
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
       No te has unido a ningún grupo
     </ion-button>
-  </ion-list> -->
-  <ion-list>
+  </ion-list>
+  <ion-list *ngIf="groupList.length">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Lista de grupos</ion-card-subtitle>
       </ion-card-header>
       <app-item-group
-      (click)="goToGroup(group)"
-        *ngFor="let group of ['pasco centra','pasco centra','pasco centra']"
+        *ngFor="let group of groupList"
         [group]="group"
-        [fn]="deleteGroup"
+        [shareGroup]="shareGroup"
+        [deleteGoup]="deleteGroup"
+        [goToGroup]="goToGroup"
       ></app-item-group>
     </ion-card>
   </ion-list>

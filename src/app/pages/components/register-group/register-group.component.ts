@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { GroupTypes } from '../../domain/models/Group';
+import { Group, GroupTypes } from '../../domain/models/Group';
 import { CameraService } from 'src/app/services/shared/camera.service';
 import { ActionsheetService } from 'src/app/services/shared/actionSheet.service';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'app-register-group',
@@ -11,12 +12,14 @@ import { ActionsheetService } from 'src/app/services/shared/actionSheet.service'
   styleUrls: ['./register-group.component.scss'],
 })
 export class RegisterGroupComponent implements OnInit {
+  private modalCtrl = inject(ModalController);
+  private fb = inject(FormBuilder);
+  private actionSheetService = inject(ActionsheetService);
+  private groupService = inject(GroupService);
   formRegisterGroup: FormGroup;
   imgAvartar = 'assets/avatar.png';
   constructor(
-    private modalCtrl: ModalController,
-    private fb: FormBuilder,
-    private actionSheetService: ActionsheetService
+    
   ) {}
   groupTypeSelect = [
     {
@@ -45,14 +48,18 @@ export class RegisterGroupComponent implements OnInit {
 
   saveGroup = () => {
     console.log(this.formRegisterGroup.value);
-    this.modalCtrl.dismiss();
+    const createGroup = {...this.formRegisterGroup.value}
+    this.groupService.create(createGroup).subscribe((res: Group)=>{
+      console.log(res);  
+      this.modalCtrl.dismiss();
+    })
   }
 
   initFormRegisterGroup() {
     this.formRegisterGroup = this.fb.group({
-      groupName: ['', [Validators.required]],
-      groupType: ['', [Validators.required]],
-      imgGroup: [''],
+      name: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      photo: [''],
     });
   }
 
@@ -65,7 +72,7 @@ export class RegisterGroupComponent implements OnInit {
 
   uploadImage(event){
     this.formRegisterGroup.patchValue({
-      imgGroup: event
+      photo: event
      })
   }
 }

@@ -1,10 +1,13 @@
-<ion-item class="item">
-    <ion-label color="success" class="item__type-group">Admin</ion-label>
+<ion-item class="item"(click)="goToGroup(group.id)">
+    <ion-label *ngIf="group.admins.length" color="success" class="item__type-group">Admin</ion-label>
     <ion-avatar>
-      <img src="https://ionicframework.com/docs/img/demos/card-media.png" />
+      <img [src]="group.photo" />
     </ion-avatar>
-    <ion-label class="item__label"> {{ group | titlecase}} </ion-label>
-    <ion-button color="danger"  fill="clear" (click)="fn(group)">
-      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    <ion-label class="item__label"> {{ group.name | titlecase}}</ion-label>
+    <ion-button color="primary"  fill="clear" (click)="shareGroup(group.code); $event.stopPropagation()">
+      <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger"  fill="clear" (click)="deleteGoup(group.id); $event.stopPropagation()">
+      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
     </ion-button>
 </ion-item>

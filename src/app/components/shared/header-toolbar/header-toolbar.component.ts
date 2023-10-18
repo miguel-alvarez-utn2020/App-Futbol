@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, inject } from '@angular/core';
 import { IonMenu, MenuController } from '@ionic/angular';
 
 @Component({
@@ -7,8 +7,10 @@ import { IonMenu, MenuController } from '@ionic/angular';
   styleUrls: ['./header-toolbar.component.scss']
 })
 export class HeaderToolbarComponent {
+  private menuCrtl = inject(MenuController)
+  @Input() imgUrl: string = 'assets/avatar.png'
   @ViewChild('menu') menu!: IonMenu;
-  constructor(private menuCrtl: MenuController){}
+  constructor(){}
 
   async showMenu(){
     this.menuCrtl.enable(true, 'menu');

@@ -10,7 +10,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthRepositoryImplementation } from '../../data/implementation/auth.repository';
 import { AuthService } from '../../services/auth.service';
 
 export function HttpLoaderFactory(http: HttpClient) {

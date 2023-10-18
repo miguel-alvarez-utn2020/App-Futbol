@@ -7,6 +7,10 @@ import { Group } from '../../domain/models/Group';
   styleUrls: ['./item-group.component.scss']
 })
 export class ItemGroupComponent {
-  @Input() group: Group | any;
-  @Input() fn = (group) => {};
+  @Input() group: Group;
+  @Input() deleteGoup = (id: string) => {};
+  @Input() shareGroup = (codeGroup: string) => {};
+  @Input() goToGroup = (id: string) => {};
+
+
 }

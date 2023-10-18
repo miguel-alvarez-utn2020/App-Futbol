@@ -12,8 +12,10 @@ import { ComponentsModule } from './components/components.module';
 import { RegisterGroupComponent } from './pages/components/register-group/register-group.component';
 import { AuthRepositoryImplementation } from './pages/data/implementation/auth.repository';
 import { GroupRepositoryImplementation } from './pages/data/implementation/group.repository';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from './pages/guards/auth.guard';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,14 +26,21 @@ import { AuthGuard } from './pages/guards/auth.guard';
     ComponentsModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthRepositoryImplementation,
     GroupRepositoryImplementation,
     HttpClient,
-    AuthGuard
+    AuthGuard,
+  
   ],
   bootstrap: [AppComponent],
 })

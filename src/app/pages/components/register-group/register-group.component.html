@@ -14,14 +14,14 @@
         <ion-col size="12">
           <app-input
             [label]="'Nombre de grupo'"
-            formControlName="groupName"
+            formControlName="name"
           ></app-input>
         </ion-col>
         <ion-col size="12">
           <ion-list>
             <ion-item>
               <ion-label>Tipo de grupo</ion-label>
-              <ion-select interface="popover" formControlName="groupType">
+              <ion-select interface="popover" formControlName="type">
                 <ion-select-option
                   *ngFor="let groupType of groupTypeSelect"
                   [value]="groupType.value"
