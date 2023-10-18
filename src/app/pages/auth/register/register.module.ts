@@ -10,6 +10,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComponentsPageModule } from '../../components/components-page.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     RegisterPageRoutingModule,
     ComponentsModule,
+    ComponentsPageModule,
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({

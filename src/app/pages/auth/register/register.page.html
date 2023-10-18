@@ -12,6 +12,11 @@
   </app-select>
   <form [formGroup]="registerForm">
     <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+          <app-upload-image (emitImageSelected)="uploadImage($event)" ></app-upload-image>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col size="12" *ngFor="let input of _inputRegister; let i = index">
           <app-input
@@ -20,12 +25,12 @@
             [label]="input.label | translate"
             (ngModelChange)="onInputChanged(input)"
           >
-          <ng-container *ngFor="let error of input.errors">
-            <error-msg
-              *ngIf="registerForm.get(input.fcName)?.hasError(error.typeError) && registerForm.get(input.fcName)?.touched && input.endDebaunceTime"
-              [errorLabel]="error.label | translate"
-            ></error-msg>
-          </ng-container>
+            <ng-container *ngFor="let error of input.errors">
+              <error-msg
+                *ngIf="registerForm.get(input.fcName)?.hasError(error.typeError) && registerForm.get(input.fcName)?.touched && input.endDebaunceTime"
+                [errorLabel]="error.label | translate"
+              ></error-msg>
+            </ng-container>
           </app-input>
         </ion-col>
       </ion-row>

@@ -14,7 +14,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12" *ngFor="let input of _inputLogin">
-          <app-input
+          <!-- <app-input
             [formControlName]="input.fcName"
             [type]="input.type"
             [label]=" input.label | translate "
@@ -23,6 +23,19 @@
               *ngIf="loginForm.get( input.fcName )?.hasError('email')"
               [errorLabel]=" 'Ingrese un email válido' "
             ></error-msg>
+          </app-input> -->
+          <app-input
+            [type]="input.type"
+            [formControlName]="input.fcName"
+            [label]="input.label | translate"
+            (ngModelChange)="onInputChanged(input)"
+          >
+            <ng-container *ngFor="let error of input.errors">
+              <error-msg
+                *ngIf="loginForm.get(input.fcName)?.hasError(error.typeError) && loginForm.get(input.fcName)?.touched && input.endDebaunceTime"
+                [errorLabel]="error.label | translate"
+              ></error-msg>
+            </ng-container>
           </app-input>
         </ion-col>
       </ion-row>

@@ -3,12 +3,29 @@ export const INPUT_LOGIN = [
     label: 'login.emailLabel',
     type: 'tel',
     fcName: 'email',
-    errorLabel: 'login.localError',
+    endDebaunceTime: false,
+    errors: [
+      {
+        typeError: 'email',
+        label: 'login.emailError'
+      },
+      {
+        typeError: 'required',
+        label: 'login.requiredEmailError'
+      },
+    ]
   },
   {
     label: 'login.passwordLabel',
     type: 'password',
     fcName: 'password',
+    endDebaunceTime: false,
+    errors: [
+      {
+        typeError: 'required',
+        label: 'login.passwordErrorRequired'
+      },
+    ]
   },
 ];
 

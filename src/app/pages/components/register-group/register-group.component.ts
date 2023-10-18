@@ -62,4 +62,10 @@ export class RegisterGroupComponent implements OnInit {
     imgGroup: this.imgAvartar
    })
   }
+
+  uploadImage(event){
+    this.formRegisterGroup.patchValue({
+      imgGroup: event
+     })
+  }
 }

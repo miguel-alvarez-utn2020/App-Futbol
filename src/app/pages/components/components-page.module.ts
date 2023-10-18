@@ -9,8 +9,9 @@ import { ItemGroupComponent } from './item-group/item-group.component';
 import { RegisterMathComponent } from './register-math/register-math.component';
 import { FieldComponent } from './field/field.component';
 import { PlayerFabComponent } from './player-fab/player-fab.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
-const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent, RegisterMathComponent, FieldComponent, PlayerFabComponent, ];
+const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent, RegisterMathComponent, FieldComponent, PlayerFabComponent, UploadImageComponent];
 
 @NgModule({
   declarations: [...component],

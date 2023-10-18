@@ -7,22 +7,7 @@
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="4">
-          <div class="avatar">
-            <div class="avatar__img-container">
-              <img [src]="imgAvartar" alt="" />
-            </div>
-            <ion-button
-              fill="clear"
-              class="avatar__button"
-              (click)="takePhoto()"
-            >
-              <ion-icon
-                color="secondary"
-                slot="icon-only"
-                name="camera"
-              ></ion-icon>
-            </ion-button>
-          </div>
+          <app-upload-image (emitImageSelected)="uploadImage($event)" ></app-upload-image>
         </ion-col>
       </ion-row>
       <ion-row>

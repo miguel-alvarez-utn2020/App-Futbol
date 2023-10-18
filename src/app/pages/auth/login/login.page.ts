@@ -13,12 +13,14 @@ import { Router } from '@angular/router';
 import { AuthService, TOKEN, USER } from '../../services/auth.service';
 import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
+import { FormErrorsService } from '../../services/form-errors.service';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  private formErrorsService = inject(FormErrorsService);
   _inputLogin: any[] = INPUT_LOGIN;
   _buttonLogin: any = BUTTONS_LOGIN;
   _buttonRegister: any = BUTTONS_REGISTER;
@@ -51,6 +53,7 @@ export class LoginPage implements OnInit {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe((res:any) => {
       this.storageService.setItem(TOKEN, res.token);
+      this.storageService.setItem(USER, res.user);
       this.router.navigate(['/home']);
     }, ({ error }) => {
       const { code } = JSON.parse(error.message);
@@ -69,6 +72,13 @@ export class LoginPage implements OnInit {
   languageSelected(event: string) {
     this.languageSelect = event;
     this.switchLanguage(event.toLowerCase());
+  }
+
+  onInputChanged(input){
+    input.endDebaunceTime = false;
+    this.formErrorsService.checkFormErrors(this.loginForm).subscribe((endDebaunceTime: boolean)=>{
+      input.endDebaunceTime = endDebaunceTime;
+    })
   }
 
   initLoginForm() {

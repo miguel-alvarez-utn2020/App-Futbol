@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/enums/language';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/shared/toast.service';
-import { AuthService, TOKEN } from '../../services/auth.service';
+import { AuthService, TOKEN, USER } from '../../services/auth.service';
 import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT, REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
@@ -41,8 +41,11 @@ export class RegisterPage implements OnInit {
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
     const createUserData = {...this.registerForm.value, age: parseInt(this.registerForm.value.age)};
+    console.log(createUserData);
+    
     this.authService.register(createUserData).subscribe((res: any) => {
       this.storageService.setItem(TOKEN, res.token);
+      this.storageService.setItem(USER, res.user);
       this.router.navigate(['/home']);
     }, ({ error }) => {
       const { code } = JSON.parse(error.message);
@@ -82,6 +85,12 @@ export class RegisterPage implements OnInit {
 
   languageSelected(event: string) {
     this.switchLanguage(event.toLowerCase());
+  }
+
+  uploadImage(event){
+    this.registerForm.patchValue({
+      photo: event
+     })
   }
 
 }
