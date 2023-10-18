@@ -10,7 +10,9 @@ import {
 import { Language } from 'src/app/enums/language';
 import { ToastService } from 'src/app/services/shared/toast.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, TOKEN, USER } from '../../services/auth.service';
+import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
+import { StorageService } from '../../services/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -32,7 +34,8 @@ export class LoginPage implements OnInit {
     private translate: TranslateService,
     private toastService: ToastService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -45,19 +48,18 @@ export class LoginPage implements OnInit {
   }
 
   login = () => {
-    // this.router.navigate(['/home']);
     const { email, password } = this.loginForm.value;
-    console.log(email, password);
-    
-    this.authService.login(email, password).subscribe((res) => {
-      console.log(res);
-    }, error => {
-      console.log(error);
-
+    this.authService.login(email, password).subscribe((res:any) => {
+      this.storageService.setItem(TOKEN, res.token);
+      this.router.navigate(['/home']);
+    }, ({ error }) => {
+      const { code } = JSON.parse(error.message);
+      if(code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT){
+        this.translate.get(this._errorLogiBackend).subscribe((translateText) => {
+          this.toastService.showToast(translateText, 'danger');
+        });
+      }
     });
-    // this.translate.get(this._errorLogiBackend).subscribe((translateText) => {
-    //   this.toastService.showToast(translateText, 'danger');
-    // });
   };
 
   goToRegister = () => {
@@ -71,7 +73,7 @@ export class LoginPage implements OnInit {
 
   initLoginForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.minLength(1)]],
+      email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
       password: ['', [Validators.required, Validators.minLength(1)]],
     });
   }

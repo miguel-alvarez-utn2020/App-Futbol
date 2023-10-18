@@ -2,21 +2,28 @@
     "name": "Nombre",
     "lastName": "Apellido",
     "age": "Edad",
+    "nameRequiredError":"El nombre es requerido",
+    "lastnameRequiredError":"El apellido es requerido",
+    "ageRequiredError":"La edad es requerida",
     "login":{
         "selectLanguage": "Seleccionar Lenguage",
-        "phoneLabel": "Ingrese teléfono",
+        "emailLabel": "Ingrese email",
         "passwordLabel": "Contraseña",
+        "passwordErrorRequired":"La contraseña es requerida",
         "buttonLabelLogin":"Ingresar",
         "buttonLabelRegister":"Registrarse",
         "errorLoginBackend" : "Usuario o contraseña inválida",
-        "localError" : "Ingrese números"
+        "emailError" : "Ingrese un email válido",
+        "requiredEmailError" : "El email es requerido"
     },
     "register":{
-        "phoneLabel": "Ingrese teléfono",
+        "emailLabel": "Ingrese email",
         "passwordLabel": "Contraseña",
+        "passwordErrorRequired":"La contraseña es requerida",
         "repeatPasswordLabel": "Repetir contraseña",
         "buttonLabelRegister":"Registrarse",
-        "errorRegisterBackend" : "El número telefónico ya ha sido registrado",
-        "localError" : "Ingrese números"
+        "errorRegisterBackend" : "El email ya ha sido registrado",
+        "emailError" : "Ingrese un email válido",
+        "requiredEmailError" : "El email es requerido"
     }
 }

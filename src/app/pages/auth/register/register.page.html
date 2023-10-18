@@ -13,16 +13,19 @@
   <form [formGroup]="registerForm">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" *ngFor="let input of _inputRegister">
+        <ion-col size="12" *ngFor="let input of _inputRegister; let i = index">
           <app-input
             [type]="input.type"
             [formControlName]="input.fcName"
             [label]="input.label | translate"
+            (ngModelChange)="onInputChanged(input)"
           >
+          <ng-container *ngFor="let error of input.errors">
             <error-msg
-              *ngIf="registerForm.get( input.fcName )?.hasError('pattern')"
-              [errorLabel]="input.errorLabel | translate"
+              *ngIf="registerForm.get(input.fcName)?.hasError(error.typeError) && registerForm.get(input.fcName)?.touched && input.endDebaunceTime"
+              [errorLabel]="error.label | translate"
             ></error-msg>
+          </ng-container>
           </app-input>
         </ion-col>
       </ion-row>

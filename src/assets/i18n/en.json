@@ -2,21 +2,28 @@
     "name": "Name",
     "lastName": "Last name",
     "age": "Age",
+    "nameRequiredError":"Name is required",
+    "lastnameRequiredError":"Last name is required",
+    "ageRequiredError":"Age is required",
     "login":{
         "selectLanguage": "Select Language",
-        "phoneLabel": "Enter phone",
+        "emailLabel": "Enter email",
         "passwordLabel": "Password",
+        "passwordErrorRequired":"Password is required",
         "buttonLabelLogin":"Login",
         "buttonLabelRegister":"Register",
         "errorLoginBackend" : "User or password invid",
-        "localError" : "Enter numbers"
+        "emailError" : "Enter a valid email",
+        "requiredEmailError" : "Email is required"
     },
     "register":{
-        "phoneLabel": "Enter phone",
+        "emailLabel": "Enter email",
         "passwordLabel": "Password",
+        "passwordErrorRequired":"Password is required",
         "repeatPasswordLabel": "Repeat password",
         "buttonLabelRegister":"Register",
-        "errorRegisterBackend" : "The phone number has already been registered",
-        "localError" : "Ingrese números"
+        "errorRegisterBackend" : "The email has already been registered",
+        "emailError" : "Enter a valid email",
+        "requiredEmailError" : "Email is required"
     }
 }

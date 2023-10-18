@@ -1,53 +1,31 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { AuthRepository } from "../../domain/repositories/auth.repository";
 import { Observable } from "rxjs";
 import { User, CreateUser } from "../../domain/models/User";
-
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { PATHS } from '../path-routes'
 
 
 
 @Injectable()
 export class AuthRepositoryImplementation implements AuthRepository {
-    register: (user: CreateUser) => Observable<{ user: User; token: string; }>;
-    checkToken: (token: string) => Observable<{ ok: string; user: User; }>;
+    private http = inject(HttpClient)
 
-    login(userName: string, password: string): Observable<{ user: User; token: string; }> {
-        return new Observable(observer => {
-            console.log(observer);
-            observer.next({
-                user: {
-                    name: 'string',
-                    lastname: 'string',
-                    photo: 'string',
-                    email: 'string',
-                    password: 'string',
-                    age: 1,
-                    id: '1',
-                    groups: [],
-                    notifications: [],
-                },
-                token: ''
-            });
-            observer.complete();
-            // executeEndpoint<{ user: User, token: string }>({
-            //     path: PATHS.LOGIN,
-            //     requiredAuth: false,
-            //     method: 'POST',
-            //     data: {
-            //         email: userName,
-            //         password
-            //     }
-            // }).then(response => {
-            //     observer.next({
-            //         token: response.token,
-            //         user: UserMapper(response.user)
-            //     });
-            //     observer.complete();
-            // }).catch(error => {
-            //     observer.error(error);
-            // });
-        });
+    checkToken(token: string): Observable<{ ok: string; user: User; }>{
+        return this.http.post<{ ok: string; user: User; }>(`${environment.server_url}${PATHS.CHECK_TOKEN}`, {token})
+    };
+    
+    login(email: string, password: string): Observable<{ user: User; token: string; }> {
+        const credentials = {
+            email,
+            password
+        };
+        return this.http.post<{user: User, token: string}>(`${environment.server_url}${PATHS.LOGIN}`, credentials);
     }
     
+    register(user: CreateUser): Observable<{ user: User; token: string; }>{
+        return this.http.post<{ user: User; token: string; }>(`${environment.server_url}${PATHS.REGISTER}`, user);
+    };
     
 }

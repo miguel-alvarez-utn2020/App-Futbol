@@ -42,8 +42,10 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   
     valueChanged(event: any) {
-      this.value = event.detail.value;
-      this.onChange(event.detail.value);
-      this.onTouched();
-    }
+      if (event && event.detail && event.detail.value !== null) {
+        this.value = event.detail.value;
+        this.onChange(event.detail.value);
+        this.onTouched();
+      }
   }
+}

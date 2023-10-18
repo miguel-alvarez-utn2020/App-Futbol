@@ -1,0 +1,12 @@
+export const LOGIN_EMAIL_OR_PASSWORD_INCORRECT = 1;
+export const REGISTER_EMAIL_ALREADY_EXIST = 2;
+
+export const PLAYER_ALREADY_EXIST_THIS_GROUP = 3;
+
+export const GROUP_IS_NOT_EXIST = 4;
+export const MATCH_IS_NOT_EXIST = 5;
+export const USER_IS_NOT_EXIST = 6;
+export const PLAYER_IS_ALREADY_IN_MATCH = 7;
+export const PLAYER_CAN_NOT_VALORIZE_HIMSELF = 8;
+export const PLAYER_ALREADY_VALORIZE_THIS = 9;
+export const PLAYER_IS_NOT_EXIST = 10;

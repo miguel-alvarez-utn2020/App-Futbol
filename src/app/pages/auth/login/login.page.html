@@ -20,8 +20,8 @@
             [label]=" input.label | translate "
           >
             <error-msg
-              *ngIf="loginForm.get( input.fcName )?.hasError('pattern')"
-              [errorLabel]="input.errorLabel | translate"
+              *ngIf="loginForm.get( input.fcName )?.hasError('email')"
+              [errorLabel]=" 'Ingrese un email válido' "
             ></error-msg>
           </app-input>
         </ion-col>
