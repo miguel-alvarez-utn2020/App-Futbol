@@ -10,7 +10,7 @@ export class ItemGroupComponent {
   @Input() group: Group;
   @Input() deleteGoup = (id: string) => {};
   @Input() shareGroup = (codeGroup: string) => {};
-  @Input() goToGroup = (id: string) => {};
+  @Input() goToGroup = (codeGroup: Group) => {};
 
 
 }

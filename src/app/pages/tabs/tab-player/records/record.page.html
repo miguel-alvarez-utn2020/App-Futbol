@@ -7,9 +7,12 @@
   </ion-item>
   <ion-slides (ionSlideDidChange)="slideChanged($event)" class="slides" [pager]="true" >
     <ion-slide class="slide">
-    <ion-card class="card-list">
+      <ion-button *ngIf="!historyMatches.length" color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
+        No tienes partidos en el historial
+      </ion-button>
+    <ion-card class="card-list" *ngIf="historyMatches.length">
         <ion-list>
-            <ion-item *ngFor="let item of [1,2,3,4,5,6,7,8,9,8,8,8,8]">
+            <ion-item *ngFor="let historyMatch of historyMatches">
               <ion-label>Pasco centra 20hs</ion-label>
             </ion-item>
         </ion-list>

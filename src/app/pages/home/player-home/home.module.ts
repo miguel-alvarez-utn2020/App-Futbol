@@ -7,8 +7,8 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ComponentsPageModule } from '../../components/components-page.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -23,8 +23,6 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
     HttpClientModule
   ],
   declarations: [HomePage],
-  providers:[
- 
-  ]
+  providers:[]
 })
 export class HomePageModule {}

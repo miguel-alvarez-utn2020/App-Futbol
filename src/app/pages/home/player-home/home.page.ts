@@ -43,9 +43,10 @@ export class HomePage implements OnInit {
     console.log('share group', codeGroup);
   }
 
-  goToGroup = (id: string) =>{
-    console.log('go to group', id);
-    this.router.navigate(['/group/dashboard/start'])
+  goToGroup = (group: Group) =>{
+    //TODO:cambiar por servicio de store ngrx
+    this.storageService.setItem('activeGroup', group);
+    this.router.navigate(['/group/dashboard/start']);
   }
 
   loadUserData(){

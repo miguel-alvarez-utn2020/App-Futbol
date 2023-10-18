@@ -9,10 +9,10 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <form class="form-join-group" >
-        <app-input [label]=" 'Codigo de grupo' " [type]="'tel'" ></app-input>
+    <form [formGroup]="joinGroupForm" class="form-join-group" >
+        <app-input formControlName="groupCode" [label]=" 'Codigo de grupo' " [type]="'tel'" ></app-input>
         <ion-buttons class="ion-justify-content-end" >
-            <ion-button color="primary" fill="solid">
+            <ion-button color="primary" fill="solid" [disabled]="joinGroupForm.invalid" (click)="joinGroup()">
                 <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon>
                 Unirse
             </ion-button>

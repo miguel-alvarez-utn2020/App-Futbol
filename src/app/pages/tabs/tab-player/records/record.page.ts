@@ -1,6 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component} from '@angular/core';
+import { Component, inject} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IonTabs } from '@ionic/angular';
 import { RegisterMathComponent } from 'src/app/pages/components/register-math/register-math.component';
+import { HistoryMatch } from 'src/app/pages/domain/models/HistoryMatch';
 import { ModalService } from 'src/app/services/shared/modal.service';
 
 
@@ -18,9 +21,14 @@ import { ModalService } from 'src/app/services/shared/modal.service';
   ],
 })
 export class RecordPage {
-  titleSlides = ['Calendario', 'Historial de partidos'];
+  private modalService = inject(ModalService);
+  titleSlides = ['Historial de partidos', 'Fecha de partidos'];
   indesSwiper = 0;
-  constructor(private modalService: ModalService) {}
+  historyMatches: HistoryMatch[] = []
+
+  constructor() {
+
+  }
 
  async slideChanged(event){
     const swiper = await event.target.getSwiper();
