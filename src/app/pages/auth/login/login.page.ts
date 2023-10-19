@@ -46,7 +46,12 @@ export class LoginPage implements OnInit {
   }
 
   switchLanguage(lang: string) {
-    this.translate.use(lang);
+    const langu =  this.translate.getBrowserLang()
+    this.translate.use('es').subscribe(lang => {
+      console.log(lang);
+    }, (error) => {
+      this.translate.use('en');
+    })
   }
 
   login = () => {

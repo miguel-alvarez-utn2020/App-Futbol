@@ -25,5 +25,10 @@
         "errorRegisterBackend" : "El email ya ha sido registrado",
         "emailError" : "Ingrese un email válido",
         "requiredEmailError" : "El email es requerido"
+    },
+    "home":{
+        "noGroups": "No tienes grupos creados",
+        "noJoinGroups": "No te has unido a ningún grupo",
+        "groupListLabel": "Lista de grupos"
     }
 }
