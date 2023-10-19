@@ -9,14 +9,20 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { RegisterGroupComponent } from './pages/components/register-group/register-group.component';
 import { AuthRepositoryImplementation } from './pages/data/implementation/auth.repository';
 import { GroupRepositoryImplementation } from './pages/data/implementation/group.repository';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor'
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appState } from './states/state';
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,6 +33,15 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     HttpClientModule,
+    StoreModule.forRoot(appState),
+    StoreDevtoolsModule .instrument(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     
   ],
   providers: [
@@ -35,6 +50,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
       useClass: TokenInterceptor,
       multi: true
     },
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthRepositoryImplementation,
     GroupRepositoryImplementation,

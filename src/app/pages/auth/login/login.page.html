@@ -14,16 +14,6 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12" *ngFor="let input of _inputLogin">
-          <!-- <app-input
-            [formControlName]="input.fcName"
-            [type]="input.type"
-            [label]=" input.label | translate "
-          >
-            <error-msg
-              *ngIf="loginForm.get( input.fcName )?.hasError('email')"
-              [errorLabel]=" 'Ingrese un email válido' "
-            ></error-msg>
-          </app-input> -->
           <app-input
             [type]="input.type"
             [formControlName]="input.fcName"

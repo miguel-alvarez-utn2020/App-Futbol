@@ -11,6 +11,7 @@ import { AuthService, TOKEN, USER } from '../../services/auth.service';
 import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT, REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
+import { User } from '../../domain/models/User';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -41,18 +42,20 @@ export class RegisterPage implements OnInit {
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
     const createUserData = {...this.registerForm.value, age: parseInt(this.registerForm.value.age)};
-    console.log(createUserData);
-    
-    this.authService.register(createUserData).subscribe((res: any) => {
-      this.storageService.setItem(TOKEN, res.token);
-      this.storageService.setItem(USER, res.user);
-      this.router.navigate(['/home']);
-    }, ({ error }) => {
-      const { code } = JSON.parse(error.message);
-      if(code === REGISTER_EMAIL_ALREADY_EXIST){
-        this.translate.get(this._errorRegisterBackend).subscribe((translateText) => {
-          this.toastService.showToast(translateText, 'danger');
-        });
+    this.authService.register(createUserData).subscribe({
+      next: (res: { user: User; token: string; }) => {
+          this.storageService.setItem(TOKEN, res.token);
+          this.router.navigate(['/home']);
+      },
+      error: ({error}) => {
+        const { code } = JSON.parse(error.message);
+        if(code === REGISTER_EMAIL_ALREADY_EXIST){
+          this.translate.get(this._errorRegisterBackend).subscribe({
+            next: (translateText) => {
+              this.toastService.showToast(translateText, 'danger');
+            },
+          });
+        }
       }
     });
   }
@@ -76,12 +79,14 @@ export class RegisterPage implements OnInit {
     });
   }
 
-    onInputChanged(input){
-      input.endDebaunceTime = false;
-      this.formErrorsService.checkFormErrors(this.registerForm).subscribe((endDebaunceTime: boolean)=>{
+  onInputChanged(input) {
+    input.endDebaunceTime = false;
+    this.formErrorsService.checkFormErrors(this.registerForm).subscribe({
+      next: (endDebaunceTime: boolean) => {
         input.endDebaunceTime = endDebaunceTime;
-      })
-    }
+      },
+    });
+  }
 
   languageSelected(event: string) {
     this.switchLanguage(event.toLowerCase());

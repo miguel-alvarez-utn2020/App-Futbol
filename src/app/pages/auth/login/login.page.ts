@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, inject } from '@angular/core';
+import { Component, DoCheck, OnInit, effect, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -14,6 +14,7 @@ import { AuthService, TOKEN, USER } from '../../services/auth.service';
 import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
+import { User } from '../../domain/models/User';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -46,27 +47,26 @@ export class LoginPage implements OnInit {
   }
 
   switchLanguage(lang: string) {
-    const langu =  this.translate.getBrowserLang()
-    this.translate.use('es').subscribe(lang => {
-      console.log(lang);
-    }, (error) => {
-      this.translate.use('en');
-    })
+    const langu = this.translate.getBrowserLang();
   }
 
   login = () => {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe((res:any) => {
-      this.storageService.setItem(TOKEN, res.token);
-      this.storageService.setItem(USER, res.user);
-      this.router.navigate(['/home']);
-    }, ({ error }) => {
-      const { code } = JSON.parse(error.message);
-      if(code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT){
-        this.translate.get(this._errorLogiBackend).subscribe((translateText) => {
-          this.toastService.showToast(translateText, 'danger');
-        });
-      }
+    this.authService.login(email, password).subscribe({
+      next: (res: { user: User; token: string }) => {
+        this.storageService.setItem(TOKEN, res.token);
+        this.router.navigate(['/home']);
+      },
+      error: ({ error }) => {
+        const { code } = JSON.parse(error.message);
+        if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
+          this.translate.get(this._errorLogiBackend).subscribe({
+            next: (translateText) => {
+              this.toastService.showToast(translateText, 'danger');
+            },
+          });
+        }
+      },
     });
   };
 
@@ -79,16 +79,21 @@ export class LoginPage implements OnInit {
     this.switchLanguage(event.toLowerCase());
   }
 
-  onInputChanged(input){
+  onInputChanged(input) {
     input.endDebaunceTime = false;
-    this.formErrorsService.checkFormErrors(this.loginForm).subscribe((endDebaunceTime: boolean)=>{
-      input.endDebaunceTime = endDebaunceTime;
-    })
+    this.formErrorsService.checkFormErrors(this.loginForm).subscribe({
+      next: (endDebaunceTime: boolean) => {
+        input.endDebaunceTime = endDebaunceTime;
+      },
+    });
   }
 
   initLoginForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
+      email: [
+        '',
+        [Validators.required, Validators.minLength(1), Validators.email],
+      ],
       password: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
