@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,20 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss']
 })
-export class SelectComponent implements OnInit{
+export class SelectComponent {
   @Output() languagesSelected: EventEmitter<string> = new EventEmitter<string>();
   @Input() languages: string[] = [];
   @Input() placeholder: string | undefined = undefined
-  
-  constructor(private translate: TranslateService){
-  }
-  ngOnInit(): void {
-    this.switchLanguage('es');  
-  }
-
-  switchLanguage(lang: string) {
-    this.translate.use(lang); // Cambiar el idioma
-  }
+  @Input() diviceLanguage: string = 'es';
 
   selectLanguage(event:any){
     const languageSelected: string = event.target.value

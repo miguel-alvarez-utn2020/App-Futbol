@@ -1,3 +1,6 @@
 export * from './actions/loading.actions'
 export * from './reducers/loading.reducer'
+export * from './actions/language.actions'
+export * from './reducers/language.reducer'
+export * from './selectors/language.selectors'
 export * from './models/models'

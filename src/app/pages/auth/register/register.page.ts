@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { debounceTime, min } from 'rxjs';
@@ -12,6 +12,9 @@ import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT, REGISTER_EMAIL_ALREADY_EXIST } from 
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
 import { User } from '../../domain/models/User';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/states/state';
+import { languageSelected } from 'src/app/states';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -25,19 +28,27 @@ export class RegisterPage implements OnInit {
   private storageService = inject(StorageService);
   private toastService = inject(ToastService);
   private formErrorsService = inject(FormErrorsService);
-  _inputRegister: any[] = INPUT_REGISTER;
-  _buttonRegister: any = BUTTONS_REGISTER;
-  _buttonLogin: any = BUTTONS_LOGIN;
-  _errorRegisterBackend = ERROR_REGISTER_BACKEND;
-  languages: string[] = [Language.EN.toUpperCase(), Language.ES.toUpperCase()]
-  defaultLanguages: Language = Language.ES;
-  registerForm!: FormGroup;
-  onlyNumberRegex = /^[0-9]+$/
-  debaunceTime: boolean = false;
+  private store = inject(Store<AppState>);
 
+  public inputRegister = signal<any[]>(INPUT_REGISTER);
+  public buttonRegister = signal(BUTTONS_REGISTER);
+  public buttonLogin = signal(BUTTONS_LOGIN);
+  public languages = signal<string[]>([Language.EN, Language.ES]);
+  public errorRegisterBackend = ERROR_REGISTER_BACKEND;
+  public registerForm!: FormGroup;
+  public diviceLanguage = signal<string>('es') ;
   ngOnInit(): void {
     this.initFormRegister();
-    this.translate.use(this.defaultLanguages);
+    this.loadLenguage();
+  }
+
+  loadLenguage() {
+    this.store.select(languageSelected).subscribe({
+      next: ({ language }) => {
+        this.diviceLanguage.set(language);
+        this.translate.use(language)
+      },
+    });
   }
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
@@ -50,7 +61,7 @@ export class RegisterPage implements OnInit {
       error: ({error}) => {
         const { code } = JSON.parse(error.message);
         if(code === REGISTER_EMAIL_ALREADY_EXIST){
-          this.translate.get(this._errorRegisterBackend).subscribe({
+          this.translate.get(this.errorRegisterBackend).subscribe({
             next: (translateText) => {
               this.toastService.showToast(translateText, 'danger');
             },
@@ -64,9 +75,6 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['/']);
   }
 
-  switchLanguage(lang: string) {
-    this.translate.use(lang);
-  }
 
   initFormRegister(){
     this.registerForm = this.fb.group({
@@ -89,7 +97,8 @@ export class RegisterPage implements OnInit {
   }
 
   languageSelected(event: string) {
-    this.switchLanguage(event.toLowerCase());
+    console.log('chage language');
+    
   }
 
   uploadImage(event){

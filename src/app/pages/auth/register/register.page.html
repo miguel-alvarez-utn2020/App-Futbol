@@ -1,7 +1,7 @@
 <ion-content>
   <app-select
     (languagesSelected)="languageSelected($event)"
-    [languages]="languages"
+    [languages]="languages()"
     [placeholder]=" 'login.selectLanguage' | translate "
   >
     <ion-icon
@@ -18,7 +18,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="12" *ngFor="let input of _inputRegister; let i = index">
+        <ion-col size="12" *ngFor="let input of inputRegister(); let i = index">
           <app-input
             [type]="input.type"
             [formControlName]="input.fcName"
@@ -38,18 +38,18 @@
         <ion-col size="8">
           <app-button
             [fn]="register"
-            [color]="_buttonRegister.color"
+            [color]="buttonRegister().color"
             [disabled]="registerForm.invalid"
-            [expand]="_buttonRegister.expand"
-            [label]="_buttonRegister.label | translate"
+            [expand]="buttonRegister().expand"
+            [label]="buttonRegister().label | translate"
           ></app-button>
         </ion-col>
         <ion-col size="8">
           <app-button
             [fn]="goToLogin"
-            [color]="_buttonLogin.color"
-            [expand]="_buttonLogin.expand"
-            [label]="_buttonLogin.label | translate"
+            [color]="buttonLogin().color"
+            [expand]="buttonLogin().expand"
+            [label]="buttonLogin().label | translate"
           ></app-button>
         </ion-col>
       </ion-row>

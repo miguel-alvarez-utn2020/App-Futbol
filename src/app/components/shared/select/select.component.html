@@ -1,11 +1,11 @@
 <ion-list class="list">
   <ion-item lines="none">
     <ng-content></ng-content>
-    <ion-select (ionChange)="selectLanguage($event)" [placeholder]="placeholder">
+    <ion-select (ionChange)="selectLanguage($event)" [value]="diviceLanguage">
       <ion-select-option
         *ngFor="let language of languages"
         [value]="language"
-        >{{ language }}</ion-select-option
+        >{{ language | uppercase }}</ion-select-option
       >
     </ion-select>
   </ion-item>

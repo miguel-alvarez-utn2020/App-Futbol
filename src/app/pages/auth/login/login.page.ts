@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -15,39 +15,47 @@ import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
 import { User } from '../../domain/models/User';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../states/state';
+import { languageSelected } from 'src/app/states';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  private fb = inject(FormBuilder);
+  private translate = inject(TranslateService);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private storageService = inject(StorageService);
   private formErrorsService = inject(FormErrorsService);
-  _inputLogin: any[] = INPUT_LOGIN;
-  _buttonLogin: any = BUTTONS_LOGIN;
-  _buttonRegister: any = BUTTONS_REGISTER;
-  _errorLogiBackend = ERROR_LOGIN_BACKEND;
-  loginForm!: FormGroup;
-  languages: string[] = [Language.EN.toUpperCase(), Language.ES.toUpperCase()];
-  defaultLanguages: Language = Language.EN;
-  languageSelect!: string;
-  onlyNumberRegex = /^[0-9]+$/;
+  private store = inject(Store<AppState>);
 
-  constructor(
-    private fb: FormBuilder,
-    private translate: TranslateService,
-    private toastService: ToastService,
-    private router: Router,
-    private authService: AuthService,
-    private storageService: StorageService
-  ) {}
+  public inputLogin = signal<any[]>(INPUT_LOGIN);
+  public buttonLogin  = signal(BUTTONS_LOGIN);
+  public buttonRegister = signal(BUTTONS_REGISTER);
+  public errorLogiBackend = signal<string>(ERROR_LOGIN_BACKEND);
+  public languages = signal<string[]>([Language.EN, Language.ES]);
+  public languageSelect = signal<string>('');
+  public diviceLanguage = signal<string>(Language.ES);
+  public loginForm!: FormGroup;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.initLoginForm();
-    this.switchLanguage(this.defaultLanguages);
+    this.loadLenguage();
   }
 
-  switchLanguage(lang: string) {
-    const langu = this.translate.getBrowserLang();
+  loadLenguage() {
+    this.store.select(languageSelected).subscribe({
+      next: ({ language }) => {
+        this.diviceLanguage.set(language);
+        this.translate.use(language)
+      },
+    });
   }
 
   login = () => {
@@ -60,7 +68,7 @@ export class LoginPage implements OnInit {
       error: ({ error }) => {
         const { code } = JSON.parse(error.message);
         if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
-          this.translate.get(this._errorLogiBackend).subscribe({
+          this.translate.get(this.errorLogiBackend()).subscribe({
             next: (translateText) => {
               this.toastService.showToast(translateText, 'danger');
             },
@@ -75,8 +83,7 @@ export class LoginPage implements OnInit {
   };
 
   languageSelected(event: string) {
-    this.languageSelect = event;
-    this.switchLanguage(event.toLowerCase());
+    this.languageSelect.set(event);
   }
 
   onInputChanged(input) {
