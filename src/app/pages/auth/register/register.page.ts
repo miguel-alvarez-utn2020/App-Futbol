@@ -1,20 +1,18 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-import { debounceTime, min } from 'rxjs';
 import { BUTTONS_LOGIN, BUTTONS_REGISTER, ERROR_REGISTER_BACKEND, INPUT_REGISTER } from './constants/constants';
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/enums/language';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/shared/toast.service';
-import { AuthService, TOKEN, USER } from '../../services/auth.service';
-import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT, REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
+import { AuthService, TOKEN } from '../../services/auth.service';
+import { REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
 import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/states/state';
-import { languageSelected } from 'src/app/states';
+import { languageSelected, loadLanguage, setLanguage } from '../../../states';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -46,7 +44,7 @@ export class RegisterPage implements OnInit {
     this.store.select(languageSelected).subscribe({
       next: ({ language }) => {
         this.diviceLanguage.set(language);
-        this.translate.use(language)
+        this.translate.use(language);
       },
     });
   }
@@ -97,8 +95,7 @@ export class RegisterPage implements OnInit {
   }
 
   languageSelected(event: string) {
-    console.log('chage language');
-    
+    this.store.dispatch(setLanguage({language: event}))
   }
 
   uploadImage(event){

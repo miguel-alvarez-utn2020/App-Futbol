@@ -31,5 +31,12 @@
         "noGroups": "No tienes grupos creados",
         "noJoinGroups": "No te has unido a ningún grupo",
         "groupListLabel": "Lista de grupos"
+    },
+    "mainMenu":{
+        "titleLabel":"Menú principal",
+        "logout": "SALIR"
+    },
+    "notifMenu":{
+        "titleLabel": "Notificaciones"
     }
 }

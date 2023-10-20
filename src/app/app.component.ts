@@ -10,11 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   private store = inject(Store<AppState>);
-  private translate = inject(TranslateService);
 
   constructor() {
     this.loadLanguage();
-    this.translate.use('en')
   }
   loadLanguage() {
     this.store.dispatch(loadLanguage());

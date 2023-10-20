@@ -24,7 +24,7 @@ export class LanguageEffects {
     }),
     mergeMap(() => this.translate.use(this.language)
       .pipe(
-        map(language => ({ type: '[Movies API] Movies Loaded Success', payload: language })),
+        map(language => ({ type: '[App Component] Load Language Success', payload: language })),
         catchError(() => this.translate.use(this.defauldLanguage))
       ))
     )

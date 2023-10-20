@@ -5,24 +5,25 @@
     <ion-menu side="start" menuId="menu" contentId="main">
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Menú Principal</ion-title>
+          <ion-title> {{ 'mainMenu.titleLabel' | translate }} </ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle menu="menu" *ngFor="let c of [1, 2, 3]" autoHide="false">
+          <ion-menu-toggle menu="menu" autoHide="false">
             <ion-item>
-              {{ c }}
+              {{ 'mainMenu.logout' | translate }}
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+     
       </ion-content>
     </ion-menu>
 
     <ion-menu side="end" menuId="menu2" contentId="main">
       <ion-header>
         <ion-toolbar color="secondary">
-          <ion-title>Notificaciones</ion-title>
+          <ion-title>{{ 'notifMenu.titleLabel' | translate }}</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>

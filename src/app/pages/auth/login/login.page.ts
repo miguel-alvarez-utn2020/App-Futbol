@@ -17,7 +17,7 @@ import { FormErrorsService } from '../../services/form-errors.service';
 import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../states/state';
-import { languageSelected } from 'src/app/states';
+import { languageSelected, setLanguage } from 'src/app/states';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -83,7 +83,7 @@ export class LoginPage implements OnInit {
   };
 
   languageSelected(event: string) {
-    this.languageSelect.set(event);
+    this.store.dispatch(setLanguage({language: event}))
   }
 
   onInputChanged(input) {
