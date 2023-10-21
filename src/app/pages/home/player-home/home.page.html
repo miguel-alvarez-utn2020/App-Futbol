@@ -1,4 +1,4 @@
-<app-header-toolbar [imgUrl]="user()?.photo" ></app-header-toolbar>
+<app-header-toolbar [imgUrl]="user()?.photo? user()?.photo :imgUrl" ></app-header-toolbar>
 <ion-content>
   <ion-list class="ion-padding" *ngIf="!groupList().length" >
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">

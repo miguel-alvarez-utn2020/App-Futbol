@@ -5,6 +5,7 @@ import { GroupTypes } from '../../domain/models/Group';
 import { ActionsheetService } from 'src/app/services/shared/actionSheet.service';
 import { GroupService } from '../../services/group.service';
 import { Store } from '@ngrx/store';
+import { createGroup } from '@app/state/actions'
 
 @Component({
   selector: 'app-register-group',
@@ -15,7 +16,6 @@ export class RegisterGroupComponent implements OnInit {
   private modalCtrl = inject(ModalController);
   private actionSheetService = inject(ActionsheetService);
   private fb = inject(FormBuilder);
-  private groupService = inject(GroupService);
   private store = inject(Store)
   formRegisterGroup: FormGroup;
   imgAvartar = 'assets/avatar.png';
@@ -48,14 +48,8 @@ export class RegisterGroupComponent implements OnInit {
   }
 
   saveGroup = () => {
-    console.log(this.formRegisterGroup.value);
-    const createGroup = {...this.formRegisterGroup.value}
-    // this.groupService.create(createGroup).subscribe((res: Group)=>{
-    //   console.log(res);  
-    //   this.modalCtrl.dismiss();
-    // })
-    this.store.dispatch(createGroup())
-
+    const createGroupData = {...this.formRegisterGroup.value}
+    this.store.dispatch(createGroup({group: createGroupData}))
   }
 
   initFormRegisterGroup() {

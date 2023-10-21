@@ -12,6 +12,7 @@ import { ERROR_USER_SYNC } from '../../pages/constants/translates.errors';
 import { loginSuccess } from '../actions/auth.actions';
 import { loadLanguage } from '../actions/language.actions';
 import { GroupService } from 'src/app/pages/services/group.service';
+import { ModalController } from '@ionic/angular';
 
 
 @Injectable()
@@ -23,7 +24,7 @@ export class UserEffects {
     private toastService = inject(ToastService)
     private translate = inject(TranslateService);
     private groupService = inject(GroupService);
-
+    private modalController = inject(ModalController);
     userSync$ = createEffect(() => 
         this.actions$.pipe(
             ofType(userSync),
@@ -55,6 +56,7 @@ export class UserEffects {
         this.groupService.create(action.group).pipe(
           map(() => {
             this.store.dispatch(userSync())
+            this.modalController.dismiss();
             return createGroupSuccess()
           }),
           catchError(({error}) => {

@@ -104,7 +104,7 @@ export class AuthEffects {
       mergeMap(() => {
         this.storageService.removeAllItems();
         this.store.dispatch(removeUser());
-        this.router.navigate(['/']);
+        this.router.navigate(['/auth']);
         return of(logoutSuccess());
       })
     )

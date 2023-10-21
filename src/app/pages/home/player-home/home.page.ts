@@ -28,6 +28,7 @@ export class HomePage implements OnInit {
   private translate = inject(TranslateService);
   groupList = signal<Group[]>([]);
   user = signal<User>({} as User);
+  imgUrl = 'assets/avatar.png'
   constructor() {}
 
   ngOnInit(): void {
