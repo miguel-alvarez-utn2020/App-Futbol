@@ -11,7 +11,7 @@ import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
 import { selectUser, selectUserGroup } from 'src/app/states/selectors/user.selectors';
 import { AppState } from '@capacitor/app';
-import { languageSelected } from 'src/app/states';
+import { languageSelected } from '@app/state/selectors';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

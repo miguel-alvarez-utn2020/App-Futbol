@@ -22,7 +22,14 @@
       "es2018", 
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@app/state/actions":["src/app/states/actions"],
+      "@app/state/effects":["src/app/states/effects"],
+      "@app/state/reducers":["src/app/states/reducers"],
+      "@app/state/selectors":["src/app/states/selectors"],
+      "@app/state/models":["src/app/states/models/models.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

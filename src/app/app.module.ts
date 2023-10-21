@@ -23,7 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { LanguageEffects } from './states/effects/language.effects';
 import { AuthEffects } from './states/effects/auth.effects';
 import { UserEffects } from './states/effects/user.effects';
-
+import { Effects } from './states/effects'
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -39,7 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     StoreModule.forRoot(appState),
     StoreDevtoolsModule .instrument(),
-    EffectsModule.forRoot([LanguageEffects, AuthEffects, UserEffects]),
+    EffectsModule.forRoot([...Effects]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

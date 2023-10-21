@@ -5,15 +5,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/enums/language';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/shared/toast.service';
-import { AuthService, TOKEN } from '../../services/auth.service';
-import { REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
+import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/states/state';
-import { languageSelected, setLanguage, register } from '../../../states';
-import { User } from '../../domain/models/User';
+// import { languageSelected, setLanguage, register } from '../../../states';
+import { setLanguage, register } from '@app/state/actions';
+import { languageSelected } from '@app/state/selectors';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -23,9 +23,6 @@ export class RegisterPage implements OnInit {
   private fb = inject(FormBuilder);
   private translate = inject(TranslateService);
   private router = inject(Router);
-  private authService = inject(AuthService);
-  private storageService = inject(StorageService);
-  private toastService = inject(ToastService);
   private formErrorsService = inject(FormErrorsService);
   private store = inject(Store<AppState>);
 

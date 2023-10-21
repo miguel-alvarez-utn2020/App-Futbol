@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadUser, userSync, userSyncSuccess, userSyncFailure } from '../actions/user.actions';
+import { loadUser, userSync, userSyncSuccess, userSyncFailure, createGroup, createGroupSuccess, createGroupFailure } from '../actions/user.actions';
 import { exhaustMap, map, catchError} from 'rxjs/operators';
 import { of  } from 'rxjs';
 import { AuthService, TOKEN } from 'src/app/pages/services/auth.service';
@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ERROR_USER_SYNC } from '../../pages/constants/translates.errors';
 import { loginSuccess } from '../actions/auth.actions';
 import { loadLanguage } from '../actions/language.actions';
+import { GroupService } from 'src/app/pages/services/group.service';
 
 
 @Injectable()
@@ -21,6 +22,7 @@ export class UserEffects {
     private store = inject(Store);
     private toastService = inject(ToastService)
     private translate = inject(TranslateService);
+    private groupService = inject(GroupService);
 
     userSync$ = createEffect(() => 
         this.actions$.pipe(
@@ -46,10 +48,21 @@ export class UserEffects {
         )
     )
 
-    // createGroup$ = createEffect( () => 
-    //     this.actions$.pipe(
-            
-    //     )
-    // )
+    createGroup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createGroup),
+      exhaustMap((action) =>
+        this.groupService.create(action.group).pipe(
+          map(() => {
+            this.store.dispatch(userSync())
+            return createGroupSuccess()
+          }),
+          catchError(({error}) => {
+            return of(createGroupFailure({ error }))
+          })
+        )
+      )
+    )
+  );
 
 }

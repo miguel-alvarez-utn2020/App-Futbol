@@ -12,7 +12,7 @@ export const userSyncFailure = createAction('[App] User Sync Failure');
 
 export const createGroup = createAction('[home player] Create Group', props<{group: CreateGroup}>());
 export const createGroupSuccess = createAction('[home player] Create Success');
-export const createGroupFailure = createAction('[home player] Create Failure');
+export const createGroupFailure = createAction('[home player] Create Failure', props<{error: any}>());
 
 export const joinGroup = createAction('[home player] Join Group', props<{groupCode: string}>());
 export const joinGroupSuccess = createAction('[home player] Join Success');

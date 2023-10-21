@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { Group, GroupTypes } from '../../domain/models/Group';
-import { CameraService } from 'src/app/services/shared/camera.service';
+import { GroupTypes } from '../../domain/models/Group';
 import { ActionsheetService } from 'src/app/services/shared/actionSheet.service';
 import { GroupService } from '../../services/group.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-register-group',
@@ -13,9 +13,10 @@ import { GroupService } from '../../services/group.service';
 })
 export class RegisterGroupComponent implements OnInit {
   private modalCtrl = inject(ModalController);
-  private fb = inject(FormBuilder);
   private actionSheetService = inject(ActionsheetService);
+  private fb = inject(FormBuilder);
   private groupService = inject(GroupService);
+  private store = inject(Store)
   formRegisterGroup: FormGroup;
   imgAvartar = 'assets/avatar.png';
   constructor(
@@ -49,10 +50,12 @@ export class RegisterGroupComponent implements OnInit {
   saveGroup = () => {
     console.log(this.formRegisterGroup.value);
     const createGroup = {...this.formRegisterGroup.value}
-    this.groupService.create(createGroup).subscribe((res: Group)=>{
-      console.log(res);  
-      this.modalCtrl.dismiss();
-    })
+    // this.groupService.create(createGroup).subscribe((res: Group)=>{
+    //   console.log(res);  
+    //   this.modalCtrl.dismiss();
+    // })
+    this.store.dispatch(createGroup())
+
   }
 
   initFormRegisterGroup() {

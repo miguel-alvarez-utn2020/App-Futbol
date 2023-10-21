@@ -10,14 +10,13 @@ import {
 import { Language } from 'src/app/enums/language';
 import { ToastService } from 'src/app/services/shared/toast.service';
 import { Router } from '@angular/router';
-import { AuthService, TOKEN } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../states/state';
-import { languageSelected, setLanguage, login } from 'src/app/states';
-import { User } from '../../domain/models/User';
-import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
+import { setLanguage, login } from '@app/state/actions';
+import { languageSelected } from '@app/state/selectors';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -26,10 +25,7 @@ import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
 export class LoginPage implements OnInit {
   private fb = inject(FormBuilder);
   private translate = inject(TranslateService);
-  private toastService = inject(ToastService);
   private router = inject(Router);
-  private authService = inject(AuthService);
-  private storageService = inject(StorageService);
   private formErrorsService = inject(FormErrorsService);
   private store = inject(Store<AppState>);
 

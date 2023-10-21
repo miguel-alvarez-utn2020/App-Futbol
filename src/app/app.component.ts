@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { Store } from '@ngrx/store'
-import { AppState } from '@capacitor/app';
-import { loadLanguage, userSync } from './states';
-import { logout } from './states'
 import { selectUser } from './states/selectors/user.selectors';
+import { Store } from '@ngrx/store'
+import { logout } from '@app/state/actions'
 import { StorageService } from './pages/services/storage.service';
+import { AppState } from '@capacitor/app';
 import { LOGGED_IN } from './pages/services/auth.service';
+import {loadLanguage, userSync} from '@app/state/actions'
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
