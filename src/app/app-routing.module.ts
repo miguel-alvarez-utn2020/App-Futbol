@@ -4,8 +4,8 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginPageModule)
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'register',
@@ -20,6 +20,12 @@ const routes: Routes = [
     path: 'group',
     loadChildren: () => import('./pages//tabs/tab-player/tab-player.module').then(m => m.TabPlayerPageModule)
   },
+  {
+    path: '**',
+    redirectTo: '/auth',
+    pathMatch: 'full'
+  }
+  
 ];
 @NgModule({
   imports: [

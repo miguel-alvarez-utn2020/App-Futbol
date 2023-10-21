@@ -2,16 +2,16 @@
 <ion-content>
   <ion-list class="ion-padding" *ngIf="!groupList().length" >
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
-      No tienes grupos creados
+      {{ 'home.noGroups' | translate }}
     </ion-button>
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
-      No te has unido a ningún grupo
+      {{'home.noJoinGroups' | translate}}
     </ion-button>
   </ion-list>
   <ion-list *ngIf="groupList().length">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>Lista de grupos</ion-card-subtitle>
+        <ion-card-subtitle> {{'home.groupListLabel' | translate}} </ion-card-subtitle>
       </ion-card-header>
       <app-item-group
         *ngFor="let group of groupList()"

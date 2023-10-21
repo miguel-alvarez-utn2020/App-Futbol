@@ -11,6 +11,8 @@ import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
 import { selectUser, selectUserGroup } from 'src/app/states/selectors/user.selectors';
 import { AppState } from '@capacitor/app';
+import { languageSelected } from 'src/app/states';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab1',
@@ -23,18 +25,22 @@ export class HomePage implements OnInit {
   private router = inject(Router);
   private storageService = inject(StorageService);
   private store = inject(Store<AppState>);
+  private translate = inject(TranslateService);
   groupList = signal<Group[]>([]);
   user = signal<User>({} as User);
   constructor() {}
 
   ngOnInit(): void {
+    this.loadUserData();
+    this.loadLenguage();
+  }
+
+  loadUserData(){
     this.store.select(selectUser).subscribe({
       next: ({user}) => {
         if(user){
           this.groupList.set(user.groups)
           this.user.set(user);
-          console.log(this.groupList());
-          
         }
       }
     })
@@ -54,6 +60,14 @@ export class HomePage implements OnInit {
 
   shareGroup = (codeGroup: string) => {
     console.log('share group', codeGroup);
+  }
+
+  loadLenguage() {
+    this.store.select(languageSelected).subscribe({
+      next: ({ language }) => {
+        this.translate.use(language);
+      },
+    });
   }
 
   goToGroup = (group: Group) =>{

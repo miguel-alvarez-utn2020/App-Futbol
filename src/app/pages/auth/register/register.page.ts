@@ -74,7 +74,7 @@ export class RegisterPage implements OnInit {
   }
 
   goToLogin = () => {
-    this.router.navigate(['/']);
+    this.router.navigate(['auth/login']);
   }
 
 

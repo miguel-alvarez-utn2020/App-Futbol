@@ -18,6 +18,7 @@ export class AppComponent {
     this.appSync();
     this.loadLanguage();
   }
+
   loadLanguage() {
     this.store.dispatch(loadLanguage());
   }
@@ -28,8 +29,6 @@ export class AppComponent {
         const loggedIn = this.storageService.getItem(LOGGED_IN, true);
         if(loggedIn && !user){
           this.store.dispatch(userSync());
-            console.log('sync');
-          
         }
       }
     })

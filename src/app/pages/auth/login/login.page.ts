@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
   };
 
   goToRegister = () => {
-    this.router.navigate(['/register']);
+    this.router.navigate(['auth/register']);
   };
 
   languageSelected(event: string) {
