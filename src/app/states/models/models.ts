@@ -10,3 +10,7 @@ export interface Language {
 export interface UserState {
     user: User | null;
 }
+
+export interface AuthState{
+    loggedIn: boolean;
+}

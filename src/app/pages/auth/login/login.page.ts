@@ -77,6 +77,7 @@ export class LoginPage implements OnInit {
     //   },
     // });
     this.store.dispatch(login({credentials}))
+    
   };
 
   goToRegister = () => {

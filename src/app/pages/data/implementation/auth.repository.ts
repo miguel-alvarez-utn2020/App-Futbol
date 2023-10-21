@@ -17,7 +17,7 @@ export class AuthRepositoryImplementation implements AuthRepository {
     };
     
     login(credentials: UserLogin): Observable<{ user: User; token: string; }> {
-        return this.http.post<{user: User, token: string}>(`${environment.server_url}/${PATHS.LOGIN}`, credentials);
+        return this.http.post<{user: User, token: string}>(`${environment.server_url}${PATHS.LOGIN}`, credentials);
     }
     
     register(user: CreateUser): Observable<{ user: User; token: string; }>{

@@ -7,11 +7,11 @@ const initialState: LoadingState = {
   loading: false
 }
 
-const _LoadingReducer = createReducer(
+const _loadingReducer = createReducer(
     initialState,
     on(loading, (state, { isLoading }) => ({...state, loading: isLoading}))
 )
 
 export function loadingReducer(state: any, action: any){
-    return _LoadingReducer(state, action)
+    return _loadingReducer(state, action)
 }

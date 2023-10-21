@@ -6,11 +6,11 @@ const initialState: UserState = {
   user: null
 }
 
-const _UserReducer = createReducer(
+const _userReducer = createReducer(
     initialState,
     on(loadUser, (state, {user}) => ({...state, user})),
 )
 
-export function UserReducer(state: any, action: any){
-    return _UserReducer(state, action)
+export function userReducer(state: any, action: any){
+    return _userReducer(state, action)
 }
