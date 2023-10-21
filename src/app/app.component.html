@@ -11,7 +11,7 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle menu="menu" autoHide="false">
-            <ion-item>
+            <ion-item (click)="logout()">
               {{ 'mainMenu.logout' | translate }}
             </ion-item>
           </ion-menu-toggle>

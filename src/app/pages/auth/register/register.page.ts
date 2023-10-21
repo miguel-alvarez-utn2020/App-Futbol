@@ -9,10 +9,11 @@ import { AuthService, TOKEN } from '../../services/auth.service';
 import { REGISTER_EMAIL_ALREADY_EXIST } from '../../data/api-error-codes';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
-import { User } from '../../domain/models/User';
+
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/states/state';
-import { languageSelected, loadLanguage, setLanguage } from '../../../states';
+import { languageSelected, setLanguage, register } from '../../../states';
+import { User } from '../../domain/models/User';
 @Component({
   selector: 'app-register',
   templateUrl: 'register.page.html',
@@ -50,23 +51,26 @@ export class RegisterPage implements OnInit {
   }
   //este tipo de funcion es para pasar funciones por input a componentes
   register = () => {
-    const createUserData = {...this.registerForm.value, age: parseInt(this.registerForm.value.age)};
-    this.authService.register(createUserData).subscribe({
-      next: (res: { user: User; token: string; }) => {
-          this.storageService.setItem(TOKEN, res.token);
-          this.router.navigate(['/home']);
-      },
-      error: ({error}) => {
-        const { code } = JSON.parse(error.message);
-        if(code === REGISTER_EMAIL_ALREADY_EXIST){
-          this.translate.get(this.errorRegisterBackend).subscribe({
-            next: (translateText) => {
-              this.toastService.showToast(translateText, 'danger');
-            },
-          });
-        }
-      }
-    });
+    const userCreate = {...this.registerForm.value, age: parseInt(this.registerForm.value.age)};
+    // this.authService.register(createUserData).subscribe({
+    //   next: (res: { user: User; token: string; }) => {
+    //       this.storageService.setItem(TOKEN, res.token);
+    //       this.router.navigate(['/home']);
+    //   },
+    //   error: ({error}) => {
+    //     const { code } = JSON.parse(error.message);
+    //     if(code === REGISTER_EMAIL_ALREADY_EXIST){
+    //       this.translate.get(this.errorRegisterBackend).subscribe({
+    //         next: (translateText) => {
+    //           this.toastService.showToast(translateText, 'danger');
+    //         },
+    //       });
+    //     }
+    //   }
+    // });
+    console.log(userCreate);
+    
+    this.store.dispatch(register({userCreate}))
   }
 
   goToLogin = () => {

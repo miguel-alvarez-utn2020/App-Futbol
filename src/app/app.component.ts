@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { AppState } from '@capacitor/app';
 import { loadLanguage } from './states';
-import { TranslateService } from '@ngx-translate/core';
+import { logout } from './states'
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,5 +16,9 @@ export class AppComponent {
   }
   loadLanguage() {
     this.store.dispatch(loadLanguage());
+  }
+
+  logout(){
+    this.store.dispatch(logout());
   }
 }

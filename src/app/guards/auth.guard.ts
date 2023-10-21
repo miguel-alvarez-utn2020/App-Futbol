@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     };
  
       this.authService.checkToken(token).subscribe((response:any) => {
-        if(response.ok && response.user){
+        if(response.ok){
             return true;
         }
         this.router.navigateByUrl('/');  
