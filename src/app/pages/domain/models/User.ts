@@ -29,6 +29,11 @@ export interface PayloadUser {
   isAdminInGroups: string[];
 }
 
+export interface UserLogin {
+    email: string,
+    password: string;
+}
+
 export interface UserActions {
   createGroup: () => Group;
   inviteGroup: () => Group;

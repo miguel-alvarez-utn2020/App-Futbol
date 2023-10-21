@@ -10,14 +10,14 @@ import {
 import { Language } from 'src/app/enums/language';
 import { ToastService } from 'src/app/services/shared/toast.service';
 import { Router } from '@angular/router';
-import { AuthService, TOKEN, USER } from '../../services/auth.service';
-import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
+import { AuthService, TOKEN } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { FormErrorsService } from '../../services/form-errors.service';
-import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../states/state';
-import { languageSelected, setLanguage } from 'src/app/states';
+import { languageSelected, setLanguage, login } from 'src/app/states';
+import { User } from '../../domain/models/User';
+import { LOGIN_EMAIL_OR_PASSWORD_INCORRECT } from '../../data/api-error-codes';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -59,23 +59,24 @@ export class LoginPage implements OnInit {
   }
 
   login = () => {
-    const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe({
-      next: (res: { user: User; token: string }) => {
-        this.storageService.setItem(TOKEN, res.token);
-        this.router.navigate(['/home']);
-      },
-      error: ({ error }) => {
-        const { code } = JSON.parse(error.message);
-        if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
-          this.translate.get(this.errorLogiBackend()).subscribe({
-            next: (translateText) => {
-              this.toastService.showToast(translateText, 'danger');
-            },
-          });
-        }
-      },
-    });
+    const credentials = this.loginForm.value;
+    // this.authService.login(credentials).subscribe({
+    //   next: (res: { user: User; token: string }) => {
+    //     this.storageService.setItem(TOKEN, res.token);
+    //     this.router.navigate(['/home']);
+    //   },
+    //   error: ({ error }) => {
+    //     const { code } = JSON.parse(error.message);
+    //     if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
+    //       this.translate.get(this.errorLogiBackend()).subscribe({
+    //         next: (translateText) => {
+    //           this.toastService.showToast(translateText, 'danger');
+    //         },
+    //       });
+    //     }
+    //   },
+    // });
+    this.store.dispatch(login({credentials}))
   };
 
   goToRegister = () => {
