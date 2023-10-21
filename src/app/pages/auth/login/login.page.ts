@@ -60,24 +60,7 @@ export class LoginPage implements OnInit {
 
   login = () => {
     const credentials = this.loginForm.value;
-    // this.authService.login(credentials).subscribe({
-    //   next: (res: { user: User; token: string }) => {
-    //     this.storageService.setItem(TOKEN, res.token);
-    //     this.router.navigate(['/home']);
-    //   },
-    //   error: ({ error }) => {
-    //     const { code } = JSON.parse(error.message);
-    //     if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
-    //       this.translate.get(this.errorLogiBackend()).subscribe({
-    //         next: (translateText) => {
-    //           this.toastService.showToast(translateText, 'danger');
-    //         },
-    //       });
-    //     }
-    //   },
-    // });
     this.store.dispatch(login({credentials}))
-    
   };
 
   goToRegister = () => {

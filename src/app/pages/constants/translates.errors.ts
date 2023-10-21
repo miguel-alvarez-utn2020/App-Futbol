@@ -1,0 +1,1 @@
+export const ERROR_USER_SYNC = 'appErrors.errorUserSync';

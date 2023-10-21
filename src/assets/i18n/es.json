@@ -6,6 +6,9 @@
     "nameRequiredError":"El nombre es requerido",
     "lastnameRequiredError":"El apellido es requerido",
     "ageRequiredError":"La edad es requerida",
+    "appErrors": {
+        "errorUserSync": "Error al sincronizar la aplicación"
+    },
     "login":{
         "selectLanguage": "Seleccionar Lenguage",
         "emailLabel": "Ingrese email",

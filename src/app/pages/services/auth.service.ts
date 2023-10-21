@@ -5,6 +5,7 @@ import { CreateUser, User, UserLogin } from '../domain/models/User';
 
 export const USER = 'user';
 export const TOKEN = 'token';
+export const LOGGED_IN = 'loggedIn'
 export const GROUP_ID = 'groupId';
 export const MATCH_ID = 'matchId';
 

@@ -7,3 +7,7 @@ export const loadUser = createAction(
 );
 
 export const removeUser = createAction('[User] Remove User');
+
+export const userSync = createAction('[User] User Sync');
+export const userSyncSuccess = createAction('[User] User Sync Success');
+export const userSyncFailure = createAction('[User] User Sync Failure');

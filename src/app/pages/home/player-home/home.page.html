@@ -1,6 +1,6 @@
-<app-header-toolbar [imgUrl]="user?.photo" ></app-header-toolbar>
+<app-header-toolbar [imgUrl]="user()?.photo" ></app-header-toolbar>
 <ion-content>
-  <ion-list class="ion-padding" *ngIf="!groupList.length" >
+  <ion-list class="ion-padding" *ngIf="!groupList().length" >
     <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
       No tienes grupos creados
     </ion-button>
@@ -8,13 +8,13 @@
       No te has unido a ningún grupo
     </ion-button>
   </ion-list>
-  <ion-list *ngIf="groupList.length">
+  <ion-list *ngIf="groupList().length">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Lista de grupos</ion-card-subtitle>
       </ion-card-header>
       <app-item-group
-        *ngFor="let group of groupList"
+        *ngFor="let group of groupList()"
         [group]="group"
         [shareGroup]="shareGroup"
         [deleteGoup]="deleteGroup"

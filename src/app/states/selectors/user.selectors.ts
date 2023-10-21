@@ -6,5 +6,10 @@ export const SelectUserStates = (state: AppState) => state;
 
 export const selectUserGroup = createSelector(
     SelectUserStates,
-    (state: AppState) => state.userState.user.groups
+    (state: AppState) => state.userState?.user?.groups
+)
+
+export const selectUser = createSelector(
+    SelectUserStates,
+    (state: AppState) => state.userState
 )
