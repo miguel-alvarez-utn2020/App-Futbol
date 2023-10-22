@@ -4,7 +4,6 @@ import { loadUser, removeUser, userSyncSuccess } from '../actions/user.actions';
 
 const initialState: UserState = {
   user: null,
-  activeGroup: null
 }
 
 const _userReducer = createReducer(

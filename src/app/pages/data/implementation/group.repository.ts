@@ -12,13 +12,13 @@ import { TOKEN } from "../../services/auth.service";
 
 export class GroupRepositoryImplementation implements GroupRepository {
     private http = inject(HttpClient);
-    private storageService = inject(StorageService);
+
     create(group: CreateGroup): Observable<Group>{
         return this.http.post<Group>(`${environment.server_url}${PATHS.CREATE_GROUP}`, group);
     };
 
     joinGroup(groupCode: string): Observable<Group>{
-        return this.http.post<Group>(`${environment.server_url}${PATHS.JOIN_GROUP(groupCode)}`, {});
+        return this.http.patch<Group>(`${environment.server_url}${PATHS.JOIN_GROUP(groupCode)}`, {});
     };
     
     sendAdmin(groupId: string, playerId: string): Observable<Group>{
@@ -34,10 +34,10 @@ export class GroupRepositoryImplementation implements GroupRepository {
         .set('groupId', groupId)
         .set('playerId', playerId);
 
-        return this.http.post<Player>(`${environment.server_url}${PATHS.VALORIZE_PLAYER}`,{}, {params});
+        return this.http.patch<Player>(`${environment.server_url}${PATHS.VALORIZE_PLAYER}`,{}, {params});
     };
 
     getGroupById(groupId: string): Observable<Group>{
-        return this.http.post<Group>(`${environment.server_url}${PATHS.GET_GROUP(groupId)}`,{});
+        return this.http.get<Group>(`${environment.server_url}${PATHS.GET_GROUP(groupId)}`,{});
     };
 }

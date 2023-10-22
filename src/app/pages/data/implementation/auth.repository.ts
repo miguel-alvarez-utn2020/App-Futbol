@@ -11,10 +11,12 @@ import { PATHS } from '../path-routes'
 @Injectable()
 export class AuthRepositoryImplementation implements AuthRepository {
     private http = inject(HttpClient)
-
+    tokenObj = {}
     checkToken(token: string): Observable<{ ok: string; user: User; }>{
-        const tokenObj = {token: JSON.parse(token)};
-        return this.http.post<{ ok: string; user: User; }>(`${environment.server_url}${PATHS.CHECK_TOKEN}`,tokenObj)
+        if(token){
+            this.tokenObj = {token: JSON.parse(token)};
+        }
+        return this.http.post<{ ok: string; user: User; }>(`${environment.server_url}${PATHS.CHECK_TOKEN}`,this.tokenObj)
     };
     
     login(credentials: UserLogin): Observable<{ user: User; token: string; }> {

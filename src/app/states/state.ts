@@ -6,6 +6,7 @@ import {
   languageReducer,
   userReducer,
   authReducer,
+  activeGroupReducer
 } from '@app/state/reducers';
 
 export interface AppState {
@@ -13,6 +14,7 @@ export interface AppState {
   language: re.Language;
   userState: re.UserState;
   authState: re.AuthState;
+  activeGroup: re.ActiveGroupState
 }
 
 export const appState: ActionReducerMap<AppState> = {
@@ -20,4 +22,5 @@ export const appState: ActionReducerMap<AppState> = {
   language: languageReducer,
   userState: userReducer,
   authState: authReducer,
+  activeGroup: activeGroupReducer
 };

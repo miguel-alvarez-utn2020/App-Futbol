@@ -6,13 +6,12 @@ import { JoinGroupComponent } from '../../components/join-group/join-group.compo
 import { Group } from '../../domain/models/Group';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
-import { USER } from '../../services/auth.service';
 import { User } from '../../domain/models/User';
 import { Store } from '@ngrx/store';
-import { selectUser, selectUserGroup } from 'src/app/states/selectors/user.selectors';
 import { AppState } from '@capacitor/app';
-import { languageSelected } from '@app/state/selectors';
 import { TranslateService } from '@ngx-translate/core';
+import { selectUser, languageSelected } from '@app/state/selectors';
+import { selectGroup } from '@app/state/actions';
 
 @Component({
   selector: 'app-tab1',
@@ -71,9 +70,10 @@ export class HomePage implements OnInit {
     });
   }
 
-  goToGroup = (group: Group) =>{
+  goToGroup = (groupId: string) =>{
     //TODO:cambiar por servicio de store ngrx
-    this.storageService.setItem('activeGroup', group);
+    // this.storageService.setItem('activeGroup', group);
+    this.store.dispatch(selectGroup({groupId}));
     this.router.navigate(['/group/dashboard/start']);
   }
 

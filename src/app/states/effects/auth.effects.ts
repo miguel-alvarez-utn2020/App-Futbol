@@ -52,9 +52,11 @@ export class AuthEffects {
             this.router.navigate(['/home']);
             return loginSuccess();
           }),
-          catchError(({ error }) => {
-            if(error){
-              const { code } = JSON.parse(error?.message);
+          catchError((res) => {
+            console.log(res);
+            
+            if(res.error){
+              const { code } = JSON.parse(res.error?.message);
               if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
                 this.translate.get(ERROR_LOGIN_BACKEND).subscribe({
                   next: (translateText) => {
@@ -63,7 +65,7 @@ export class AuthEffects {
                 });
               }
             }
-            return of(loginFailure({ error }));
+            return of(loginFailure({ error: res.error }));
           })
         )
       )
@@ -85,13 +87,15 @@ export class AuthEffects {
             return registerSuccess();
           }),
           catchError(({ error }) => {
-            const { code } = JSON.parse(error.message);
-            if (code === REGISTER_EMAIL_ALREADY_EXIST) {
-              this.translate.get(ERROR_REGISTER_BACKEND).subscribe({
-                next: (translateText) => {
-                  this.toastService.showToast(translateText, 'danger');
-                },
-              });
+            if(error){
+              const { code } = JSON.parse(error.message);
+              if (code === REGISTER_EMAIL_ALREADY_EXIST) {
+                this.translate.get(ERROR_REGISTER_BACKEND).subscribe({
+                  next: (translateText) => {
+                    this.toastService.showToast(translateText, 'danger');
+                  },
+                });
+              }
             }
             return of(registerFailure({ error }));
           })
