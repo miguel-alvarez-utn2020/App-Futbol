@@ -25,6 +25,7 @@ export class UserEffects {
     private translate = inject(TranslateService);
     private groupService = inject(GroupService);
     private modalController = inject(ModalController);
+    
     userSync$ = createEffect(() => 
         this.actions$.pipe(
             ofType(userSync),
@@ -66,5 +67,7 @@ export class UserEffects {
       )
     )
   );
+
+    
 
 }

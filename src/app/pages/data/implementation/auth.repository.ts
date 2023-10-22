@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { AuthRepository } from "../../domain/repositories/auth.repository";
 import { Observable } from "rxjs";
 import { User, CreateUser, UserLogin } from "../../domain/models/User";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { PATHS } from '../path-routes'
 
@@ -13,7 +13,8 @@ export class AuthRepositoryImplementation implements AuthRepository {
     private http = inject(HttpClient)
 
     checkToken(token: string): Observable<{ ok: string; user: User; }>{
-        return this.http.post<{ ok: string; user: User; }>(`${environment.server_url}${PATHS.CHECK_TOKEN}`, {token})
+        const tokenObj = {token: JSON.parse(token)};
+        return this.http.post<{ ok: string; user: User; }>(`${environment.server_url}${PATHS.CHECK_TOKEN}`,tokenObj)
     };
     
     login(credentials: UserLogin): Observable<{ user: User; token: string; }> {

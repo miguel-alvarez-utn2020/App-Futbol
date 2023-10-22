@@ -3,7 +3,8 @@ import { UserState } from '../models/models'
 import { loadUser, removeUser, userSyncSuccess } from '../actions/user.actions';
 
 const initialState: UserState = {
-  user: null
+  user: null,
+  activeGroup: null
 }
 
 const _userReducer = createReducer(
@@ -14,5 +15,5 @@ const _userReducer = createReducer(
 )
 
 export function userReducer(state: any, action: any){
-    return _userReducer(state, action)
+    return _userReducer(state, action)  
 }

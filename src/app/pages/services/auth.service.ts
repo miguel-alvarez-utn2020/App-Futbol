@@ -20,8 +20,6 @@ export class AuthService {
   }
 
   register(userCreate: CreateUser): Observable<{ user: User; token: string; }>{
-    console.log(userCreate);
-    
     return this.authRepositoryImplementation.register(userCreate);
   }
 

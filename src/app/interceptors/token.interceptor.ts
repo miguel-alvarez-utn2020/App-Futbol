@@ -9,7 +9,7 @@ import { TOKEN } from '../pages/services/auth.service';
 export class TokenInterceptor implements HttpInterceptor {
     private storageService = inject(StorageService)
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.storageService.getItem(TOKEN) // Reemplaza esto con la lógica para obtener el token del usuario
+    const token = this.storageService.getItem(TOKEN, true);
     if (token) {
       request = request.clone({
         setHeaders: {

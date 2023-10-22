@@ -1,3 +1,4 @@
+import { Group } from "src/app/pages/domain/models/Group";
 import { User } from "src/app/pages/domain/models/User";
 
 export interface LoadingState {
@@ -9,6 +10,7 @@ export interface Language {
 
 export interface UserState {
     user: User | null;
+    activeGroup: Group | null;
 }
 
 export interface AuthState{

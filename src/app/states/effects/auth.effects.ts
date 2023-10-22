@@ -46,8 +46,6 @@ export class AuthEffects {
       exhaustMap((action) =>
         this.authService.login(action.credentials).pipe(
           map((res) => {
-            console.log(res);
-            
             this.storageService.setItem(TOKEN, res.token);
             this.storageService.setItem(LOGGED_IN, true);
             this.store.dispatch(loadUser({ user: res.user }));
@@ -55,13 +53,15 @@ export class AuthEffects {
             return loginSuccess();
           }),
           catchError(({ error }) => {
-            const { code } = JSON.parse(error.message);
-            if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
-              this.translate.get(ERROR_LOGIN_BACKEND).subscribe({
-                next: (translateText) => {
-                  this.toastService.showToast(translateText, 'danger');
-                },
-              });
+            if(error){
+              const { code } = JSON.parse(error?.message);
+              if (code === LOGIN_EMAIL_OR_PASSWORD_INCORRECT) {
+                this.translate.get(ERROR_LOGIN_BACKEND).subscribe({
+                  next: (translateText) => {
+                    this.toastService.showToast(translateText, 'danger');
+                  },
+                });
+              }
             }
             return of(loginFailure({ error }));
           })

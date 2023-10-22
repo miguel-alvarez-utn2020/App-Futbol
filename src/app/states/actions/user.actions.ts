@@ -22,3 +22,7 @@ export const deleteGroup = createAction('[home player] Delete Group');
 export const deleteGroupSuccess = createAction('[home player] Delete Success');
 export const deleteGrouppFailure = createAction('[home player] Delete Failure');
 
+export const selectGroup = createAction('[home player] Selected Group');
+export const selectGroupSuccess = createAction('[home player] Selected Group Success');
+export const selectGroupFailure = createAction('[home player] Selected Group Failure');
+
