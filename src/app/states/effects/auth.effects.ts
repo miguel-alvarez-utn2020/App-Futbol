@@ -45,10 +45,12 @@ export class AuthEffects {
       ofType(login),
       exhaustMap((action) =>
         this.authService.login(action.credentials).pipe(
-          map(({ user, token }) => {
-            this.storageService.setItem(TOKEN, token);
+          map((res) => {
+            console.log(res);
+            
+            this.storageService.setItem(TOKEN, res.token);
             this.storageService.setItem(LOGGED_IN, true);
-            this.store.dispatch(loadUser({ user }));
+            this.store.dispatch(loadUser({ user: res.user }));
             this.router.navigate(['/home']);
             return loginSuccess();
           }),

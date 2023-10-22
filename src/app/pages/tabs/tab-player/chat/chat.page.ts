@@ -15,7 +15,7 @@ import { User } from 'src/app/pages/domain/models/User';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss'],
+  styleUrls: ['./chat-part1.page.scss', './chat-part2.page.scss'],
 })
 export class ChatPage implements OnInit, OnDestroy {
 

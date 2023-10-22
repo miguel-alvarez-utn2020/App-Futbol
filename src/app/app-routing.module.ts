@@ -18,11 +18,12 @@ const routes: Routes = [
   },
   {
     path: 'group',
-    loadChildren: () => import('./pages//tabs/tab-player/tab-player.module').then(m => m.TabPlayerPageModule)
+    loadChildren: () => import('./pages//tabs/tab-player/tab-player.module').then(m => m.TabPlayerPageModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: '**',
-    redirectTo: '/auth',
+    path: '',
+    redirectTo: '/auth/login',
     pathMatch: 'full'
   }
   
