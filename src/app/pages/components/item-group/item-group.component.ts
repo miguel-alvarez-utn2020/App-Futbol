@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Group } from '../../domain/models/Group';
 
 @Component({
@@ -6,13 +6,9 @@ import { Group } from '../../domain/models/Group';
   templateUrl: './item-group.component.html',
   styleUrls: ['./item-group.component.scss']
 })
-export class ItemGroupComponent implements OnInit{
+export class ItemGroupComponent{
   @Input() group: Group;
   @Input() deleteGoup = (id: string) => {};
   @Input() shareGroup = (codeGroup: string) => {};
   @Input() goToGroup = (codeGroup: Group) => {};
-
-  ngOnInit(): void {
-    console.log(this.group);
-  }
 }
