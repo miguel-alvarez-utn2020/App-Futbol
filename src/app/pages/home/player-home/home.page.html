@@ -1,12 +1,8 @@
 <app-header-toolbar [imgUrl]="user()?.photo? user()?.photo :imgUrl" ></app-header-toolbar>
 <ion-content>
   <ion-list class="ion-padding" *ngIf="!groupList().length" >
-    <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
-      {{ 'home.noGroups' | translate }}
-    </ion-button>
-    <ion-button color="dark" [disabled]="true" expand="block" fill="clear" shape="outline">
-      {{'home.noJoinGroups' | translate}}
-    </ion-button>
+    <app-btn-message [message]=" 'home.noGroups' | translate " ></app-btn-message>
+    <app-btn-message [message]=" 'home.noJoinGroups' | translate " ></app-btn-message>
   </ion-list>
   <ion-list *ngIf="groupList().length">
     <ion-card>

@@ -2,12 +2,17 @@
     <!-- <div class="player-container">
         <app-card-player *ngFor="let player of players()"  [player]="player"></app-card-player>
     </div> -->
-    <ion-list *ngIf="players().length">
+    <ion-list *ngIf="players()?.length">
         <ion-list-header>
             <ion-label>Lista de jugadores</ion-label>
         </ion-list-header>
         <ion-item *ngFor="let player of players()">
-            <ion-label> {{player.user.name}} </ion-label>
+            <ion-label> {{player.user.name}} {{player.user.lastname}} <ion-badge *ngIf="isAdmin(player.id)" color="success"> Admin </ion-badge> </ion-label>
+            <ion-buttons slot="end" >
+                <ion-button color="danger" >
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-button>
+            </ion-buttons>
         </ion-item>
     </ion-list>
 </ion-content>

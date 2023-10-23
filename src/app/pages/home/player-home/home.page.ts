@@ -71,7 +71,6 @@ export class HomePage implements OnInit {
   }
 
   goToGroup = (groupId: string) =>{
-    //TODO:cambiar por servicio de store ngrx
     this.store.dispatch(selectGroup({groupId}));
     this.router.navigate(['/group/dashboard/start']);
   }

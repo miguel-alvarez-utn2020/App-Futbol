@@ -84,6 +84,11 @@ export class UserEffects {
           map((group)=>{
             this.storageService.setItem(ACTIVE_GROUP, group.id);
             return selectGroupSuccess({group});
+          }),
+          catchError((error) => {
+            console.log('ERROR:::::',error);
+            
+            return of(userSyncFailure());
           })
         )
       })
