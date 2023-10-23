@@ -11,4 +11,9 @@ app-input-label{
 .header{
     font-family: 'Inter', sans-serif;
 }
+.list-message{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
 

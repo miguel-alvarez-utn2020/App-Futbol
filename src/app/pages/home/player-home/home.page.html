@@ -1,6 +1,6 @@
 <app-header-toolbar [imgUrl]="user()?.photo? user()?.photo :imgUrl" ></app-header-toolbar>
 <ion-content>
-  <ion-list class="ion-padding" *ngIf="!groupList().length" >
+  <ion-list class="list-message ion-padding" *ngIf="!groupList().length" >
     <app-btn-message [message]=" 'home.noGroups' | translate " ></app-btn-message>
     <app-btn-message [message]=" 'home.noJoinGroups' | translate " ></app-btn-message>
   </ion-list>

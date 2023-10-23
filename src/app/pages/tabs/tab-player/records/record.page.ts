@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 import { RegisterMathComponent } from 'src/app/pages/components/register-math/register-math.component';
 import { HistoryMatch } from 'src/app/pages/domain/models/HistoryMatch';
 import { ModalService } from 'src/app/services/shared/modal.service';
-import { selectGroupHistoryMatch } from '@app/state/selectors'
+import { languageSelected, selectGroupHistoryMatch } from '@app/state/selectors'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-record',
@@ -21,9 +22,10 @@ import { selectGroupHistoryMatch } from '@app/state/selectors'
   ],
 })
 export class RecordPage implements OnInit{
-  private modalService = inject(ModalService);
+  private translate = inject(TranslateService);
   private store = inject(Store<AppState>);
-  titleSlides = ['Historial de partidos', 'Fecha de partidos'];
+  private modalService = inject(ModalService);
+  titleSlides = ['historyMatch.recordsLabel', 'historyMatch.matchDate'];
   indesSwiper = signal(0);
   historyMatches = signal<HistoryMatch[]>([])
 
@@ -32,6 +34,10 @@ export class RecordPage implements OnInit{
   }
 
   ngOnInit(): void {
+    this.loadLenguage();
+    this.loadHistoryMatch();
+  }
+  loadHistoryMatch(){
     this.store.select(selectGroupHistoryMatch).subscribe({
       next: (historyMatch: HistoryMatch[])=> this.historyMatches.set(historyMatch)
     })
@@ -40,6 +46,14 @@ export class RecordPage implements OnInit{
  async slideChanged(event){
     const swiper = await event.target.getSwiper();
     this.indesSwiper.set(swiper.realIndex);
+  }
+
+  loadLenguage() {
+    this.store.select(languageSelected).subscribe({
+      next: ({ language }) => {
+        this.translate.use(language);
+      },
+    });
   }
 
 

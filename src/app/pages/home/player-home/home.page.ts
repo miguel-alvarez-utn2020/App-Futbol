@@ -22,7 +22,6 @@ export class HomePage implements OnInit {
   private modalService = inject(ModalService);
   private popoverService = inject(PopoverService);
   private router = inject(Router);
-  private storageService = inject(StorageService);
   private store = inject(Store<AppState>);
   private translate = inject(TranslateService);
   groupList = signal<Group[]>([]);
@@ -39,7 +38,7 @@ export class HomePage implements OnInit {
     this.store.select(selectUser).subscribe({
       next: ({user}) => {
         if(user){
-          this.groupList.set(user.groups)
+          this.groupList.set(user.groups);
           this.user.set(user);
         }
       }

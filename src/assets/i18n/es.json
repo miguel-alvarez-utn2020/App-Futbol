@@ -41,5 +41,18 @@
     },
     "notifMenu":{
         "titleLabel": "Notificaciones"
+    },
+    "historyMatch":{
+        "noMatch": "No tienes partidos en el historial",
+        "recordsLabel": "Historial de partidos",
+        "matchDate": "Fecha de partidos"
+    },
+    "tabs":{
+        "news": "Noticias",
+        "records": "Historial",
+        "chat": "Chat",
+        "players": "Jugadores",
+        "matches": "Partidos"
     }
+
 }

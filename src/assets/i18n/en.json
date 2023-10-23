@@ -41,6 +41,18 @@
     },
     "notifMenu":{
         "titleLabel": "Notifications"
+    },
+    "historyMatch":{
+        "noMatch": "You have no matches in your history",
+        "recordsLabel": "Match history",
+        "matchDate": "Match date"
+    },
+    "tabs":{
+        "news": "News",
+        "records": "History",
+        "chat": "Chat",
+        "players": "Players",
+        "matches": "Matches"
     }
 
 }
