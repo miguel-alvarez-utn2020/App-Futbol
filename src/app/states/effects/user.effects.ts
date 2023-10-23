@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { AuthService, TOKEN } from 'src/app/pages/services/auth.service';
+import { ACTIVE_GROUP, AuthService, TOKEN } from 'src/app/pages/services/auth.service';
 import { StorageService } from 'src/app/pages/services/storage.service';
 import { Store } from '@ngrx/store';
 import { ToastService } from 'src/app/services/shared/toast.service';
@@ -82,6 +82,7 @@ export class UserEffects {
       exhaustMap((action)=> {
         return this.groupService.getGroupById(action.groupId).pipe(
           map((group)=>{
+            this.storageService.setItem(ACTIVE_GROUP, group.id);
             return selectGroupSuccess({group});
           })
         )

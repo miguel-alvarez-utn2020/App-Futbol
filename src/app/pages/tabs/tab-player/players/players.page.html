@@ -1,6 +1,13 @@
 <ion-content>
-    <div class="player-container">
-        <app-card-player *ngFor="let player of players"  [player]="player"></app-card-player>
-    </div>
-  
+    <!-- <div class="player-container">
+        <app-card-player *ngFor="let player of players()"  [player]="player"></app-card-player>
+    </div> -->
+    <ion-list *ngIf="players().length">
+        <ion-list-header>
+            <ion-label>Lista de jugadores</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let player of players()">
+            <ion-label> {{player.user.name}} </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

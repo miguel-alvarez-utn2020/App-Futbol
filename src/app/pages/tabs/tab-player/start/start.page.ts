@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppState } from '@capacitor/app';
 import { ModalController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-start',
   templateUrl: 'start.page.html',
   styleUrls: ['start.page.scss'],
 })
-export class StartPage {
+export class StartPage implements OnInit{
+  private store = inject(Store<AppState>)
   cards = [
     {
       url: 'assets/goku.jpg',
@@ -35,4 +38,9 @@ export class StartPage {
     },
   ];
   constructor() {}
+
+  ngOnInit(): void {
+    console.log('start tab');
+    
+  }
 }

@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { selectUser } from './states/selectors/user.selectors';
 import { Store } from '@ngrx/store'
-import { logout } from '@app/state/actions'
 import { StorageService } from './pages/services/storage.service';
 import { AppState } from '@capacitor/app';
-import { LOGGED_IN } from './pages/services/auth.service';
-import {loadLanguage, userSync} from '@app/state/actions'
+import { ACTIVE_GROUP, LOGGED_IN } from './pages/services/auth.service';
+import {loadLanguage, userSync, selectGroup, logout} from '@app/state/actions'
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,11 +23,16 @@ export class AppComponent {
   }
 
   appSync(){
+    const groupId = this.storageService.getItem(ACTIVE_GROUP, true)
     this.store.select(selectUser).subscribe({
       next: ({user}) => {
         const loggedIn = this.storageService.getItem(LOGGED_IN, true);
         if(loggedIn && !user){
           this.store.dispatch(userSync());
+        }
+        if(user){
+          
+          this.store.dispatch(selectGroup({groupId}));
         }
       }
     })

@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-slides [pager]="true">
+  <!-- <ion-slides [pager]="true">
     <ion-slide *ngFor="let item of [1,2,3,4]">
       <div class="match">
         <ion-item >
@@ -9,12 +9,17 @@
         <ion-card class="card-field ion-no-margin">
           <img class="card-field__img" src="assets/field-vert.png" alt="">
           <app-field  [formationTeamOne]="2" [formationTeamTwo]="2"></app-field>
-          <!-- TEAM 1 -->
+
           <app-player-fab></app-player-fab>
-          <!-- TEAM 2 -->
+     
           <app-player-fab [side]="'top'"></app-player-fab>       
         </ion-card>
       </div>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
+  <ion-list>
+      <ion-item *ngFor="let match of matches()">
+        <ion-label>{{match.date | date:'dd/mm/yyyy'}}</ion-label>
+      </ion-item>
+  </ion-list>
 </ion-content>
