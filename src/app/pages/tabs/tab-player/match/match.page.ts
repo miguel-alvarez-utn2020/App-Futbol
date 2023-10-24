@@ -12,6 +12,7 @@ export class MatchPage implements OnInit {
   private store = inject(Store<AppState>);
   public matches = signal<Match[]>([]);
   constructor() {}
+  
   ngOnInit(): void {
     this.store.select(selectGroupMatch).subscribe({
       next: (matches: Match[]) => this.matches.set(matches) 

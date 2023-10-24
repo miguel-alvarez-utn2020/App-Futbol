@@ -16,6 +16,12 @@
     background-position: center center;
 }
 
+.sectionLabel{
+    color: #666666;
+    font-weight: 600;
+    
+}
+
 .calendar-card::before {
     content: ""; /* Asegura que el pseudo-elemento tenga contenido */
     position: absolute; /* Lo posiciona de manera absoluta sobre el elemento padre */

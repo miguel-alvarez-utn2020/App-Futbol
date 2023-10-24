@@ -1,7 +1,7 @@
 
 <ion-content>
   <ion-item   lines="none" class="ion-no-padding ion-no-margin">
-    <ion-label class="ion-text-center"> {{titleSlides[indesSwiper()] | translate}} </ion-label>
+    <ion-label class="sectionLabel ion-text-center"> {{titleSlides[indesSwiper()] | translate}} </ion-label>
     <ion-icon class="icon-right" *ngIf="indesSwiper() === 0" name="arrow-forward-circle-outline"></ion-icon>
     <ion-icon class="icon-left" *ngIf="indesSwiper() === 1" name="arrow-back-circle-outline"></ion-icon>
   </ion-item>
@@ -11,7 +11,7 @@
     <ion-card class="card-list" *ngIf="historyMatches.length">
         <ion-list>
             <ion-item *ngFor="let historyMatch of historyMatches()">
-              <ion-label>Pasco centra 20hs</ion-label>
+              <ion-label> {{ historyMatch.date }} </ion-label>
             </ion-item>
         </ion-list>
     </ion-card>

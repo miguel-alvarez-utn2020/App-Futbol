@@ -4,10 +4,7 @@ import { BUTTONS_LOGIN, BUTTONS_REGISTER, ERROR_REGISTER_BACKEND, INPUT_REGISTER
 import { TranslateService } from '@ngx-translate/core';
 import { Language } from 'src/app/enums/language';
 import { Router } from '@angular/router';
-import { ToastService } from 'src/app/services/shared/toast.service';
-import { AuthService } from '../../services/auth.service';
-import { StorageService } from '../../services/storage.service';
-import { FormErrorsService } from '../../services/form-errors.service';
+import {  UtilsService } from '../../services/utils.service';
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/states/state';
@@ -23,7 +20,7 @@ export class RegisterPage implements OnInit {
   private fb = inject(FormBuilder);
   private translate = inject(TranslateService);
   private router = inject(Router);
-  private formErrorsService = inject(FormErrorsService);
+  private formErrorsService = inject(UtilsService);
   private store = inject(Store<AppState>);
 
   public inputRegister = signal<any[]>(INPUT_REGISTER);
@@ -46,27 +43,9 @@ export class RegisterPage implements OnInit {
       },
     });
   }
-  //este tipo de funcion es para pasar funciones por input a componentes
+
   register = () => {
     const userCreate = {...this.registerForm.value, age: parseInt(this.registerForm.value.age)};
-    // this.authService.register(createUserData).subscribe({
-    //   next: (res: { user: User; token: string; }) => {
-    //       this.storageService.setItem(TOKEN, res.token);
-    //       this.router.navigate(['/home']);
-    //   },
-    //   error: ({error}) => {
-    //     const { code } = JSON.parse(error.message);
-    //     if(code === REGISTER_EMAIL_ALREADY_EXIST){
-    //       this.translate.get(this.errorRegisterBackend).subscribe({
-    //         next: (translateText) => {
-    //           this.toastService.showToast(translateText, 'danger');
-    //         },
-    //       });
-    //     }
-    //   }
-    // });
-    console.log(userCreate);
-    
     this.store.dispatch(register({userCreate}))
   }
 

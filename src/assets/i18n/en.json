@@ -33,7 +33,10 @@
     "home":{
         "noGroups": "You do not have groups created",
         "noJoinGroups": "You have not joined any group",
-        "groupListLabel": "Group List"
+        "groupListLabel": "Group List",
+        "createGroupError" : "Error creating group",
+        "joinGroupError" : "No existe el grupo",
+        "alreadyJoinGroupError" : "You are already joined to this group"
     },
     "mainMenu":{
         "titleLabel":"Main menu",

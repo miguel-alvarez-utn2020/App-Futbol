@@ -2,7 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GroupService } from '../../services/group.service';
-import { Group } from '../../domain/models/Group';
+import { Store } from '@ngrx/store';
+import { AppState } from '@capacitor/app';
+import { joinGroup } from '@app/state/actions';
 
 @Component({
   selector: 'app-join-group',
@@ -12,6 +14,7 @@ import { Group } from '../../domain/models/Group';
 export class JoinGroupComponent implements OnInit{
   private popoverCtrl =  inject(PopoverController);
   private groupService =  inject(GroupService);
+  private store = inject(Store<AppState>)
   private fb =  inject(FormBuilder);
   joinGroupForm: FormGroup;
 
@@ -26,11 +29,8 @@ export class JoinGroupComponent implements OnInit{
     }
 
     joinGroup(){
-      console.log(this.joinGroupForm.value);
-        this.groupService.joinGroup(this.joinGroupForm.value).subscribe((res: Group)=>{
-          console.log(res);
-          
-      }, error => console.log(error));
+      const { groupCode } = this.joinGroupForm.value;
+      this.store.dispatch(joinGroup({groupCode}))
     }
 
 }

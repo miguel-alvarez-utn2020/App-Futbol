@@ -18,7 +18,7 @@ export class GroupService {
       return this.groupRepositoryImplementation.joinGroup(groupCode);
     };
 
-    sendAdmi(groupId: string, playerId: string): Observable<Group>{
+    sendAdmin(groupId: string, playerId: string): Observable<Group>{
       return this.groupRepositoryImplementation.sendAdmin(groupId, playerId);
     };
 

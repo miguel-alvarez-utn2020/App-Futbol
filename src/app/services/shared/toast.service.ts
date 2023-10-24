@@ -3,6 +3,18 @@ import { ToastController } from '@ionic/angular';
 import { PredefinedColors } from '@ionic/core';
 import { PositionToast } from 'src/app/interfaces/toast';
 
+export enum ToastTypeColors {
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    TERTIARY = 'tertiary',
+    SUCCESS = 'success',
+    WARNING = 'warning',
+    DANGER = 'danger',
+    LIGHT = 'light',
+    MEDIUM = 'medium',
+    DARK = 'dark',
+}
+
 @Injectable({
   providedIn: 'root',
 })
