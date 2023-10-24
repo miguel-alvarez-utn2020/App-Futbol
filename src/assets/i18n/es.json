@@ -38,6 +38,9 @@
         "joinGroupError" : "No existe el grupo",
         "alreadyJoinGroupError" : "Ya estas unido a este grupo"
     },
+    "players":{
+        "playerListLabal": "Lista de jugadores"
+    },
     "mainMenu":{
         "titleLabel":"Menú principal",
         "logout": "SALIR"

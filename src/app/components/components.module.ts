@@ -20,7 +20,7 @@ import { MatchCalendarComponent } from './shared/emotional-calendar/match-calend
 import { ItemComponent } from './shared/item/item.component';
 import { ModalHeaderComponent } from './shared/modal-header/modal-header.component';
 import { ModalFooterComponent } from './shared/modal-footer/modal-footer.component';
-import { CardPlayerComponent } from './shared/card-player/card-player.component';
+import { CardPlayerComponent } from '../pages/components/card-player/card-player.component';
 import { BtnMessageComponent } from './shared/btn-message/btn-message.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

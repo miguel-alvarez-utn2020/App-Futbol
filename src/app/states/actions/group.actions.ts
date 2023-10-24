@@ -9,9 +9,8 @@ export const joinGroup = createAction('[home player] Join Group', props<{groupCo
 export const joinGroupSuccess = createAction('[home player] Join Success');
 export const joinGrouppFailure = createAction('[home player] Join Failure', props<{error: any}>());
 
-// export const joinGroup = createAction('[home player] Join Group', props<{groupCode: string}>());
-// export const joinGroupSuccess = createAction('[home player] Join Success');
-// export const joinGrouppFailure = createAction('[home player] Join Failure', props<{error: any}>());
+export const sendAdmin = createAction('[home player] Join Group', props<{groupId: string, playerId: string}>());
+export const sendAdminFailure = createAction('[home player] Join Failure', props<{error: any}>());
 
 export const deleteGroup = createAction('[home player] Delete Group');
 export const deleteGroupSuccess = createAction('[home player] Delete Success');

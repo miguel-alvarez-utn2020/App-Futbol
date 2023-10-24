@@ -37,11 +37,11 @@ export class UserEffects {
             return userSyncSuccess();
           }),
           catchError(() => {
-            // this.translate.get(ERROR_USER_SYNC).subscribe({
-            //   next: (translateText) => {
-            //     this.toastService.showToast(translateText, 'danger');
-            //   },
-            // });
+            this.translate.get('appErrors.errorUserSync').subscribe({
+              next: (translateText) => {
+                this.toastService.showToast(translateText, 'danger');
+              },
+            });
             return of(userSyncFailure());
           })
         );

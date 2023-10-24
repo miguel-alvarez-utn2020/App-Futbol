@@ -1,13 +1,15 @@
 <ion-item class="item"(click)="goToGroup(group.id)">
-    <ion-label *ngIf="group.admins.length" color="success" class="item__type-group">Admin</ion-label>
+    <ion-label *ngIf="group.admins.length && isAdmin" color="success" class="item__type-group">Admin</ion-label>
     <ion-avatar>
       <img [src]="group.photo" />
     </ion-avatar>
     <ion-label class="item__label"> {{ group.name | titlecase}}</ion-label>
-    <ion-button color="primary"  fill="clear" (click)="shareGroup(group.code); $event.stopPropagation()">
+    <ion-button color="primary"  fill="clear" (click)="shareGroup(group.id); $event.stopPropagation()">
       <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
     </ion-button>
-    <ion-button color="danger"  fill="clear" (click)="deleteGoup(group.id); $event.stopPropagation()">
-      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-    </ion-button>
+    <ng-container *ngIf="isAdmin">
+      <ion-button color="danger"  fill="clear" (click)="deleteGoup(group.id); $event.stopPropagation()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ng-container>
 </ion-item>

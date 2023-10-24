@@ -15,7 +15,8 @@ import {
   selectGroup,
   selectGroupSuccess,
   joinGroup,
-  joinGrouppFailure
+  joinGrouppFailure,
+  sendAdmin
 } from '@app/state/actions';
 import { UtilsService } from 'src/app/pages/services/utils.service';
 import { ToastTypeColors } from 'src/app/services/shared/toast.service';
@@ -70,11 +71,10 @@ export class GroupEffects {
 
     sendAdmin$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(joinGroup),
+      ofType(sendAdmin),
       exhaustMap((action) =>
-        this.groupService.joinGroup(action.groupCode).pipe(
+        this.groupService.sendAdmin(action.groupId, action.playerId).pipe(
           map(() => {
-            this.popoverController.dismiss();
             return userSync();
           }),
           catchError(({ error }) => {
@@ -89,7 +89,9 @@ export class GroupEffects {
     selectGroup$ = createEffect(() => this.actions$.pipe(
     ofType(selectGroup),
       exhaustMap((action)=> {
-        return this.groupService.getGroupById(action.groupId).pipe(
+        console.log(action.groupId);
+        
+        return this.groupService.getGroupById(action?.groupId).pipe(
           map((group)=>{
             this.storageService.setItem(ACTIVE_GROUP, group.id);
             return selectGroupSuccess({group});

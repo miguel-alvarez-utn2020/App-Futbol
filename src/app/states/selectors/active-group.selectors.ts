@@ -33,3 +33,8 @@ export const selectGroupAdmins = createSelector(
     SelecActiveGroupStates,
     (state: ActiveGroupState) => state.group?.admins
 )
+
+export const selectActiveGroup = createSelector(
+    SelecActiveGroupStates,
+    (state: ActiveGroupState) => state.group
+)

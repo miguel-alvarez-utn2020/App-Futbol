@@ -11,10 +11,16 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle menu="menu" autoHide="false">
+            <ion-item (click)="goToGroups()">
+              {{ 'IR A GRUPOS' }}
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle menu="menu" autoHide="false">
             <ion-item (click)="logout()">
               {{ 'mainMenu.logout' | translate }}
             </ion-item>
           </ion-menu-toggle>
+         
         </ion-list>
      
       </ion-content>

@@ -5,6 +5,7 @@ import { StorageService } from './pages/services/storage.service';
 import { AppState } from '@capacitor/app';
 import { ACTIVE_GROUP, LOGGED_IN } from './pages/services/auth.service';
 import {loadLanguage, userSync, selectGroup, logout} from '@app/state/actions'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -13,6 +14,7 @@ import {loadLanguage, userSync, selectGroup, logout} from '@app/state/actions'
 export class AppComponent {
   private store = inject(Store<AppState>);
   private storageService = inject(StorageService);
+  private router = inject(Router);
   constructor() {
     this.appSync();
     this.loadLanguage();
@@ -30,8 +32,7 @@ export class AppComponent {
         if(loggedIn && !user){
           this.store.dispatch(userSync());
         }
-        if(user){
-          
+        if(groupId){
           this.store.dispatch(selectGroup({groupId}));
         }
       }
@@ -40,5 +41,9 @@ export class AppComponent {
 
   logout(){
     this.store.dispatch(logout());
+  }
+
+  goToGroups(){
+    this.router.navigate(['/home']);
   }
 }

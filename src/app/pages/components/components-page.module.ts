@@ -10,8 +10,18 @@ import { RegisterMathComponent } from './register-math/register-math.component';
 import { FieldComponent } from './field/field.component';
 import { PlayerFabComponent } from './player-fab/player-fab.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { ItemPlayerComponent } from './item-player/item-player.component';
 
-const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponent, RegisterMathComponent, FieldComponent, PlayerFabComponent, UploadImageComponent];
+const component = [
+  RegisterGroupComponent,
+  JoinGroupComponent,
+  ItemGroupComponent,
+  RegisterMathComponent,
+  FieldComponent,
+  PlayerFabComponent,
+  UploadImageComponent,
+  ItemPlayerComponent
+];
 
 @NgModule({
   declarations: [...component],
@@ -20,7 +30,7 @@ const component = [RegisterGroupComponent, JoinGroupComponent, ItemGroupComponen
     IonicModule,
     ComponentsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [...component],
 })
