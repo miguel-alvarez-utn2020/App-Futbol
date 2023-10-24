@@ -1,0 +1,50 @@
+
+<ion-content style="position: relative;" [fullscreen]="true">
+    <ion-item style="--background: none">
+        <ion-label color="light">Awesome Label</ion-label>
+        <ion-buttons slot="end">
+            <ion-button color="light" fill="solid" shape="round">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+    <div class="img-container">
+        <img src="assets/questions2.jpg"  alt="">
+    </div>
+    <ion-slides >
+        <ion-slide style="flex-direction: column; align-items: center;">
+            <ion-card style="padding: 20px;">
+                <ion-card-header>
+                    <ion-card-subtitle>Juan</ion-card-subtitle>
+                    <ion-card-title>Es rapido?</ion-card-title>
+                </ion-card-header>
+                <ion-label>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel esse in quo cum maiores, 
+                    quis aut voluptatum expedita provident quasi 
+                    veritatis tempora soluta magnam nulla ea placeat voluptate fuga consectetur.</ion-label>
+            </ion-card>
+            <ion-list style="width: 100%; padding: 20px; display: flex; flex-direction: column; row-gap: 10px; background: none;">
+                <ng-container *ngFor="let answer of [1,2,3]">
+                    <ion-button color="light" expand="block" fill="solid" >
+                        Click me
+                    </ion-button>
+                </ng-container>
+            </ion-list>
+        </ion-slide>
+    </ion-slides>
+    <ion-item style="--background: none ;">
+        <ion-buttons slot="end">
+            <ion-button fill="solid" color="primary" shape="round" >
+                Siguiente
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+</ion-content>
+<!-- <ion-footer class="ion-no-border" mode="md" [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button color="primary" fill="solid" shape="round">
+                Siguiente
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer> -->

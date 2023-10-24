@@ -1,21 +1,20 @@
 <ion-content>
-    <!-- <div class="player-container">
+  <!-- <div class="player-container">
         <app-card-player *ngFor="let player of players()"  [player]="player"></app-card-player>
     </div> -->
-    <ion-list *ngIf="players()?.length">
-        <ion-list-header>
-            <ion-label> {{'players.playerListLabal' | translate }} </ion-label>
-        </ion-list-header>
-        <!-- <ion-item *ngFor="let player of players()">
-            <ion-label> {{player.user.name}} {{player.user.lastname}} <ion-badge  color="success"> Admin </ion-badge> </ion-label>
-            <ion-buttons slot="end" >
-                <ion-button color="danger" >
-                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                </ion-button>
-            </ion-buttons>
-        </ion-item> -->
-        <ng-container *ngFor="let player of players()">
-            <app-item-player [player]="player" [group]="activeGroup()" [userId]="user().id" ></app-item-player>
-        </ng-container>
-    </ion-list>
+  <ion-list *ngIf="players()?.length">
+    <ion-list-header>
+      <ion-label> {{'players.playerListLabal' | translate }} </ion-label>
+    </ion-list-header>
+    <ng-container *ngFor="let player of players()">
+      <app-item-player
+        [deletePlayer]="deletePlayer"
+        [sendAdmin]="sendAdmin"
+        [setValuePlayer]="setValuePlayer"
+        [player]="player"
+        [group]="activeGroup()"
+        [userId]="user()?.id"
+      ></app-item-player>
+    </ng-container>
+  </ion-list>
 </ion-content>

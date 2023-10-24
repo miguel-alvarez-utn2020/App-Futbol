@@ -12,10 +12,10 @@ export class ItemPlayerComponent {
   @Input() group: Group = {} as Group;
   @Input() userId: string = '';
   @Input() deletePlayer = (id: string) => {};
-  @Input() setValuePlayer = (codeGroup: string) => {};
-  @Input() goToGroup = (groupId: string) => {};
+  @Input() setValuePlayer = (groupId: string, playerId: string) => {};
+  @Input() sendAdmin = (groupId: string, playerId: Player) => {};
   isAdmin: boolean = false;
-  noAdminId: string = ''
+  noAdminId: string = '';
 
   ngOnInit(): void {
     this.isAdmin = this.group.admins.includes(this.player.user.id);

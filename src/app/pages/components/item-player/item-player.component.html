@@ -4,13 +4,18 @@
       <img [src]="player.user.photo" />
     </ion-avatar>
     <ion-label class="item__label"> {{ player.user.name | titlecase}} {{ player.user.lastname | titlecase}}</ion-label>
+    <ng-container *ngIf="!isAdmin && userId === noAdminId">
+      <ion-button color="warning"  fill="solid" (click)="sendAdmin(group.id, player); $event.stopPropagation()">
+        <ion-icon name="key-outline"></ion-icon>
+      </ion-button>
+    </ng-container>
     <ng-container *ngIf="userId !== player.user.id">
-        <ion-button color="primary"  fill="clear" (click)="setValuePlayer(player.id); $event.stopPropagation()">
+        <ion-button color="primary"  fill="solid" (click)="setValuePlayer(group.id, player.id); $event.stopPropagation()">
             <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
         </ion-button>
     </ng-container>
     <ng-container *ngIf="!isAdmin && userId === noAdminId">
-      <ion-button color="danger"  fill="clear" (click)="deletePlayer(player.id); $event.stopPropagation()">
+      <ion-button color="danger"  fill="solid" (click)="deletePlayer(player.id); $event.stopPropagation()">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
       </ion-button>
     </ng-container>

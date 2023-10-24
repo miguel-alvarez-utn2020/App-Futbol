@@ -11,6 +11,7 @@ import { FieldComponent } from './field/field.component';
 import { PlayerFabComponent } from './player-fab/player-fab.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { ItemPlayerComponent } from './item-player/item-player.component';
+import { QuestionsPlayerValueComponent } from './questions-player-value/questions-player-value.component';
 
 const component = [
   RegisterGroupComponent,
@@ -20,7 +21,8 @@ const component = [
   FieldComponent,
   PlayerFabComponent,
   UploadImageComponent,
-  ItemPlayerComponent
+  ItemPlayerComponent,
+  QuestionsPlayerValueComponent
 ];
 
 @NgModule({

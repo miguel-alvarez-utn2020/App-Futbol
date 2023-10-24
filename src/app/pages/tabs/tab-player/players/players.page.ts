@@ -7,6 +7,11 @@ import { selectGroupPlayers, selectGroupAdmins, selectActiveGroup, selectUser, l
 import { Group } from 'src/app/pages/domain/models/Group';
 import { User } from 'src/app/pages/domain/models/User';
 import { TranslateService } from '@ngx-translate/core';
+import { sendAdmin } from '@app/state/actions';
+import { AlertService } from 'src/app/services/shared/alert.service';
+import { UtilsService } from 'src/app/pages/services/utils.service';
+import { ModalService } from 'src/app/services/shared/modal.service';
+import { QuestionsPlayerValueComponent } from 'src/app/pages/components/questions-player-value/questions-player-value.component';
 @Component({
   selector: 'app-players',
   templateUrl: 'players.page.html',
@@ -15,6 +20,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class PlayersPage implements OnInit{
   private store = inject(Store<AppState>)
   private translate = inject(TranslateService);
+  private alertService = inject(AlertService);
+  private utilsService = inject(UtilsService);
+  private modalService = inject(ModalService);
   players = signal<Player[] | null>([]);
   adminsPlayers = signal<string[]>([])
   activeGroup = signal<Group>({} as Group);
@@ -60,6 +68,29 @@ export class PlayersPage implements OnInit{
       },
     });
   }
+
+  deletePlayer = (id: string) => {
+
+  };
+
+  setValuePlayer = (groupId: string, playerId: string) => {
+    this.modalService.showModal(QuestionsPlayerValueComponent, {}, false, 'questions-value')
+  };
+
+  sendAdmin = async (groupId: string, player: Player) => {
+   this.utilsService.translateMessages(['alert.textOneForSendAdmin', 'alert.textTwoForSendAdmin', 'no', 'yes']).subscribe({
+    next: async (messages) => {
+      const [textOneForSendAdmin, textTwoForSendAdmin, no, yes] = messages;
+      const textAlert = `${textOneForSendAdmin} ${player.user.name} ${player.user.lastname} ${textTwoForSendAdmin}`
+      const resAnswer = await this.alertService.simpleAlertQuestion(textAlert, yes, no);
+       if(resAnswer){
+         this.store.dispatch(sendAdmin({groupId, playerId: player.id}))
+       }
+    }
+   })
+  };
+
+
 
   
 

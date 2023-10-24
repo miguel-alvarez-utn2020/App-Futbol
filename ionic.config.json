@@ -3,5 +3,14 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "plugins": {
+    "local-notifications": {
+      "smallIcon": "res://icon",
+      "iconColor": "#0000FF"
+    }
+  },
+  "root": "src",
+  "sourceMapType": "eval",
+  "theme": "light"
 }

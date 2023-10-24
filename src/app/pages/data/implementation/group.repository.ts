@@ -26,7 +26,7 @@ export class GroupRepositoryImplementation implements GroupRepository {
         .set('groupId', groupId)
         .set('playerId', playerId);
 
-        return this.http.post<Group>(`${environment.server_url}${PATHS.SEND_ADMIN}`,{}, {params});
+        return this.http.patch<Group>(`${environment.server_url}${PATHS.SEND_ADMIN}`,{}, {params});
     };
 
     valorizePlayer(groupId: string, playerId: string, valorization: Valorization): Observable<Player>{
