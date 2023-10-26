@@ -1,7 +1,14 @@
-import { CreateGroup, Group } from 'src/app/pages/domain/models/Group';
 import { createAction, props } from '@ngrx/store';
 import { CreateMatch, Match } from 'src/app/pages/domain/models/Match';
 
-export const createMatch = createAction('[Records Tab] Create Match', props<{match: CreateMatch}>());
+export const createMatch = createAction('[Records Tab] Create Match', props<{groupId: string, match: CreateMatch}>());
 export const createMatchSuccess = createAction('[Records Tab] Create Match Success', props<{match: Match}>);
 export const createMatchFailure = createAction('[Records Tab] Create Match Failure', props<{error: any}>());
+
+export const joinMatch = createAction('[Match Tab] join Match', props<{matchId: string, playerId: string}>());
+// export const joinMatchSuccess = createAction('[Records Tab] join Match Success', props<{match: Match}>);
+export const joinMatchFailure = createAction('[Match Tab] join Match Failure', props<{error: any}>());
+
+export const quitMatch = createAction('[Match Tab] Quit Match', props<{matchId: string, playerId: string}>());
+// export const joinMatchSuccess = createAction('[Records Tab] join Match Success', props<{match: Match}>);
+export const quitMatchFailure = createAction('[Match Tab] Quit Match Failure', props<{error: any}>());

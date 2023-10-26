@@ -22,6 +22,7 @@ import { ModalHeaderComponent } from './shared/modal-header/modal-header.compone
 import { ModalFooterComponent } from './shared/modal-footer/modal-footer.component';
 import { CardPlayerComponent } from '../pages/components/card-player/card-player.component';
 import { BtnMessageComponent } from './shared/btn-message/btn-message.component';
+import { AccordionComponent } from './shared/accordion/accordion.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -43,7 +44,8 @@ const components = [
   ModalHeaderComponent,
   ModalFooterComponent,
   CardPlayerComponent,
-  BtnMessageComponent
+  BtnMessageComponent,
+  AccordionComponent
 ];
 
 @NgModule({

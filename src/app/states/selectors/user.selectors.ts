@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../state';
-import { state } from '@angular/animations';
 
 export const SelectUserStates = (state: AppState) => state;
 
@@ -14,5 +13,7 @@ export const selectUser = createSelector(
     SelectUserStates,
     (state: AppState) => state.userState
 )
+
+
 
 

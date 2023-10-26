@@ -39,6 +39,7 @@ export class PlayersPage implements OnInit{
     this.loadAdminsPlayers();
     this.loadValorizerPlayers();
     this.getPlayerCreatorgroup();
+    
   }
 
   loadPlayers(){

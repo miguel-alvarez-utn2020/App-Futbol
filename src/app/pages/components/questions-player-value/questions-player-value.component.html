@@ -3,8 +3,8 @@
   <div class="img-container">
     <img src="assets/questions2.jpg" />
   </div>
-  <ion-slides #slides [pager]="true" (ionSlideNextStart)="ionSlideNextStart($event)"
-    (ionSlidePrevStart)="ionSlidePrevStart($event)" [options]="slideOptions">
+  <ion-slides #slides [pager]="true" (ionSlideNextStart)="ionSlideNextStart($event)  "
+    (ionSlidePrevStart)="ionSlidePrevStart($event)" (ionSlidePrevEnd)="ionSlidePrevEnd($event)" (ionSlideNextEnd)="ionSlideNextEnd($event)" [options]="slideOptions">
     <ion-slide class="player-value__slide" *ngFor="let slide of answersQustions">
       <ion-grid >
         <ion-row>

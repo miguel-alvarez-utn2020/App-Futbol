@@ -1,0 +1,16 @@
+
+
+<ion-accordion-group >
+    <ion-accordion value="first">
+        <ion-item slot="header" color="light">
+          <ion-label> {{ accordionLabel }}  </ion-label>
+        </ion-item>
+        <ng-container *ngIf="noContentMessage && !contentLength">
+          <ion-item lines="none" slot="content" class="ion-text-center">
+            <ion-label color="dark"> {{ noContentMessage }} </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-content></ng-content>
+      </ion-accordion>
+</ion-accordion-group>
+

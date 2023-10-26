@@ -13,45 +13,74 @@ import {
   createGroupSuccess,
   createGroupFailure,
   selectGroup,
-  selectGroupSuccess
+  selectGroupSuccess,
+  createMatch,
+  createMatchFailure,
+  joinMatch,
+  joinMatchFailure,
+  quitMatch
 } from '@app/state/actions';
+import { MatchService } from 'src/app/pages/services/match.service';
 
 @Injectable()
 export class MatchEffects {
     private actions$ = inject(Actions);
     private storageService = inject(StorageService);
     private store = inject(Store);
-    private groupService = inject(GroupService);
+    private matchService = inject(MatchService);
     private modalController = inject(ModalController);
 
 
-    // createMatch$ = createEffect(() =>
-    // this.actions$.pipe(
-    //   ofType(createGroup),
-    //   exhaustMap((action) =>
-    //     this.groupService.create(action.group).pipe(
-    //       map(() => {
-    //         this.store.dispatch(userSync());
-    //         this.modalController.dismiss();
-    //         return createGroupSuccess();
-    //       }),
-    //       catchError(({ error }) => {
-    //         return of(createGroupFailure({ error }));
-    //       })
-    //     )
-    //   )
-    // )
-    // );
-    
-    // selectGroup$ = createEffect(() => this.actions$.pipe(
-    // ofType(selectGroup),
-    //   exhaustMap((action)=> {
-    //     return this.groupService.getGroupById(action.groupId).pipe(
-    //       map((group)=>{
-    //         this.storageService.setItem(ACTIVE_GROUP, group.id);
-    //         return selectGroupSuccess({group});
-    //       }),
-    //     )
-    //   })
-    // ));
+    createMatch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createMatch),
+      exhaustMap((action) =>
+        this.matchService.create(action.groupId, action.match).pipe(
+          map(() => {
+            this.modalController.dismiss();
+            return userSync();
+          }),
+          catchError((res) => {
+            //controlar error
+            return of(createMatchFailure({ error: res.error }));
+          })
+        )
+      )
+    )
+    );
+
+    joinMatch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(joinMatch),
+      exhaustMap((action) =>
+        this.matchService.join(action.matchId, action.playerId).pipe(
+          map(() => {
+            return userSync();
+          }),
+          catchError((res) => {
+            //controlar error
+            return of(joinMatchFailure({ error: res.error }));
+          })
+        )
+      )
+    )
+    );
+
+    quitMatch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(quitMatch),
+      exhaustMap((action) =>
+        this.matchService.quit(action.matchId, action.playerId).pipe(
+          map(() => {
+            return userSync();
+          }),
+          catchError((res) => {
+            //controlar error
+            return of(joinMatchFailure({ error: res.error }));
+          })
+        )
+      )
+    )
+    );
+
 }

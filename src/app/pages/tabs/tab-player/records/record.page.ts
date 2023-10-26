@@ -5,8 +5,9 @@ import { Store } from '@ngrx/store';
 import { RegisterMathComponent } from 'src/app/pages/components/register-math/register-math.component';
 import { HistoryMatch } from 'src/app/pages/domain/models/HistoryMatch';
 import { ModalService } from 'src/app/services/shared/modal.service';
-import { languageSelected, selectGroupHistoryMatch } from '@app/state/selectors'
+import { languageSelected, selectActiveGroup, selectGroupHistoryMatch } from '@app/state/selectors'
 import { TranslateService } from '@ngx-translate/core';
+import { Group } from 'src/app/pages/domain/models/Group';
 
 @Component({
   selector: 'app-record',
@@ -25,6 +26,7 @@ export class RecordPage implements OnInit{
   private translate = inject(TranslateService);
   private store = inject(Store<AppState>);
   private modalService = inject(ModalService);
+  private activeGroup = signal<Group>({} as Group);
   titleSlides = ['historyMatch.recordsLabel', 'historyMatch.matchDate'];
   indesSwiper = signal(0);
   historyMatches = signal<HistoryMatch[]>([])
@@ -36,10 +38,18 @@ export class RecordPage implements OnInit{
   ngOnInit(): void {
     this.loadLenguage();
     this.loadHistoryMatch();
+    this.getActiveGroup();
   }
+
   loadHistoryMatch(){
     this.store.select(selectGroupHistoryMatch).subscribe({
       next: (historyMatch: HistoryMatch[])=> this.historyMatches.set(historyMatch)
+    })
+  }
+
+  getActiveGroup(){
+    this.store.select(selectActiveGroup).subscribe({
+      next: (activeGroup) => this.activeGroup.set(activeGroup)
     })
   }
 
@@ -58,6 +68,7 @@ export class RecordPage implements OnInit{
 
 
   showModalRegisterMatch(){
-      this.modalService.showModal(RegisterMathComponent, {});
+      const groupId = this.activeGroup().id;
+      this.modalService.showModal(RegisterMathComponent, {groupId});
   }
 }

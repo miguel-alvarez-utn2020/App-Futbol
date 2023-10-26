@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import {
   INPUT_REGISTER_MATCH,
@@ -8,6 +8,10 @@ import {
 import { PopoverService } from 'src/app/services/shared/popover.service';
 import { DatetimeComponent } from 'src/app/components/shared/datetime/datetime.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store, props } from '@ngrx/store';
+import { AppState } from '@capacitor/app';
+import { createMatch } from '@app/state/actions';
+import { CreateMatch, Match } from '../../domain/models/Match';
 
 @Component({
   selector: 'app-register-math',
@@ -15,12 +19,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register-math.component.scss'],
 })
 export class RegisterMathComponent {
+  private store = inject(Store<AppState>)
+  @Input() props: any;
   inputRegisterForm = INPUT_REGISTER_MATCH;
   checkRegisterForm = CHECKS_REGISTER_MATCH;
   selectRegisterForm = OPTION_SELECT_MATCH;
   registerMatchForm: FormGroup;
   matchDate: string = '';
   matchTime: string = '';
+  
   constructor(
     private modalCtrl: ModalController,
     private popoverService: PopoverService,
@@ -59,6 +66,14 @@ export class RegisterMathComponent {
     })
   }
 
+  // date: Date;
+  // location: string;
+  // quantityPlayers: number;
+  // automaticAssemble: boolean;
+  // withSustitutes: boolean;
+  // rematch: boolean;
+  // isContinuous: boolean;
+
   buildDate(date: Date){
     const fullDate = new Date(date);
     const day = fullDate.getDate();
@@ -73,6 +88,8 @@ export class RegisterMathComponent {
   }
 
   saveMatch = () =>{
-    this.modalCtrl.dismiss();
+    const match: CreateMatch = this.registerMatchForm.value;
+    const groupId = this.props.groupId;
+    this.store.dispatch(createMatch({groupId, match}));
   }
 }

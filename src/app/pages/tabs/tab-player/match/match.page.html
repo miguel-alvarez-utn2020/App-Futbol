@@ -17,9 +17,43 @@
       </div>
     </ion-slide>
   </ion-slides> -->
-  <ion-list>
-      <ion-item *ngFor="let match of matches()">
-        <ion-label>{{match.date | date:'dd/mm/yyyy'}}</ion-label>
+  <ion-slides style="height: 100%" [pager]="true" (ionSlideDidChange)="ionSlideDidChange($event)">
+    <ion-slide style="flex-direction: column; justify-content: flex-start; padding: 20px;" *ngFor="let match of matches()">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label style="padding-left: 10px">{{match.date | date:'dd/MM/yyyy'}} - {{match.location}} - {{
+            match.date | date:'HH:mm' }}hs
+          </ion-label>
+          <ion-icon class="ion-no-margin ion-no-padding" slot="start" name="calendar-outline"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <app-accordion style="width: 100%" [accordionLabel]=" 'Equipo 1' "
+        [noContentMessage]=" 'No hay jugadores confirmados' " [contentLength]="match.firstTeam.length">
+        <ion-item slot="content" *ngFor="let player of match.firstTeam">
+          <ion-label>{{ player.user.name }}</ion-label>
+        </ion-item>
+      </app-accordion>
+      <ion-item>
+        <ion-label class="ion-text-center">VS</ion-label>
       </ion-item>
-  </ion-list>
+      <app-accordion style="width: 100%" [accordionLabel]=" 'Equipo 2' "
+        [noContentMessage]=" 'No hay jugadores confirmados' " [contentLength]="match.secondTeam.length">
+        <ion-item slot="content" *ngFor="let player of match.secondTeam">
+          <ion-label>{{ player.user.name  }}</ion-label>
+        </ion-item>
+      </app-accordion>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons  class="ion-justify-content-between">
+      <ion-button (click)="matchQuit()" color="danger" fill="solid" shape="round">
+        Bajarse del partido
+      </ion-button>
+      <ion-button (click)="matchConfirm()" color="success" fill="solid" shape="round">
+        Confirmar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -49,4 +49,12 @@ export const selectPlayerCreatorGroup = createSelector(
     (state: ActiveGroupState) => state.group?.players[0]
 )
 
+export const selectMainUserPlayer =(userId) => createSelector(
+    SelecActiveGroupStates,
+    (state: ActiveGroupState) => {
+       return state.group?.players?.find(p => p.user?.id === userId);
+    }
+)
+
+
 

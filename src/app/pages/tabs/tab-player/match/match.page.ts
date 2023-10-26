@@ -1,22 +1,77 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { AppState } from '@capacitor/app';
 import { Store } from '@ngrx/store';
-import { selectGroupMatch } from '@app/state/selectors'
+import {
+  selectGroupMatch,
+  selectMainUserPlayer,
+  selectUser,
+} from '@app/state/selectors';
 import { Match } from 'src/app/pages/domain/models/Match';
+import { User } from 'src/app/pages/domain/models/User';
+import { Player } from 'src/app/pages/domain/models/Player';
+import { joinMatch, quitMatch } from '@app/state/actions';
 @Component({
   selector: 'app-match',
   templateUrl: 'match.page.html',
-  styleUrls: ['match.page.scss']
+  styleUrls: ['match.page.scss'],
 })
 export class MatchPage implements OnInit {
   private store = inject(Store<AppState>);
   public matches = signal<Match[]>([]);
+  public indexMatch: number = 0;
+  public currentMatch: Match = null;
+  public user = signal<User>({} as User);
+  public userMainPlayer = signal<Player>({} as Player);
   constructor() {}
-  
+
   ngOnInit(): void {
-    this.store.select(selectGroupMatch).subscribe({
-      next: (matches: Match[]) => this.matches.set(matches) 
-    })
+    this.loadUserData();
+    this.loadMatches();
   }
 
+  loadMatches() {
+    this.store.select(selectGroupMatch).subscribe({
+      next: (matches: Match[]) => {
+        this.matches.set(matches);
+        if(matches){
+          this.currentMatch = this.matches()[this.indexMatch];
+        }
+      },
+    });
+  }
+
+  loadUserData() {
+    this.store.select(selectUser).subscribe({
+      next: ({ user }) => {
+        this.user.set(user)
+        if(user){
+          this.loadMainUser(user.id);
+        }
+      }
+    });
+  }
+
+  loadMainUser(userId) {
+    this.store.select(selectMainUserPlayer(this.user()?.id)).subscribe({
+      next: (player) => this.userMainPlayer.set(player),
+    });
+  }
+
+  async ionSlideDidChange(event) {
+    const swiperIndex = await event.target.getSwiper();
+    this.indexMatch = swiperIndex.realIndex;
+    this.currentMatch = this.matches()[this.indexMatch];
+  }
+
+  matchConfirm() {
+    const matchId = this.currentMatch.id;
+    const playerId = this.userMainPlayer().id;
+    this.store.dispatch(joinMatch({matchId, playerId}));
+  }
+
+  matchQuit(){
+    const matchId = this.currentMatch.id;
+    const playerId = this.userMainPlayer().id;
+    this.store.dispatch(quitMatch({matchId, playerId}));
+  }
 }

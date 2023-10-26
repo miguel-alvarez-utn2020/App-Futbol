@@ -9,7 +9,7 @@
         <ion-icon name="key-outline"></ion-icon>
       </ion-button>
     </ng-container>
-    <ng-container *ngIf="playerCreatorGroup.id !== player.id && !isValorized">
+    <ng-container >
         <ion-button color="primary"  fill="solid" (click)="setValuePlayer(group.id, player.id); $event.stopPropagation()">
             <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
         </ion-button>

@@ -11,9 +11,13 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AuthRepositoryImplementation } from './pages/data/implementation/auth.repository';
 import { GroupRepositoryImplementation } from './pages/data/implementation/group.repository';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
-import { TokenInterceptor } from './interceptors/token.interceptor'
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
@@ -23,7 +27,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { LanguageEffects } from './states/effects/language.effects';
 import { AuthEffects } from './states/effects/auth.effects';
 import { UserEffects } from './states/effects/user.effects';
-import { Effects } from './states/effects'
+import { Effects } from './states/effects';
+import { MatchRepositoryImplementation } from './pages/data/implementation/match.repository';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -38,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NoopAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(appState),
-    StoreDevtoolsModule .instrument(),
+    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([...Effects]),
     TranslateModule.forRoot({
       loader: {
@@ -47,21 +52,20 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     },
-    
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthRepositoryImplementation,
     GroupRepositoryImplementation,
+    MatchRepositoryImplementation,
     HttpClient,
     AuthGuard,
-  
   ],
   bootstrap: [AppComponent],
 })

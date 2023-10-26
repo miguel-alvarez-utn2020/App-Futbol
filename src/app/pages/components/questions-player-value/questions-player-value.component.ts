@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, inject } from '@angular/core';
 import {
   ANSWERS_QUESTIONS,
   Answer,
@@ -15,7 +15,8 @@ import { valorizePlayer } from '@app/state/actions';
   templateUrl: './questions-player-value.component.html',
   styleUrls: ['./questions-player-value.component.scss'],
 })
-export class QuestionsPlayerValueComponent implements OnInit {
+export class QuestionsPlayerValueComponent implements OnInit, AfterViewInit{
+
  
   @ViewChild('slides') slides: IonSlides;
   @Input() props : {groupId: string, playerId: string};
@@ -39,8 +40,11 @@ export class QuestionsPlayerValueComponent implements OnInit {
   ngOnInit(): void {
     this.initValidSteps();
     this.initquestionForm();
-    console.log(this.questionForm.value);
-    
+  }
+
+  ngAfterViewInit(): void {
+    this.slides.lockSwipeToNext(true);
+    this.slides.lockSwipeToPrev(true);
   }
 
   selectAnswer(event: {index: number, answer: Answer}) {
@@ -75,10 +79,12 @@ export class QuestionsPlayerValueComponent implements OnInit {
   }
 
   slideNext() {
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext();
   }
 
   slidePrev() {
+    this.slides.lockSwipeToPrev(false);
     this.slides.slidePrev();
   }
 
@@ -92,6 +98,14 @@ export class QuestionsPlayerValueComponent implements OnInit {
     const swiperIndex = await event.target.getSwiper();
     this.indexSlide = swiperIndex.realIndex;
     this.indexStep = this.indexSlide;
+  }
+
+  ionSlidePrevEnd(event){
+    this.slides.lockSwipeToPrev(true);
+  }
+
+  ionSlideNextEnd(event){
+    this.slides.lockSwipeToNext(true);
   }
 
   savePlayer(){
