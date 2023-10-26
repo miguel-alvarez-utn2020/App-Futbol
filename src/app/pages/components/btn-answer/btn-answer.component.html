@@ -1,0 +1,9 @@
+<ion-button
+[color]="answer.active && innerValue? 'primary' : 'light'"
+color="light"
+expand="block"
+fill="solid"
+(click)="onButtonClick()"
+>
+{{answer.answer}}
+</ion-button>

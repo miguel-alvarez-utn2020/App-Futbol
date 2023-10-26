@@ -1,50 +1,53 @@
-
-<ion-content style="position: relative;" [fullscreen]="true">
-    <ion-item style="--background: none">
-        <ion-label color="light">Awesome Label</ion-label>
-        <ion-buttons slot="end">
-            <ion-button color="light" fill="solid" shape="round">
-                <ion-icon slot="icon-only" name="close"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-item>
-    <div class="img-container">
-        <img src="assets/questions2.jpg"  alt="">
-    </div>
-    <ion-slides >
-        <ion-slide style="flex-direction: column; align-items: center;">
-            <ion-card style="padding: 20px;">
-                <ion-card-header>
-                    <ion-card-subtitle>Juan</ion-card-subtitle>
-                    <ion-card-title>Es rapido?</ion-card-title>
-                </ion-card-header>
-                <ion-label>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel esse in quo cum maiores, 
-                    quis aut voluptatum expedita provident quasi 
-                    veritatis tempora soluta magnam nulla ea placeat voluptate fuga consectetur.</ion-label>
-            </ion-card>
-            <ion-list style="width: 100%; padding: 20px; display: flex; flex-direction: column; row-gap: 10px; background: none;">
-                <ng-container *ngFor="let answer of [1,2,3]">
-                    <ion-button color="light" expand="block" fill="solid" >
-                        Click me
-                    </ion-button>
+<ion-content class="player-value" [fullscreen]="true">
+  <app-question-header [title]="'Valorando jugador'" [close]="close" ></app-question-header>
+  <div class="img-container">
+    <img src="assets/questions2.jpg" />
+  </div>
+  <ion-slides #slides [pager]="true" (ionSlideNextStart)="ionSlideNextStart($event)"
+    (ionSlidePrevStart)="ionSlidePrevStart($event)" [options]="slideOptions">
+    <ion-slide class="player-value__slide" *ngFor="let slide of answersQustions">
+      <ion-grid >
+        <ion-row>
+          <ion-col size="12">
+            <app-question-card  [title]="slide.questionTitle" [description]="slide.questionDescription" [UserName]=" 'Juan Gabriel' " ></app-question-card>
+          </ion-col>
+          <ion-col size="12">
+            <form [formGroup]="questionForm">
+              <ion-list class="player-value__answer-list">
+                <ng-container *ngFor="let answer of slide[slide.answersKey]; let i = index">
+                  <app-btn-answer [formControlName]="answer.fcName" [answer]="answer" [id]="answer.id" [index]="i"
+                    (selectAnswer)="selectAnswer($event)"></app-btn-answer>
                 </ng-container>
-            </ion-list>
-        </ion-slide>
-    </ion-slides>
-    <ion-item style="--background: none ;">
-        <ion-buttons slot="end">
-            <ion-button fill="solid" color="primary" shape="round" >
-                Siguiente
-            </ion-button>
-        </ion-buttons>
-    </ion-item>
+              </ion-list>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <ion-item class="player-value__btn-container ion-no-padding ion-no-margin">
+    <ion-buttons [ngClass]="{ 'player-value__container-flex--only-next': !indexSlide }"
+      class="player-value__container-flex ion-no-margin" slot="end">
+      <ng-container *ngIf="indexSlide > 0">
+        <ion-button (click)="slidePrev()" class="player-value__btn player-value__btn--back" fill="solid" color="primary"
+          shape="round">
+          Atras
+          <ion-icon class="ion-no-padding" slot="start" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ng-container *ngIf="indexStep < validSteps.length - 1">
+        <ion-button (click)="slideNext()" [disabled]="!validSteps[indexStep]"
+          class="player-value__btn player-value__btn--next" fill="solid" color="primary" shape="round">
+          Siguiente
+          <ion-icon class="ion-no-padding" slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ng-container *ngIf="indexStep === validSteps.length - 1">
+        <ion-button (click)="savePlayer()" [disabled]="!validSteps[indexStep]"
+          class="player-value__btn player-value__btn--save" fill="solid" color="success" shape="round">
+          Guardar
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
+  </ion-item>
 </ion-content>
-<!-- <ion-footer class="ion-no-border" mode="md" [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="end">
-            <ion-button color="primary" fill="solid" shape="round">
-                Siguiente
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-footer> -->

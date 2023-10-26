@@ -1,9 +1,9 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { PLAYERS } from './examples/examples';
-import { Player } from 'src/app/pages/domain/models/Player';
+import { Player, Valorization } from 'src/app/pages/domain/models/Player';
 import { Store } from '@ngrx/store';
 import { AppState } from '@capacitor/app';
-import { selectGroupPlayers, selectGroupAdmins, selectActiveGroup, selectUser, languageSelected } from '@app/state/selectors'
+import { selectGroupPlayers, selectGroupAdmins, selectActiveGroup, selectUser, languageSelected, selectValorizerPlayers, selectPlayerCreatorGroup } from '@app/state/selectors'
 import { Group } from 'src/app/pages/domain/models/Group';
 import { User } from 'src/app/pages/domain/models/User';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,6 +27,8 @@ export class PlayersPage implements OnInit{
   adminsPlayers = signal<string[]>([])
   activeGroup = signal<Group>({} as Group);
   user = signal<User>({} as User);
+  valorizerPlayers = signal<string[]>([]);
+  playerCreatorGroup = signal<Player>({} as Player);
   constructor() {}
 
   ngOnInit(): void {
@@ -35,6 +37,8 @@ export class PlayersPage implements OnInit{
     this.loadActiveGroup();
     this.loadUserData();
     this.loadAdminsPlayers();
+    this.loadValorizerPlayers();
+    this.getPlayerCreatorgroup();
   }
 
   loadPlayers(){
@@ -69,12 +73,25 @@ export class PlayersPage implements OnInit{
     });
   }
 
+  loadValorizerPlayers(){
+    this.store.select(selectValorizerPlayers).subscribe({
+      next: (valorizerPlayer) => this.valorizerPlayers.set(valorizerPlayer)
+    })
+  }
+
+  getPlayerCreatorgroup(){
+    this.store.select(selectPlayerCreatorGroup).subscribe({
+      next: (player)=> this.playerCreatorGroup.set(player)
+    })
+  }
+  
+
   deletePlayer = (id: string) => {
 
   };
 
   setValuePlayer = (groupId: string, playerId: string) => {
-    this.modalService.showModal(QuestionsPlayerValueComponent, {}, false, 'questions-value')
+    this.modalService.showModal(QuestionsPlayerValueComponent, {groupId, playerId}, false, 'questions-value')
   };
 
   sendAdmin = async (groupId: string, player: Player) => {
@@ -89,9 +106,5 @@ export class PlayersPage implements OnInit{
     }
    })
   };
-
-
-
-  
 
 }

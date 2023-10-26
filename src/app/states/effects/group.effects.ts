@@ -16,7 +16,8 @@ import {
   selectGroupSuccess,
   joinGroup,
   joinGrouppFailure,
-  sendAdmin
+  sendAdmin,
+  valorizePlayer
 } from '@app/state/actions';
 import { UtilsService } from 'src/app/pages/services/utils.service';
 import { ToastTypeColors } from 'src/app/services/shared/toast.service';
@@ -85,12 +86,28 @@ export class GroupEffects {
       )
     )
     );
+
+    valorizePlayer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(valorizePlayer),
+      exhaustMap((action) =>
+        this.groupService.valorizePlayer(action.groupId, action.playerId, action.valorization).pipe(
+          map(() => {
+            this.modalController.dismiss();
+            return userSync();
+          }),
+          catchError(({ error }) => {
+            // this.utilsService.showToast(ERROR_JOIN_GROUP, ToastTypeColors.DANGER);
+            return of(joinGrouppFailure({ error }));
+          })
+        )
+      )
+    )
+    );
     
     selectGroup$ = createEffect(() => this.actions$.pipe(
     ofType(selectGroup),
       exhaustMap((action)=> {
-        console.log(action.groupId);
-        
         return this.groupService.getGroupById(action?.groupId).pipe(
           map((group)=>{
             this.storageService.setItem(ACTIVE_GROUP, group.id);

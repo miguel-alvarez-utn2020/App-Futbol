@@ -68,8 +68,6 @@ export class RegisterMathComponent {
     const hour = fullDate.getHours();
     const min = fullDate.getMinutes();
     const formattedMin = min < 10 ? `0${min}` : min
-    console.log(min);
-    
     this.matchDate = `${day}/${month}/${year}`;
     this.matchTime = `${hour}:${formattedMin}`
   }

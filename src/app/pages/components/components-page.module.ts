@@ -12,6 +12,9 @@ import { PlayerFabComponent } from './player-fab/player-fab.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { ItemPlayerComponent } from './item-player/item-player.component';
 import { QuestionsPlayerValueComponent } from './questions-player-value/questions-player-value.component';
+import { BtnAnswerComponent } from './btn-answer/btn-answer.component';
+import { QuestionHeaderComponent } from './questions-player-value/question-header/question-header.component';
+import { QuestionCardComponent } from './questions-player-value/question-card/question-card.component';
 
 const component = [
   RegisterGroupComponent,
@@ -22,7 +25,10 @@ const component = [
   PlayerFabComponent,
   UploadImageComponent,
   ItemPlayerComponent,
-  QuestionsPlayerValueComponent
+  QuestionsPlayerValueComponent,
+  BtnAnswerComponent,
+  QuestionHeaderComponent,
+  QuestionCardComponent,
 ];
 
 @NgModule({

@@ -3,13 +3,13 @@
     <ion-avatar>
       <img [src]="player.user.photo" />
     </ion-avatar>
-    <ion-label class="item__label"> {{ player.user.name | titlecase}} {{ player.user.lastname | titlecase}}</ion-label>
+    <ion-label class="item__label"> {{ player.user.name | titlecase}} {{ player.user.lastname | titlecase}} <ion-badge color="primary"> {{player.generalValorization}}</ion-badge> </ion-label>
     <ng-container *ngIf="!isAdmin && userId === noAdminId">
       <ion-button color="warning"  fill="solid" (click)="sendAdmin(group.id, player); $event.stopPropagation()">
         <ion-icon name="key-outline"></ion-icon>
       </ion-button>
     </ng-container>
-    <ng-container *ngIf="userId !== player.user.id">
+    <ng-container *ngIf="playerCreatorGroup.id !== player.id && !isValorized">
         <ion-button color="primary"  fill="solid" (click)="setValuePlayer(group.id, player.id); $event.stopPropagation()">
             <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
         </ion-button>

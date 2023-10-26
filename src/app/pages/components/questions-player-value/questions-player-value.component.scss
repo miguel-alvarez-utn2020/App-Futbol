@@ -1,18 +1,94 @@
-.img-container{
+.img-container {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  img {
+    object-fit: cover;
+    width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    img{
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
+    display: block;
+  }
 }
 ion-header {
   --background: rgba(255, 255, 255, 0); // Color de fondo con transparencia
   --color: #000; // Color del texto
+}
+.player-value {
+  position: relative;
+  &__header {
+    --background: none;
+  }
+  &__btn-close {
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+    --padding-bottom: 5px;
+  }
+  &__btn {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    &--next {
+      --padding-start: 20px;
+      --padding-end: 10px;
+    }
+    &--back {
+      --padding-end: 20px;
+      --padding-start: 10px;
+    }
+    &--save {
+      --padding-end: 20px;
+      --padding-start: 20px;
+    }
+  }
+  &__btn-container{
+    --background: none;
+  }
+  &__btn-container::part(native) {
+    --inner-padding-end: 20px;
+    --inner-padding-start: 20px;
+  }
+  &__btn-answer-active {
+    --background: red;
+  }
+  &__container-flex {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    &--only-next {
+      justify-content: flex-end;
+    }
+  }
+  &__answer-list {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background: none;
+  }
+  &__slide {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+:host ::ng-deep .swiper-pagination {
+  bottom: 0%;
+  .swiper-pagination-bullet {
+    --bullet-background: #ffffff;
+    width: 9px;
+    height: 9px;
+  }
+  .swiper-pagination-bullet-active {
+    width: 12px;
+    height: 12px;
+  }
+}
+ion-item::part(native) {
+  --inner-padding-end: 5px;
+  --inner-padding-start: 20px;
 }

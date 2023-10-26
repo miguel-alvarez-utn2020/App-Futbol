@@ -1,0 +1,14 @@
+<ion-item class="question-header__header ion-no-padding">
+    <ion-label color="light"> {{ title }} </ion-label>
+    <ion-buttons slot="end">
+      <ion-button
+      (click)="close()"
+        class="question-header__btn-close"
+        color="light"
+        fill="solid"
+        shape="round"
+      >
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>

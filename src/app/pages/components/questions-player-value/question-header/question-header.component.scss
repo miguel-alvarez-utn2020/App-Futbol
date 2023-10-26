@@ -1,0 +1,16 @@
+.question-header {
+  &__header {
+    --background: none;
+  }
+  &__btn-close {
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+    --padding-bottom: 5px;
+  }
+}
+
+ion-item::part(native) {
+    --inner-padding-end: 5px;
+    --inner-padding-start: 20px;
+  }

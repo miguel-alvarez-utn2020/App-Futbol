@@ -36,5 +36,17 @@ export const selectGroupAdmins = createSelector(
 
 export const selectActiveGroup = createSelector(
     SelecActiveGroupStates,
-    (state: ActiveGroupState) => state.group
+    (state: ActiveGroupState) => state?.group
 )
+
+export const selectValorizerPlayers = createSelector(
+    SelecActiveGroupStates,
+    (state: ActiveGroupState) => state.group?.players[0]?.playersValorized
+)
+
+export const selectPlayerCreatorGroup = createSelector(
+    SelecActiveGroupStates,
+    (state: ActiveGroupState) => state.group?.players[0]
+)
+
+
