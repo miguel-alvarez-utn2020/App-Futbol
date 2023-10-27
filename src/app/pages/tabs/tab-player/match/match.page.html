@@ -17,7 +17,8 @@
       </div>
     </ion-slide>
   </ion-slides> -->
-  <ion-slides style="height: 100%" [pager]="true" (ionSlideDidChange)="ionSlideDidChange($event)">
+  <app-btn-message *ngIf="!matches()?.length" [message]=" 'No hay partidos creados' " ></app-btn-message>
+  <ion-slides *ngIf="matches().length" style="height: 100%" [pager]="true" (ionSlideDidChange)="ionSlideDidChange($event)">
     <ion-slide style="flex-direction: column; justify-content: flex-start; padding: 20px;" *ngFor="let match of matches()">
       <ion-list>
         <ion-item lines="none">
@@ -32,6 +33,9 @@
         <ion-item slot="content" *ngFor="let player of match.firstTeam">
           <ion-label>{{ player.user.name }}</ion-label>
         </ion-item>
+        <ion-button (click)="teamWin(firstTeamWin)" slot="content" fill="solid" expand="block" color="success" >
+          Este equipo gano el partido!
+        </ion-button>
       </app-accordion>
       <ion-item>
         <ion-label class="ion-text-center">VS</ion-label>
@@ -41,13 +45,16 @@
         <ion-item slot="content" *ngFor="let player of match.secondTeam">
           <ion-label>{{ player.user.name  }}</ion-label>
         </ion-item>
+        <ion-button (click)="teamWin(secondTeamWin)" slot="content" fill="solid" expand="block" color="success" >
+          Este equipo gano el partido!
+        </ion-button>
       </app-accordion>
     </ion-slide>
   </ion-slides>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="matches()?.length">
   <ion-toolbar>
-    <ion-buttons  class="ion-justify-content-between">
+    <ion-buttons  class="ion-justify-content-around">
       <ion-button (click)="matchQuit()" color="danger" fill="solid" shape="round">
         Bajarse del partido
       </ion-button>

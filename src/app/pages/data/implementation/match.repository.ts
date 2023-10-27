@@ -4,7 +4,7 @@ import { CreateMatch, Match } from "../../domain/models/Match";
 import { Observable } from 'rxjs';
 import { environment } from "src/environments/environment";
 import { PATHS } from "../path-routes";
-import { CreateHistory } from "../../domain/models/HistoryMatch";
+import { CreateHistory, GenerateHistory } from "../../domain/models/HistoryMatch";
 import { HttpParamsService } from "../../services/http-params.service";
 
 
@@ -32,8 +32,7 @@ export class MatchRepositoryImplementation {
         return this.http.patch<Match>(`${environment.server_url}${PATHS.MATCH_ORDER(matchId)}`, {}, {params})
     }
 
-    generateHistory(matchId: string): Observable<CreateHistory>{
-        const params = this.httpParamsService.buildHttpParams({ matchId });
-        return this.http.post<CreateHistory>(`${environment.server_url}${PATHS.MATCH_GENERATE_HISTORY}`, {}, {params})
+    generateHistory(generateHistory: GenerateHistory): Observable<CreateHistory>{
+        return this.http.post<CreateHistory>(`${environment.server_url}${PATHS.MATCH_GENERATE_HISTORY}`, generateHistory)
     }
 }

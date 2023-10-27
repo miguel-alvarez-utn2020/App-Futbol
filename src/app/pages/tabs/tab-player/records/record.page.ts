@@ -27,7 +27,7 @@ export class RecordPage implements OnInit{
   private store = inject(Store<AppState>);
   private modalService = inject(ModalService);
   private activeGroup = signal<Group>({} as Group);
-  titleSlides = ['historyMatch.recordsLabel', 'historyMatch.matchDate'];
+  titleSlides = ['historyMatch.matchDate', 'historyMatch.recordsLabel'];
   indesSwiper = signal(0);
   historyMatches = signal<HistoryMatch[]>([])
 
@@ -43,7 +43,8 @@ export class RecordPage implements OnInit{
 
   loadHistoryMatch(){
     this.store.select(selectGroupHistoryMatch).subscribe({
-      next: (historyMatch: HistoryMatch[])=> this.historyMatches.set(historyMatch)
+      next: (historyMatch: HistoryMatch[])=> {this.historyMatches.set(historyMatch); console.log(this.historyMatches());}
+      
     })
   }
 

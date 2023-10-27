@@ -7,20 +7,21 @@
   </ion-item>
   <ion-slides (ionSlideDidChange)="slideChanged($event)" class="slides" [pager]="true" >
     <ion-slide class="slide">
-      <app-btn-message [message]=" 'historyMatch.noMatch' | translate " ></app-btn-message>
-    <ion-card class="card-list" *ngIf="historyMatches.length">
+      <ion-card class="calendar-card ion-padding">
+        <app-match-calendar></app-match-calendar>
+      </ion-card>
+    </ion-slide>
+    <ion-slide class="slide">
+      <app-btn-message *ngIf="!historyMatches()?.length" [message]=" 'historyMatch.noMatch' | translate " ></app-btn-message>
+    <ion-card class="card-list" *ngIf="historyMatches()?.length">
         <ion-list>
             <ion-item *ngFor="let historyMatch of historyMatches()">
-              <ion-label> {{ historyMatch.date }} </ion-label>
+              <ion-label> {{ historyMatch.date | date:"dd/MM/yyyy"}} </ion-label>
             </ion-item>
         </ion-list>
     </ion-card>
   </ion-slide>
-  <ion-slide class="slide">
-    <ion-card class="calendar-card ion-padding">
-      <app-match-calendar></app-match-calendar>
-    </ion-card>
-  </ion-slide>
+  
 </ion-slides>
 <ion-fab slot="fixed" horizontal="center" vertical="bottom">
   <ion-fab-button (click)="showModalRegisterMatch()">

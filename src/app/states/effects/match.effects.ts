@@ -18,7 +18,8 @@ import {
   createMatchFailure,
   joinMatch,
   joinMatchFailure,
-  quitMatch
+  quitMatch,
+  generateHistoryMatch
 } from '@app/state/actions';
 import { MatchService } from 'src/app/pages/services/match.service';
 
@@ -71,6 +72,23 @@ export class MatchEffects {
       ofType(quitMatch),
       exhaustMap((action) =>
         this.matchService.quit(action.matchId, action.playerId).pipe(
+          map(() => {
+            return userSync();
+          }),
+          catchError((res) => {
+            //controlar error
+            return of(joinMatchFailure({ error: res.error }));
+          })
+        )
+      )
+    )
+    );
+
+    generateHistoryMatch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(generateHistoryMatch),
+      exhaustMap((action) =>
+        this.matchService.generateHistory(action.generateHistory).pipe(
           map(() => {
             return userSync();
           }),

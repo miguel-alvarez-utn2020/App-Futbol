@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CreateMatch, Match } from '../domain/models/Match';
 import { Observable, of } from 'rxjs';
 import { MatchRepositoryImplementation } from '../data/implementation/match.repository';
-import { CreateHistory } from '../domain/models/HistoryMatch';
+import { CreateHistory, GenerateHistory } from '../domain/models/HistoryMatch';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class MatchService {
     return this.matchRepositoryImplementation.order(matchId);
   }
 
-  generateHistory(matchId: string): Observable<CreateHistory>{
-    return this.matchRepositoryImplementation.generateHistory(matchId);
+  generateHistory(generateHistory: GenerateHistory): Observable<CreateHistory>{
+    return this.matchRepositoryImplementation.generateHistory(generateHistory);
   }
 
 }

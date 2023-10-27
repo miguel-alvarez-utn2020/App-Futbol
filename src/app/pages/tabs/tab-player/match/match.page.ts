@@ -2,14 +2,16 @@ import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { AppState } from '@capacitor/app';
 import { Store } from '@ngrx/store';
 import {
+  selectActiveGroup,
   selectGroupMatch,
   selectMainUserPlayer,
   selectUser,
 } from '@app/state/selectors';
-import { Match } from 'src/app/pages/domain/models/Match';
+import { Match, TeamWin } from 'src/app/pages/domain/models/Match';
 import { User } from 'src/app/pages/domain/models/User';
 import { Player } from 'src/app/pages/domain/models/Player';
-import { joinMatch, quitMatch } from '@app/state/actions';
+import { generateHistoryMatch, joinMatch, quitMatch } from '@app/state/actions';
+import { Group } from 'src/app/pages/domain/models/Group';
 @Component({
   selector: 'app-match',
   templateUrl: 'match.page.html',
@@ -22,11 +24,15 @@ export class MatchPage implements OnInit {
   public currentMatch: Match = null;
   public user = signal<User>({} as User);
   public userMainPlayer = signal<Player>({} as Player);
+  public activeGroup = signal<Group>({} as Group);
+  public firstTeamWin: TeamWin = TeamWin.FIRST;
+  public secondTeamWin: TeamWin = TeamWin.SECOND;
   constructor() {}
 
   ngOnInit(): void {
     this.loadUserData();
     this.loadMatches();
+    this.getActiveGroup();
   }
 
   loadMatches() {
@@ -45,13 +51,19 @@ export class MatchPage implements OnInit {
       next: ({ user }) => {
         this.user.set(user)
         if(user){
-          this.loadMainUser(user.id);
+          this.loadMainUser();
         }
       }
     });
   }
 
-  loadMainUser(userId) {
+  getActiveGroup(){
+    this.store.select(selectActiveGroup).subscribe({
+      next: ( activeGroup ) => this.activeGroup.set(activeGroup)
+    })
+  }
+
+  loadMainUser() {
     this.store.select(selectMainUserPlayer(this.user()?.id)).subscribe({
       next: (player) => this.userMainPlayer.set(player),
     });
@@ -73,5 +85,14 @@ export class MatchPage implements OnInit {
     const matchId = this.currentMatch.id;
     const playerId = this.userMainPlayer().id;
     this.store.dispatch(quitMatch({matchId, playerId}));
+  }
+
+  teamWin(teamWin: TeamWin){
+      const generateHistory = {
+          groupId: this.activeGroup().id,
+          matchId: this.currentMatch.id,
+          teamWin
+      }
+      this.store.dispatch(generateHistoryMatch({generateHistory}));
   }
 }
