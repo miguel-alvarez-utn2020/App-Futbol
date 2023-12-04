@@ -29,9 +29,14 @@ import { AuthEffects } from './states/effects/auth.effects';
 import { UserEffects } from './states/effects/user.effects';
 import { Effects } from './states/effects';
 import { MatchRepositoryImplementation } from './pages/data/implementation/match.repository';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+const config: SocketIoConfig = { url: environment.server_url, options: {} };
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -52,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     {

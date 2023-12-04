@@ -9,6 +9,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ChatService } from 'src/app/services/shared/chat.service';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -27,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  declarations: [TabPlayerPage]
+  declarations: [TabPlayerPage],
+  providers: [ChatService]
 })
 export class TabPlayerPageModule {}
