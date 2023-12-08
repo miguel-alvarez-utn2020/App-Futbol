@@ -7,6 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "start:build:android": "ionic cap sync android",
+    "start:build": "ionic build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
