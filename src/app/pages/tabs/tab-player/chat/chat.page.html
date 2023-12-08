@@ -7,7 +7,7 @@
     </div>
     <ng-template #messageView>
       <div  *ngFor="let chat of messages; let i = index; ">
-        <ion-row *ngIf="chat.userId == user.id" class="mr-chat">
+        <ion-row *ngIf="chat.userId !== user.id" class="mr-chat">
           <ion-col class="right" class="ion-no-padding chat-received" [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].userId != chat.userId)|| !messages[i+1])}">
             <div class="imageAvatarRight">
               <div class="imageAvatarBottom">
@@ -23,7 +23,7 @@
                 (messages[i-1] && messages[i-1].userId == chat.userId)),
                 'sharper-top':(messages[i-1] && messages[i-1].userId == chat.userId),
                 'sharper-bottom':(messages[i+1] && messages[i+1].userId == chat.userId)}">
-                  <!-- <p class="chat-time-received">~ {{chat.from}} </p> -->
+                  <p class="chat-time-received">~ {{chat.from}} </p>
                   <p class="ion-text-wrap" class="pd-chat pd-chat--user">{{chat.subject}}
                   </p>
                 </div>
@@ -31,8 +31,36 @@
             </div>
           </ion-col>
         </ion-row>
+
+        <!-- <ion-row *ngIf="chat.userId !== user.id" class="mr-chat">
+          <ion-col class="left" class="ion-no-padding chat-received" [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].userId != chat.userId)|| !messages[i+1])}">
+            <div class="imageAvatarLeft">
+              <ion-label color="light">
+                <div class="chatDiv" [ngClass]="{'sharper':((messages[i+1] && messages[i+1].userId == chat.userId) && 
+                (messages[i-1] && messages[i-1].userId == chat.userId)),
+                'sharper-top':(messages[i-1] && messages[i-1].userId == chat.userId),
+                'sharper-bottom':(messages[i+1] && messages[i+1].userId == chat.userId)}">
+                  <p class="chat-time-emit">~ {{chat.from}} </p>
+                  <p class="ion-text-wrap" class="pd-chat" >{{chat.subject}}</p>
+                  <div class="corner-parent-left">
+                    <div class="corner-child-left">
+                    </div>
+                  </div>
+                </div>
+              </ion-label>
+              <div class="imageAvatarBottom">
+                <ion-avatar class="avatar" [ngClass]="(messages[i+1] && messages[i+1].userId == chat.userId)?'hidden':''">
+                  <div class="imageAvatarBottomIcon">
+                    <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
+                  </div>
+                  <ion-img class="user-img" [src]="chat.photo"></ion-img>
+                </ion-avatar>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row> -->
   
-        <ion-row *ngIf="chat.userId != user.id" class="mr-chat">
+        <ion-row *ngIf="chat.userId === user.id" class="mr-chat">
           <ion-col class="left" class="ion-no-padding chat-emit" [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].userId != chat.userId)|| !messages[i+1])}">
             <div class="imageAvatarLeft">
               <ion-label color="light">

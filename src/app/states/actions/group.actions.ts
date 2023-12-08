@@ -21,6 +21,9 @@ export const deleteGroup = createAction('[home player] Delete Group');
 export const deleteGroupSuccess = createAction('[home player] Delete Success');
 export const deleteGrouppFailure = createAction('[home player] Delete Failure');
 
+// export const pushChatMessage = createAction('[Chat] Push Message', );
+
+
 export const selectGroup = createAction('[home player] Selected Group', props<{groupId: string}>());
 export const selectGroupSuccess = createAction('[home player] Selected Group Success', props<{group: Group}>());
 export const selectGroupFailure = createAction('[home player] Selected Group Failure');

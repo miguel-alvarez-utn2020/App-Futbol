@@ -4,6 +4,7 @@ import { AppState } from '@capacitor/app';
 import { TranslateService } from '@ngx-translate/core';
 import { languageSelected, selectActiveGroup } from '@app/state/selectors';
 import { ChatService } from 'src/app/services/shared/chat.service';
+import { userSync } from '@app/state/actions';
 
 @Component({
   selector: 'app-tab-player',
@@ -21,8 +22,7 @@ export class TabPlayerPage implements OnInit{
       this.chatService.joinRoom(group.id);
     });
     this.loadLenguage();
-    this.chatService.getMessage()
-    .subscribe( console.log )
+    
   }
   
 

@@ -42,34 +42,29 @@ export class ChatPage implements OnInit, OnDestroy {
   messages: Message[] = [];
   textBox: string = '';
 
-  ngOnDestroy(): void {
-    
-    // if(this.group){
-    //   this.chatService.leaveRoom(this.group.id);
-    // }
+  ngOnDestroy(): void { 
+    if(this.group){
+      this.chatService.leaveRoom(this.group.id);
+    }
   }
 
   ngOnInit() {
+    this.chatService.getMessage()
+    .subscribe( (message)=>{
+      this.messages.push(message);
+      this.scrollDown()
+    } )
     this.store.select( selectActiveGroup )
     .subscribe( group => {
       this.group = group;
+      this.messages = group.messages;
+      this.chatService.joinRoom(group.id);
+      this.scrollDown();
     });
     this.store.select( selectUser )
     .subscribe( ({ user }) => {
       this.user = user;
-    });
-    // this.storeService.user.subscribe( user => {
-    //   this.user = user
-    // });
-    // this.coreService.loadingGroupSelected.subscribe(  value => this.loading = value  );
-    // this.storeService.groupSelected.subscribe( (group) => {
-    //   if(group){
-    //     this.group = group;
-    //     this.messages = group.messages;
-    //     this.chatService.joinRoom(group.id);
-    //     this.scrollDown();
-    //   }
-    // });   
+    }); 
   }
   
   ionViewWillEnter(){
@@ -91,6 +86,8 @@ export class ChatPage implements OnInit, OnDestroy {
       //   userId: this.user.id
       // });
       this.textBox = '';
+      this.scrollDown();
+
       
     }
   }
